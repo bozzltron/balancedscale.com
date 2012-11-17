@@ -1,0 +1,21 @@
+{
+  "author": "Michael Bosworth <mike@balancedscale.com>",
+  "name": "balancedscale.com",
+  "description": "The company website and blog",
+  "version": "0.0.0",
+  "homepage": "http://balancedscale.com",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bozzltron/balancedscale.com.git"
+  },
+  "engines": {
+    "node": ">=0.4.0"
+  },
+  "dependencies": {
+    "stack": ">=0.0.3",
+    "creationix": ">=0.1.2",
+    "wheat": ">=0.2.0",
+    "cluster": ">=0.6.4"
+  },
+  "devDependencies": {}
+}
