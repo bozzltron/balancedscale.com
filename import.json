@@ -1,0 +1,168 @@
+[
+{
+"title": "Node.js and Drupal",
+"link": "http://balancedscale.com/blog/201208/nodejs-and-drupal",
+"description": "<p><iframe width=\"640\" height=\"360\" src=\"http://www.youtube.com/embed/mTwzHoIdLKU?feature=player_detailpage\" frameborder=\"0\" allowfullscreen><\/iframe><\/p>\n<p><a href=\"https://docs.google.com/presentation/pub?id=1tg1Bipi5lnY7OC01uBUGU6wyE3Bq6oxAua3sWB1rbYE&amp;start=false&amp;loop=false&amp;delayms=3000\">Slides<\/a><\/p>",
+"comments": "http://balancedscale.com/blog/201208/nodejs-and-drupal#comments",
+"category": [
+{
+"@domain": "http://balancedscale.com/category/topic/drupal",
+"#text": "Drupal"
+},
+{
+"@domain": "http://balancedscale.com/category/topic/nodejs",
+"#text": "node.js"
+}
+],
+"pubDate": "Thu, 09 Aug 2012 19:34:12 +0000",
+"creator": "boz",
+"guid": {
+"@isPermaLink": "false",
+"#text": "94 at http://balancedscale.com"
+}
+},
+{
+"title": "Introduction to Backbone.js",
+"link": "http://balancedscale.com/blog/201208/introduction-backbonejs",
+"description": "<p><iframe width=\"640\" height=\"360\" src=\"http://www.youtube.com/embed/7XcbXmbrub8?feature=player_detailpage\" frameborder=\"0\" allowfullscreen><\/iframe><\/p>\n<p>Talk given at Drupalcorn 2012 in Ames, Iowa<\/p>\n<p>Slides:<br />\n<a href=\"https://docs.google.com/presentation/pub?id=11PB2Y3cScPdFDjpmLWPPL38rgrJhg-RBWLw_HaNRj0o&amp;start=false&amp;loop=false&amp;delayms=3000\" title=\"https://docs.google.com/presentation/pub?id=11PB2Y3cScPdFDjpmLWPPL38rgrJhg-RBWLw_HaNRj0o&amp;start=false&amp;loop=false&amp;delayms=3000\">https://docs.google.com/presentation/pub?id=11PB2Y3cScPdFDjpmLWPPL38rgrJ...<\/a><\/p>",
+"comments": "http://balancedscale.com/blog/201208/introduction-backbonejs#comments",
+"category": {
+ "@domain": "http://balancedscale.com/category/topic/backbonejs",
+"#text": "Backbone.js"
+},
+"pubDate": "Thu, 09 Aug 2012 19",
+"creator":"boz",
+"guid": {
+"@isPermaLink": "false",
+"#text": "93 at http://balancedscale.com"
+}
+},
+{
+"title": "DrupalCorn 2012",
+"link": "http://balancedscale.com/blog/201208/drupalcorn-2012",
+"description": "<p>Here are my slides from DrupalCorn<\/p>\n<p>Introduction to Backbone.js<br />\n<a href=\"https://docs.google.com/presentation/pub?id=11PB2Y3cScPdFDjpmLWPPL38rgrJhg-RBWLw_HaNRj0o&amp;start=false&amp;loop=false&amp;delayms=3000\" title=\"https://docs.google.com/presentation/pub?id=11PB2Y3cScPdFDjpmLWPPL38rgrJhg-RBWLw_HaNRj0o&amp;start=false&amp;loop=false&amp;delayms=3000\">https://docs.google.com/presentation/pub?id=11PB2Y3cScPdFDjpmLWPPL38rgrJ...<\/a><\/p>\n<p>Node.js and Drupal<br />\n<a href=\"https://docs.google.com/presentation/pub?id=1tg1Bipi5lnY7OC01uBUGU6wyE3Bq6oxAua3sWB1rbYE&amp;start=false&amp;loop=false&amp;delayms=3000\" title=\"https://docs.google.com/presentation/pub?id=1tg1Bipi5lnY7OC01uBUGU6wyE3Bq6oxAua3sWB1rbYE&amp;start=false&amp;loop=false&amp;delayms=3000\">https://docs.google.com/presentation/pub?id=1tg1Bipi5lnY7OC01uBUGU6wyE3B...<\/a><\/p>\n<p>Screen casts will be up within the next week or two.  I'll keep you posted.<\/p>",
+"comments": "http://balancedscale.com/blog/201208/drupalcorn-2012#comments",
+"category": {
+"@domain": "http://balancedscale.com/category/topic/drupal",
+"#text": "Drupal"
+},
+"pubDate": "Sat, 04 Aug 2012 02:32:23 +0000",
+"creator": "boz",
+"guid": {
+"@isPermaLink": "false",
+"#text": "92 at http://balancedscale.com"
+}
+},
+{
+"title": "SAML on Node.js",
+"link": "http://balancedscale.com/blog/201206/saml-nodejs",
+"description": "One of the requirements for my current project is SAML auth via onelogin.com on node.js.  After some research, I found that there is little if any SAML projects out there.  I didn't find any although there are several generic auth modules.  So I took the PHP toolkit from onelogin and translated it to node api code.  I plan on releasing a common js module on github soon so that the community can help finish the code.  At this point the SAML response is parsed only for the users id, then I look them up in mongo and give them a session.<p><a href=\"http://balancedscale.com/blog/201206/saml-nodejs\" target=\"_blank\">read more<\/a><\/p>",
+"comments": "http://balancedscale.com/blog/201206/saml-nodejs#comments",
+"category": {
+"@domain": "http://balancedscale.com/category/topic/nodejs",
+"#text": "node.js"
+},
+"pubDate": "Fri, 01 Jun 2012 16:25:53 +0000",
+"creator": "boz",
+"guid": {
+"@isPermaLink": "false",
+"#text": "91 at http://balancedscale.com"
+}
+},
+{
+"title": "Reference the Mongoose Database Connection",
+"link": "http://balancedscale.com/blog/201205/reference-mongoose-database-connection",
+"description": "Mongoose is an ODM for Node.js that connects to MongoDb.  I've found Mongoose to be really useful in handling Models and REST.  However, I ran into the need to connect directly to MongoDb rather that working through the Models.  Here's the code to reference Mongooses Db so you don't have to connect twice.\n\n<pre>// Database\nvar connection = mongoose.connect('mongodb://username:password@localhost/db_name');\nvar db = connection.connections[0].db;\n<\/pre>",
+"comments": "http://balancedscale.com/blog/201205/reference-mongoose-database-connection#comments",
+"category": {
+"@domain": "http://balancedscale.com/category/topic/nodejs",
+"#text": "node.js"
+},
+"pubDate": "Thu, 24 May 2012 18:58:03 +0000",
+"creator": "boz",
+"guid": {
+"@isPermaLink": "false",
+"#text": "89 at http://balancedscale.com"
+}
+},
+{
+"title": "Backbone.js Resources",
+"link": "http://balancedscale.com/blog/201205/backbonejs-resources",
+"description": "The Backbone.js wagon is a pretty sweet wagon to be on right now.  If you're just jumping in there is a learning curve and not much for documentation.  Here are some compiled resources I've found to be helpful.\n\n<p>\n<a href=\"http://documentcloud.github.com/backbone/\">Backbone.js<\/a>\nThe official download and documentation site.  This is what I reference the most.\n<\/p>\n\n<p>\n<a href=\"http://addyosmani.github.com/backbone-fundamentals/\">Backbone Fundamentals<\/a>\nAn open source book on Backbone.js.\n<\/p><p><a href=\"http://balancedscale.com/blog/201205/backbonejs-resources\" target=\"_blank\">read more<\/a><\/p>",
+"comments": "http://balancedscale.com/blog/201205/backbonejs-resources#comments",
+"category": {
+"@domain": "http://balancedscale.com/category/topic/backbonejs",
+"#text": "Backbone.js"
+},
+"pubDate": "Thu, 03 May 2012 14:41:35 +0000",
+"creator": "boz",
+"guid": {
+"@isPermaLink": "false",
+"#text": "88 at http://balancedscale.com"
+}
+},
+{
+"title": "Generate Word Documents With PHP",
+"link": "http://balancedscale.com/blog/201201/generate-word-documents-php",
+"description": "It turns out you have to do a lot of digging online to find some quality solutions for generating Microsoft Word documents in PHP.  Both of these products have their quirks, but its usually all in how you setup your template.\n\n<strong>PHP Word\n<a href=\"http://phpword.codeplex.com/\" title=\"http://phpword.codeplex.com/\">http://phpword.codeplex.com/<\/a>\n\nThis is a nice PHP library for updating doc and docx documents.<\/strong><p><a href=\"http://balancedscale.com/blog/201201/generate-word-documents-php\" target=\"_blank\">read more<\/a><\/p>",
+"comments": "http://balancedscale.com/blog/201201/generate-word-documents-php#comments",
+"category": {
+"@domain": "http://balancedscale.com/category/topic/php",
+"#text": "PHP"
+},
+"pubDate": "Sun, 29 Jan 2012 22:45:54 +0000",
+"creator": "boz",
+"guid": {
+"@isPermaLink": "false",
+"#text": "87 at http://balancedscale.com"
+}
+},
+{
+"title": "Delete CCK Inactive Fields",
+"link": "http://balancedscale.com/blog/201201/delete-cck-inactive-fields",
+"description": "Inactive fields occur when active fields controlled by a feature are deleted from the feature and the feature is reverted on a database where the fields deleted are currently active.   Here's how to delete them.\n\n<pre>\n$fieldname = \"\";\n db_query('DELETE FROM {content_node_field} WHERE field_name = \"%s\"', $fieldname);\n db_query('DELETE FROM {content_node_field_instance} WHERE field_name = \"%s\"', $fieldname);\n<\/pre>",
+"comments": "http://balancedscale.com/blog/201201/delete-cck-inactive-fields#comments",
+"category": {
+"@domain": "http://balancedscale.com/category/topic/drupal",
+"#text": "Drupal"
+},
+"pubDate": "Sat, 28 Jan 2012 13:08:03 +0000",
+"creator": "boz",
+"guid": {
+"@isPermaLink": "false",
+"#text": "86 at http://balancedscale.com"
+}
+},
+{
+"title": "Delete Nodes From A Certain Date in Drupal",
+"link": "http://balancedscale.com/blog/201111/delete-nodes-certain-date-drupal",
+"description": "<p>I wrote this snippet to clear out some nodes that I had imported that ended up being duplicates.  I thought I would share.<\/p>\n<pre>\n$time = mktime(0,0,0,11,23,2011);\n\n$result = db_query('SELECT * FROM node WHERE created > %d', $time);\nwhile ($item = db_fetch_object($result)) {\n  node_delete($item->nid);\n}\n<\/pre>",
+"comments": "http://balancedscale.com/blog/201111/delete-nodes-certain-date-drupal#comments",
+"category": {
+"@domain": "http://balancedscale.com/category/topic/drupal",
+"#text": "Drupal"
+},
+"pubDate": "Fri, 25 Nov 2011 02:07:32 +0000",
+"creator": "boz",
+"guid": {
+"@isPermaLink": "false",
+"#text": "85 at http://balancedscale.com"
+}
+},
+{
+"title": "Automated Node Titles Without Auto Node Title",
+"link": "http://balancedscale.com/blog/201110/automated-node-titles-without-auto-node-title",
+"description": "<p>I am a features user and if you are too then you will share my frustration when you find aspects of other modules that are not exportable, i.e. not capable of being packaged in your feature.  Such is the case with the Auto Node Title module.  However, this is to be expected right?  Ctools module provides the api for making things exportable and we should know not every developer will go ahead and implement this in their module.  So back to our discovery of the non-exportable.  When we get to this point there are several options.<\/p><p><a href=\"http://balancedscale.com/blog/201110/automated-node-titles-without-auto-node-title\" target=\"_blank\">read more<\/a><\/p>",
+"comments": "http://balancedscale.com/blog/201110/automated-node-titles-without-auto-node-title#comments",
+"category": {
+"@domain": "http://balancedscale.com/category/topic/drupal",
+"#text": "Drupal"
+},
+"pubDate": "Thu, 06 Oct 2011 20:04:31 +0000",
+"creator": "boz",
+"guid": {
+"@isPermaLink": "false",
+"#text": "84 at http://balancedscale.com"
+}
+}
+]
