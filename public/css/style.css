@@ -1,3 +1,26 @@
+* {
+ font-family: 'Oxygen', sans-serif;
+  font-weight: regular;
+}
+
 body{
-    margin-top:60px;
+    background: #fcfcfa;
+}
+
+#homeview{
+    color:#444;
+}
+
+@media (min-width: 980px) {
+    #homeview{
+        margin-top:60px;
+    }
+}
+
+footer{
+    margin:20px;
+}
+
+.navbar-inverse .navbar-inner { 
+    background-image:url('/img/header_pattern.png');
 }
