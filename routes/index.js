@@ -2,13 +2,15 @@
 /*
  * Main routes
  */
-var posts = require('../import.json');
+// var posts = require('../import.json');
 
-posts.forEach(function(post){
-    post.url = post.link.replace('http://balancedscale.com','');
-});
+// posts.forEach(function(post){
+//     post.url = post.link.replace('http://balancedscale.com','');
+// });
 
 exports.index = function(req, res){
+    var posts = res.app.locals.getPosts(0,5);
+    console.log(posts);
     res.render('index', {posts:posts});
 };
 

@@ -1,5 +1,11 @@
 <div class="container">
-<h1>{{node.title}}</h1>
+<h1>{{post.title}}</h1>
 
-<p>{{{node.body}}}</p>
+<p>{{{post.content}}}</p>
+
+<p>
+{{#each post.tags}}
+    <a href="javascript:;">{{this}}</a>
+{{/each}}
+</p>
 </div>

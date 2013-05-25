@@ -9,14 +9,32 @@ var express = require('express')
   , https = require('https')
   , path = require('path')
   , bouncy = require('bouncy')
-  , hbs = require('express-hbs');
-
-var app = express();
+  , hbs = require('express-hbs')
+  , app = express()
+  , poet = require('poet')( app );
 
 hbs.express3({
   extname: ".html",
   layout: "layout"
 });
+
+// poet
+poet.set({
+  posts: './posts/',  // Directory of posts
+  postsPerPage: 5,     // Posts per page in pagination
+  metaFormat: 'json',  // meta formatter for posts
+})
+  .createPostRoute('/blog/:post')
+  .createPageRoute()
+  .createTagRoute()
+  .createCategoryRoute()
+  .init(function ( locals ) {
+    // Some callback to run once everything is set up
+    // The core storage is passed in as an argument,
+    // where all the locals/middleware functions
+    //and stores can be altered
+  });
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -54,7 +72,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/login', routes.login);
 app.get('/about', routes.about);
-app.get('/blog/:yearmonth/:post', routes.post);
+//app.get('/blog/:yearmonth/:post', routes.post);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

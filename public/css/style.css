@@ -4,16 +4,18 @@
 }
 
 body{
-    background: #fcfcfa;
+    background: url('/img/grey_wash_wall/grey_wash_wall.png');
+    background: url('/img/wavegrid/wavegrid.png');
+    background: url('/img/binding_light/binding_light.png');
 }
 
 #homeview{
-    color:#444;
+    color:#111;
 }
 
 @media (min-width: 980px) {
     #homeview{
-        margin-top:60px;
+        margin-top:50px;
     }
 }
 
@@ -21,6 +23,20 @@ footer{
     margin:20px;
 }
 
-.navbar-inverse .navbar-inner { 
+.navbar-inner {
+        -webkit-box-shadow: 0 8px 6px -6px black;
+       -moz-box-shadow: 0 8px 6px -6px black;
+            box-shadow: 0 8px 6px -6px black;
+}
+
+.navbar-inverse .brand, .navbar-inverse a{
+    color:#eee;
+}
+
+.navbar-inverse .navbar-inner, .navbar-inverse .navbar-inner .container { 
     background-image:url('/img/header_pattern.png');
+}
+
+.navbar-fixed-top { 
+    margin-bottom:8px;
 }

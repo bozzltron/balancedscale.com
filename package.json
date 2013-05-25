@@ -10,6 +10,7 @@
     "bouncy": "~3.1.1",
     "underscore": "~1.4.4",
     "express-hbs": "~0.1.6",
-    "mongojs": "~0.7.5"
+    "mongojs": "~0.7.5",
+    "poet": "~0.2.7"
   }
 }
