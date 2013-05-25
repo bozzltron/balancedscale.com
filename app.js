@@ -59,7 +59,6 @@ app.set('view options', {layout:true});
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
-  app.set('port', 3000);
 
   // Setup mongo connection
   var databaseUrl = "bsm"; // "username:password@example.com/mydb"
