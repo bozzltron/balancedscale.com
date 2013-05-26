@@ -1,0 +1,3 @@
+{{{"title":"We&#039;re In The Cloud","tags":["Drupal"],"date":"5-5-2011"}}}
+
+We are beginning to leverage VPS or Cloud servers to build more custom solutions for our clients.  Thanks to services like Amazon EC2 and others, virtualization is a reality for most new companies.  The flexibility of owning your own server with the service backend of a shared host.  Cloud servers are not only flexible, but scalable.  Increasing resources to your server happens at the click of a button.

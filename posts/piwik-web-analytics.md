@@ -1,0 +1,3 @@
+{{{"title":"Piwik Web Analytics","tags":["Site News"],"date":"7-17-2009"}}}
+
+<p>Balanced Scale Media is proud to announce the the integration of <a title="Piwik" href="http://piwik.org/" target="_blank">Piwik</a> Web Analytic software as a free feature to existing and future clients.&#160; Existing clients will recieve login information as soon as there is a sufficient amount of data to work with.&#160; Enjoy!&#160;</p>

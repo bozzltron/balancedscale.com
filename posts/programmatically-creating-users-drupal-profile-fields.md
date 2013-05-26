@@ -1,0 +1,3 @@
+{{{"title":"Programmatically Creating Users in Drupal with Profile Fields","tags":["Drupal"],"date":"6-10-2011"}}}
+
+<p>I learned from <a href="http://api.drupal.org/api/drupal/modules--user--user.module/function/user_save/6">this comment</a> on the api that user_save() will not save data to your profile_values table unless your profile field has the "Visible in user registration form" checkbox checked.  Save yourself some pain.</p>

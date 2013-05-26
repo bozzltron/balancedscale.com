@@ -1,0 +1,3 @@
+{{{"title":"Performance Upgrade","tags":["Site News"],"date":"4-26-2009"}}}
+
+<p>I'm happy to announce that BalancedScale.com and all client sites will now be running on a dedicated server!&#160; That means more performance for you and a more flexible development platform for us.&#160; We will able to offer more features and will have the resources to take on bigger clients.&#160; Yeah, for progress!</p>

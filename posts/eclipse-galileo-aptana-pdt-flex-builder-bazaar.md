@@ -1,0 +1,8 @@
+{{{"title":"Eclipse Galileo + Aptana + PDT + Flex Builder + Bazaar","tags":["Flex"],"date":"8-28-2009"}}}
+
+<p>My development environment varies based on the project that I'm working with.&#160; For my latest project I'm creating a Flex media player and though I started using Gedit, I've moved to Eclipse + Flex Builder so as to take advantage of Flex's Builders code completion feature.&#160; Other features that I needed for this project were support for FTP, Bazaar, PHP, and JQuery.&#160; Here are the steps I took to build the IDE for this project.&#160;</p>
+<p>1. The backend is PHP so I started with <a href="http://www.eclipse.org/pdt/downloads/" target="_blank">PDT all-in-one package</a> of Eclipse version Galileo (3.5).&#160;</p>
+<p>2. For Flex support, I installed the <a href="http://labs.adobe.com/downloads/flexbuilder_linux.html" target="_blank">Flex Builder plugin</a>.&#160; The Eclipse plugin from Adobe is set up for Eclipse version 3.3.x, but you can get it to work with the current Eclipse version thanks to this <a href="http://www.experts-exchange.com/articles/Web_Development/Web_Languages-Standards/Flex/Getting-Flex-Builder-for-Linux-working-with-Eclipse-3-5-Galileo.html" target="_blank">blog post</a>.&#160; I also opted to use the <a href="http://www.adobe.com/support/flashplayer/downloads.html" target="_blank">flash 10 debugger</a> rather than the flash 9 debugger, which is what the Flex Builder plugin will install.</p>
+<p>3. For Bazaar support,&#160; I installed the <a href="http://bazaar-vcs.org/BzrEclipse" target="_blank">Bazaar plugin</a> for Eclipse.</p>
+<p>4. For FTP and JQuery support I installed the <a href="http://aptana.com/studio/download" target="_blank">Aptana plugin</a>.</p>
+<p>Enjoy!</p>

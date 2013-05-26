@@ -1,0 +1,3 @@
+{{{"title":"Loftus Heating and AC Redesign","tags":["Site News"],"date":"5-1-2009"}}}
+
+<p>The newly redesigned <a href="http://www.loftusheatingandac.com">Loftus Heating and AC website</a> is now up and running.&#160; This site was redone from the ground up from their initial static html site.&#160; They now have a database driven website complete with the integration of the Lennox Product API!&#160; It is my hope that they and their customers find it to be an improvement.</p>

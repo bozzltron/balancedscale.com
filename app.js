@@ -21,7 +21,7 @@ hbs.express3({
 // poet
 poet.set({
   posts: './posts/',  // Directory of posts
-  postsPerPage: 5,     // Posts per page in pagination
+  postsPerPage: 10,     // Posts per page in pagination
   metaFormat: 'json',  // meta formatter for posts
 })
   .createPostRoute('/blog/:post')
@@ -34,6 +34,7 @@ poet.set({
     // where all the locals/middleware functions
     //and stores can be altered
   });
+app.set('poet', poet);
 
 
 // all environments
@@ -59,19 +60,15 @@ app.set('view options', {layout:true});
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
-
-  // Setup mongo connection
-  var databaseUrl = "bsm"; // "username:password@example.com/mydb"
-  var collections = ["users", "posts"]
-  var db = require("mongojs").connect(databaseUrl, collections); 
-  app.set('mongo', db);
 }
 
 // Routeage
 app.get('/', routes.index);
 app.get('/login', routes.login);
 app.get('/about', routes.about);
-//app.get('/blog/:yearmonth/:post', routes.post);
+app.get('/blog/:yearmonth/:post', function ( req, res ) {
+    res.redirect('/blog/' + req.params.post); 
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

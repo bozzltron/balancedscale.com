@@ -1,0 +1,6 @@
+{{{"title":"Workaround For Max Join Limit Using Drupal Views Module","tags":["Drupal"],"date":"12-16-2010"}}}
+
+<p>If you have a web host or are working with a web host that severely limits the number of joins you can do in mysql, have not fear, there is a work around.&#160; Include the following code before your mysql query is executed.</p>
+<p><code>mysql_query('set SQL_BIG_SELECTS=1');</code></p>
+<p>If you are using Drupal and the Views module, which you should be, the problem is figuring out where to put this.&#160; I settled with adding it just before line 775 of view.inc inside the /views/includes/ directory.&#160; Putting the code here runs the statement above before evey views query is exectured.&#160; Let me know if there is a better way.</p>
+<p><code>mysql_query('set SQL_BIG_SELECTS=1');&#160; $result = db_query($query, $args);</code></p>

@@ -4,9 +4,9 @@
 }
 
 body{
-    background: url('/img/grey_wash_wall/grey_wash_wall.png');
-    background: url('/img/wavegrid/wavegrid.png');
-    background: url('/img/binding_light/binding_light.png');
+    /*background: url('/img/grey_wash_wall/grey_wash_wall.png');
+    background: url('/img/wavegrid/wavegrid.png');*/
+    background: url('/img/binding_light/binding_light.png') fixed;
 }
 
 #homeview{
@@ -23,10 +23,10 @@ footer{
     margin:20px;
 }
 
-.navbar-inner {
-        -webkit-box-shadow: 0 8px 6px -6px black;
-       -moz-box-shadow: 0 8px 6px -6px black;
-            box-shadow: 0 8px 6px -6px black;
+.navbar-inverse {
+        -webkit-box-shadow: 0 7px 6px -4px #666;
+       -moz-box-shadow: 0 7px 6px -4px  #666;
+            box-shadow: 0 7px 6px -4px  #666;
 }
 
 .navbar-inverse .brand, .navbar-inverse a{

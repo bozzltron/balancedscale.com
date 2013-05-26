@@ -1,0 +1,3 @@
+{{{"title":"Announcing the launch of shotguncongress.com!","tags":["Site News"],"date":"7-31-2008"}}}
+
+The official launch of the writer's blog "Shotgun Congress" happened today.  This site will be a source for fiction writing and thoughts on the writing process courtesy of site owner Mark Bosworth.  Check it out @ <a href="http://www.shotguncongress.com" title="www.shotguncongress.com">www.shotguncongress.com</a>.
