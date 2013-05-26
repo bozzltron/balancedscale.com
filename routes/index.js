@@ -9,9 +9,21 @@
 // });
 
 exports.index = function(req, res){
-    var posts = res.app.locals.getPosts(0,5);
-    console.log(posts);
-    res.render('index', {posts:posts});
+    var posts = res.app.locals.getPosts(0,10);
+
+    var pagination = '<div class="pagination"><ul>';
+    var i = 1;
+    while ( i <= res.app.locals.getPageCount() ) {
+        if (res.app.locals.page == i) {
+            pagination += '<li class="active"><a href="' + res.app.locals.pageUrl(i) + '">' + i + '</a></li>';
+        }
+        else {
+          pagination += '<li><a href="' + res.app.locals.pageUrl(i) + '">' + i + '</a></li>';
+        }
+        i++;
+    }
+    pagination += '</ul></div>';
+    res.render('index', {posts:posts, pagination:pagination});
 };
 
 exports.post = function(req, res){
