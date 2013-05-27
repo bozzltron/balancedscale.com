@@ -1,4 +1,4 @@
-{{{"title":"The Future of HTML5 Video?","tags":["Video"],"date":"9-9-2010"}}}
+{{{"title":"The Future of HTML5 Video?","tags":["Video"],"date":"9-9-2010","description":"In talking through video options with a client I came up with four possible options for the future of video on the web.  I thought I would share."}}}
 
 In talking through video options with a client I came up with four possible options for the future of video on the web.  I thought I would share.
 

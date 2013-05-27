@@ -1,4 +1,4 @@
-{{{"title":"Practical Usage of Symbolic Links","tags":["Linux"],"date":"4-18-2009"}}}
+{{{"title":"Practical Usage of Symbolic Links","tags":["Linux"],"date":"4-18-2009","description":"<p>Symbolic links work kind of like shortcuts in Windows.&#160; I have found a couple of very useful scenarios.&#160; The first is my local development environment.&#160; For Linux users, it is best practice to keep all your files in your user folder.&#160; For me, this is mainly to keep my system directories clean and to make backup of my files easier.&#160; This leads me to my first usage:</p>\n<p><strong>1. Managing Development Files for Apache</strong></p>"}}}
 
 <p>Symbolic links work kind of like shortcuts in Windows.&#160; I have found a couple of very useful scenarios.&#160; The first is my local development environment.&#160; For Linux users, it is best practice to keep all your files in your user folder.&#160; For me, this is mainly to keep my system directories clean and to make backup of my files easier.&#160; This leads me to my first usage:</p>
 <p><strong>1. Managing Development Files for Apache</strong></p>

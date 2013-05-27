@@ -1,4 +1,4 @@
-{{{"title":"Generate Word Documents With PHP","tags":["PHP"],"date":"1-29-2012"}}}
+{{{"title":"Generate Word Documents With PHP","tags":["PHP"],"date":"1-29-2012","description":"It turns out you have to do a lot of digging online to find some quality solutions for generating Microsoft Word documents in PHP.  Both of these products have their quirks, but its usually all in how you setup your template.\n\n<strong>PHP Word\n<a href=\"http://phpword.codeplex.com/\" title=\"http://phpword.codeplex.com/\">http://phpword.codeplex.com/</a>\n\nThis is a nice PHP library for updating doc and docx documents.</strong>"}}}
 
 It turns out you have to do a lot of digging online to find some quality solutions for generating Microsoft Word documents in PHP.  Both of these products have their quirks, but its usually all in how you setup your template.
 

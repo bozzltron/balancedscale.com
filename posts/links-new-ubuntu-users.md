@@ -1,4 +1,4 @@
-{{{"title":"Links for New Ubuntu Users","tags":["Ubuntu"],"date":"10-7-2009"}}}
+{{{"title":"Links for New Ubuntu Users","tags":["Ubuntu"],"date":"10-7-2009","description":"<p>I have a friend who recently informed me of their venture into the world of Linux.&#160; I started to build up a good set of links and thought I would share.&#160; Here you go.</p>\n<p>&#160;</p>\n<p><strong><a href=\"http://ubuntuguide.org/wiki/Ubuntu:Karmic\">The Ubuntu Guide</a></strong> - A Wiki for common setup and configuration tasks in Ubuntu.</p>\n<p>&#160;</p>\n<p><strong><a href=\"http://ubuntu-tweak.com/\">Ubuntu Tweak</a></strong> - Simplifies some Ubuntu configuration tasks as well as application and driver installation.</p>\n<p>&#160;</p>"}}}
 
 <p>I have a friend who recently informed me of their venture into the world of Linux.&#160; I started to build up a good set of links and thought I would share.&#160; Here you go.</p>
 <p>&#160;</p>

@@ -1,4 +1,4 @@
-{{{"title":"Installing Flex Builder on Ubuntu 8.10 Intrepid Ibex","tags":["Linux"],"date":"12-26-2008"}}}
+{{{"title":"Installing Flex Builder on Ubuntu 8.10 Intrepid Ibex","tags":["Linux"],"date":"12-26-2008","description":"<p>Unfortunately, this was not straight forward task for me, which may be due to my lack of skills.  So, in order to ease someone else's pain, I'm posting my method of installing flex builder on Ubuntu 8.10.  </p>\n<ol>\n<li><a href=\"http://archive.eclipse.org/eclipse/downloads/drops/R-3.3-200706251500/index.php\"><strong>Download Eclipse 3.3 Europa</strong></a><br />\nThe download link for Europa 3.3 is post worthy in and of itself due to Eclipse Project's troublesome site navigation.  I downloaded the Linux (x86/GTK 2) version on to my 32-bit machine (64 bit also available).\n</li>\n</ol>"}}}
 
 <p>Unfortunately, this was not straight forward task for me, which may be due to my lack of skills.  So, in order to ease someone else's pain, I'm posting my method of installing flex builder on Ubuntu 8.10.  </p>
 <ol>

@@ -1,4 +1,4 @@
-{{{"title":"Setup A Local Drupal Site Programatically","tags":["Linux"],"date":"4-22-2009"}}}
+{{{"title":"Setup A Local Drupal Site Programatically","tags":["Linux"],"date":"4-22-2009","description":"<p>I've been keeping documentation on my development life cycle processes.&#160; Just recently, I realized that I could do away with a lot of these little tasks with <a title=\"Shell Scripts\" href=\"http://en.wikipedia.org/wiki/Shell_scripting\" target=\"_blank\">shell scripts</a>.&#160; Here's a look at one of my \"to-do lists\" for setting up a Drupal site on my local Apache server.</p>"}}}
 
 <p>I've been keeping documentation on my development life cycle processes.&#160; Just recently, I realized that I could do away with a lot of these little tasks with <a title="Shell Scripts" href="http://en.wikipedia.org/wiki/Shell_scripting" target="_blank">shell scripts</a>.&#160; Here's a look at one of my "to-do lists" for setting up a Drupal site on my local Apache server.</p>
 <pre> 1. Setup Database &bull; Create Database/ Grant Permission    

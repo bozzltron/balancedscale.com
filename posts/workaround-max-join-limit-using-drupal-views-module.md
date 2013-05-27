@@ -1,4 +1,4 @@
-{{{"title":"Workaround For Max Join Limit Using Drupal Views Module","tags":["Drupal"],"date":"12-16-2010"}}}
+{{{"title":"Workaround For Max Join Limit Using Drupal Views Module","tags":["Drupal"],"date":"12-16-2010","description":"<p>If you have a web host or are working with a web host that severely limits the number of joins you can do in mysql, have not fear, there is a work around.&#160; Include the following code before your mysql query is executed.</p>\n<p><code>mysql_query('set SQL_BIG_SELECTS=1');</code></p>"}}}
 
 <p>If you have a web host or are working with a web host that severely limits the number of joins you can do in mysql, have not fear, there is a work around.&#160; Include the following code before your mysql query is executed.</p>
 <p><code>mysql_query('set SQL_BIG_SELECTS=1');</code></p>

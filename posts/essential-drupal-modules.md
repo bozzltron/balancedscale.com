@@ -1,4 +1,4 @@
-{{{"title":"Essential Drupal Modules","tags":["Drupal"],"date":"1-16-2009"}}}
+{{{"title":"Essential Drupal Modules","tags":["Drupal"],"date":"1-16-2009","description":"In the my experience of Drupal I've found a set of contributed modules that I keep coming back to.  The features that they provide are, for the most part, useful on any site.  Those modules include the following.\n\nMenus\n<ul>\n<li><a href=\"http://drupal.org/project/menutrails\">Menu Trails</a> - Maintains a breadcrumb based on your menu hierarchy</li>\n<li><a href=\"http://drupal.org/project/page_title\">DHTML Menus</a> - Quick navigation via js menuâ€¨</li>\n</ul>\n\nSEO\n<ul>\n<li><a href=\"http://drupal.org/project/pathauto\">Path Auto</a> - Automated and manual URL aliasing</li></ul>"}}}
 
 In the my experience of Drupal I've found a set of contributed modules that I keep coming back to.  The features that they provide are, for the most part, useful on any site.  Those modules include the following.
 

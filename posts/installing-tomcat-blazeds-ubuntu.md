@@ -1,4 +1,4 @@
-{{{"title":"Installing Tomcat + BlazeDs on Ubuntu","tags":["Ubuntu"],"date":"8-30-2009"}}}
+{{{"title":"Installing Tomcat + BlazeDs on Ubuntu","tags":["Ubuntu"],"date":"8-30-2009","description":"<p>1. Install tomcat6 via synaptic.</p>\n<pre>sudo apt-get tomcat6 tomcat6-admin<br /></pre><p>There may be some tweaks that you need to do after install.&#160; I didn't need to change anything, but you can find help from the <a href=\"https://help.ubuntu.com/community/ApacheTomcat5\" target=\"_blank\">ubuntu help page for tomcat</a>.</p>"}}}
 
 <p>1. Install tomcat6 via synaptic.</p>
 <pre>sudo apt-get tomcat6 tomcat6-admin<br /></pre><p>There may be some tweaks that you need to do after install.&#160; I didn't need to change anything, but you can find help from the <a href="https://help.ubuntu.com/community/ApacheTomcat5" target="_blank">ubuntu help page for tomcat</a>.</p>

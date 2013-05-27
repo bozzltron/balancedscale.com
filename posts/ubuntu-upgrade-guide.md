@@ -1,4 +1,4 @@
-{{{"title":"An Ubuntu Upgrade Guide","tags":["Ubuntu"],"date":"10-27-2009"}}}
+{{{"title":"An Ubuntu Upgrade Guide","tags":["Ubuntu"],"date":"10-27-2009","description":"<p>I've found the cleanest way to upgrade Ubuntu is to do a fresh install.&#160; Here   is a list of steps that I take to upgrade.</p>"}}}
 
 <p>I've found the cleanest way to upgrade Ubuntu is to do a fresh install.&#160; Here   is a list of steps that I take to upgrade.</p>
 <ol>

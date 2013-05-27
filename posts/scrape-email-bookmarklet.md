@@ -1,4 +1,4 @@
-{{{"title":"Scrape Email Bookmarklet","tags":["JavaScript"],"date":"10-27-2010"}}}
+{{{"title":"Scrape Email Bookmarklet","tags":["JavaScript"],"date":"10-27-2010","description":"<p>Here is a simple bookmarklet to collect the email addresses on a web page.  Enjoy!</p>\n<p><strong>Code</strong></p>"}}}
 
 <p>Here is a simple bookmarklet to collect the email addresses on a web page.  Enjoy!</p>
 <p><strong>Code</strong></p>

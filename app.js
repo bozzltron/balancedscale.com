@@ -104,6 +104,16 @@ app.get( '/page/:page', function ( req, res ) {
   });
 });
 
+app.get( '/tag/:tag', function ( req, res ) {
+  var taggedPosts = res.app.locals.postsWithTag( req.params.tag );
+  if ( taggedPosts.length ) {
+    res.render( 'tag', {
+      posts : taggedPosts,
+      tag : req.params.tag
+    });
+  }
+});
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

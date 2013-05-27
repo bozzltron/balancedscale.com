@@ -1,4 +1,4 @@
-{{{"title":"Installing Cyanogenmod 7 on HTC Aria","tags":["Android"],"date":"3-26-2011"}}}
+{{{"title":"Installing Cyanogenmod 7 on HTC Aria","tags":["Android"],"date":"3-26-2011","description":"<p>This guide is based on HTC Aria, but there are links to help you with other phones.</p>\n<p><strong>Warning:</strong></p>\n<p>Rooting your phone may nullify your waranty.&#160; Also, realize that installing a Rom means you are going to wipe your data (Contacts, Calendar, Messages) etc.&#160; If you have this stuff backed up to Google or wherever, then you'll be fine.&#160; Also, realize you could kill your phone.</p>\n<p><strong>Downloads: </strong></p>"}}}
 
 <p>This guide is based on HTC Aria, but there are links to help you with other phones.</p>
 <p><strong>Warning:</strong></p>
