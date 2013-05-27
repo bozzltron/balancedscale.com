@@ -39,10 +39,11 @@ poet.set({
   .createPostRoute('/blog/:post')
   //.createPageRoute()
   .createTagRoute()
-  .createCategoryRoute()
+  //.createCategoryRoute()
   .init(function ( locals ) {
     locals.numPages = locals.getPageCount();
   });
+
 app.set('poet', poet);
 
 
@@ -104,7 +105,7 @@ app.get( '/page/:page', function ( req, res ) {
   });
 });
 
-app.get( '/tag/:tag', function ( req, res ) {
+app.get( '/tags/:tag', function ( req, res ) {
   var taggedPosts = res.app.locals.postsWithTag( req.params.tag );
   if ( taggedPosts.length ) {
     res.render( 'tag', {
@@ -112,6 +113,10 @@ app.get( '/tag/:tag', function ( req, res ) {
       tag : req.params.tag
     });
   }
+});
+
+app.get( '/tags' , function( req, res ) {
+  res.render( 'tags' , { tagList : res.app.locals.tagList } );
 });
 
 http.createServer(app).listen(app.get('port'), function(){

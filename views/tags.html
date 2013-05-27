@@ -1,9 +1,5 @@
-
-{{#each posts}}
-    <div class="post">
-        <h3><a href="{{url}}">{{title}}</a></h3>
-        <p>{{{description}}}</p>
-    </div>
-    <a href="{{url}}">Read More</a>
+<ul class="nav nav-tabs nav-stacked">
+{{#each tagList}}
+    <li><a href="/tag/{{this}}"><strong>{{this}}</strong></a></li>
 {{/each}}
-{{{pagination}}}
+</ul>
