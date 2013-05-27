@@ -18,6 +18,18 @@ hbs.express3({
   layout: "layout"
 });
 
+hbs.registerHelper('times', function(n, block) {
+    var accum = '';
+    for(var i = 0; i < n; ++i)
+        accum += block.fn(i);
+    return accum;
+});
+
+hbs.registerHelper('numPages', function() {
+    return getPageCount();
+});
+
+
 // poet
 poet.set({
   posts: './posts/',  // Directory of posts
@@ -25,14 +37,11 @@ poet.set({
   metaFormat: 'json',  // meta formatter for posts
 })
   .createPostRoute('/blog/:post')
-  .createPageRoute()
+  //.createPageRoute()
   .createTagRoute()
   .createCategoryRoute()
   .init(function ( locals ) {
-    // Some callback to run once everything is set up
-    // The core storage is passed in as an argument,
-    // where all the locals/middleware functions
-    //and stores can be altered
+    locals.numPages = locals.getPageCount();
   });
 app.set('poet', poet);
 
@@ -53,6 +62,7 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.enable('trust proxy');
+app.use( poet.middleware() );
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view options', {layout:true});
@@ -68,6 +78,30 @@ app.get('/login', routes.login);
 app.get('/about', routes.about);
 app.get('/blog/:yearmonth/:post', function ( req, res ) {
     res.redirect('/blog/' + req.params.post); 
+});
+
+app.get( '/page/:page', function ( req, res ) {
+  var page = req.params.page,
+    lastPost = page * 10
+
+    var pagination = '<div class="pagination"><ul>';
+    var i = 1;
+    while ( i <= res.app.locals.getPageCount() ) {
+        if (res.app.locals.page == i) {
+            pagination += '<li class="active"><a href="' + res.app.locals.pageUrl(i) + '">' + i + '</a></li>';
+        }
+        else {
+          pagination += '<li><a href="' + res.app.locals.pageUrl(i) + '">' + i + '</a></li>';
+        }
+        i++;
+    }
+    pagination += '</ul></div>';
+
+  res.render( 'page', {
+    posts : res.app.locals.getPosts( lastPost - 10, lastPost ),
+    page : page,
+    pagination: pagination
+  });
 });
 
 http.createServer(app).listen(app.get('port'), function(){

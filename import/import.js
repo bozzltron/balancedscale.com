@@ -26,7 +26,8 @@ function generateMarkdown(post){
     var meta = JSON.stringify({
         title : post.Title[0],
         tags: post.Tags,
-        date : post.Postdate[0]
+        date : post.Postdate[0],
+        description: post.Teaser[0]
     });
 
     text += "{{" + meta + "}}\n\n";
