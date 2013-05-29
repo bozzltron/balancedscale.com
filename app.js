@@ -10,6 +10,7 @@ var express = require('express')
   , path = require('path')
   , hbs = require('express-hbs')
   , app = express()
+  , html2text = require( 'html-to-text')
   , poet = require('poet')( app );
 
 hbs.express3({
@@ -41,6 +42,7 @@ poet.set({
   //.createCategoryRoute()
   .init(function ( locals ) {
     locals.numPages = locals.getPageCount();
+    setupRss(locals);
   });
 
 app.set('poet', poet);
@@ -117,6 +119,22 @@ app.get( '/tags/:tag', function ( req, res ) {
 app.get( '/tags' , function( req, res ) {
   res.render( 'tags' , { tagList : res.app.locals.tagList } );
 });
+
+function setupRss ( core ) {
+  app.get('/rss', function ( req, res ) {
+    var posts = core.getPosts(0, 20);
+    
+    // Since the preview is automatically generated for the examples,
+    // it contains markup. Strip out the markup with the html-to-text
+    // module. Or you can specify your own specific rss description
+    // per post
+    posts.forEach(function (post) {
+      post.rssDescription = html2text.fromString(post.preview);
+    });
+
+    res.render( 'rss', { posts: posts, layout:false });
+  });
+}
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

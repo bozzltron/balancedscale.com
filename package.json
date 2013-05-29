@@ -10,6 +10,7 @@
     "underscore": "~1.4.4",
     "express-hbs": "~0.1.6",
     "mongojs": "~0.7.5",
-    "poet": "~0.2.7"
+    "poet": "~0.2.7",
+    "html-to-text": "0.0.6"
   }
 }
