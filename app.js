@@ -122,7 +122,7 @@ app.get( '/tags' , function( req, res ) {
 
 function setupRss ( core ) {
   app.get('/rss', function ( req, res ) {
-    var posts = core.getPosts(0, 20);
+    var posts = core.getPosts(0, 1000);
     
     // Since the preview is automatically generated for the examples,
     // it contains markup. Strip out the markup with the html-to-text
