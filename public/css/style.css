@@ -7,6 +7,7 @@ body{
     /*background: url('/img/grey_wash_wall/grey_wash_wall.png');
     background: url('/img/wavegrid/wavegrid.png');*/
     background: url('/img/binding_light/binding_light.png') fixed;
+    word-wrap:break-word;
 }
 
 h3 a {
