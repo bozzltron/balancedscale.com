@@ -54,3 +54,10 @@ footer{
 .pull-left img {
     margin:0 20px 20px 0;
 }
+
+input.textfield, textarea.textfield {
+    width:95%;
+    max-width:500px;
+}
+
+textarea{ height:200px;}
