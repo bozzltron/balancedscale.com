@@ -25,10 +25,13 @@ hbs.registerHelper('times', function(n, block) {
     return accum;
 });
 
+hbs.registerHelper('formattedDate', function(date) {
+    return (date.getMonth()+1) + "." + date.getDate() + "." + date.getFullYear();
+})
+
 hbs.registerHelper('numPages', function() {
     return getPageCount();
 });
-
 
 // all environments
 app.use(express.bodyParser());

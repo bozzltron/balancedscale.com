@@ -2,7 +2,7 @@
 {{#each posts}}
     <div class="post">
         <h3><a href="{{url}}">{{title}}</a></h3>
-        <time>{{date}}</time>
+        <time>{{#formattedDate date}}{{/formattedDate}}</time>
     </div>
     <a href="{{url}}">Read More</a>
 {{/each}}
