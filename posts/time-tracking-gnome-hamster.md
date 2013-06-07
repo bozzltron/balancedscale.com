@@ -1,3 +1,0 @@
-{{{"title":"Time Tracking in Gnome with Hamster","tags":["Linux"],"date":"3-20-2009","description":"<p>If you're like me, you want to know how much time you're actually spending on projects.  I've been using a very useful applet for <a title=\"Gnome\" href=\"http://www.gnome.org/\" target=\"_blank\">Gnome</a> desktop called <a title=\"Hamster\" href=\"http://projecthamster.wordpress.com\" target=\"_blank\">Hamster</a>.  With Hamster, I'm able to start and stop time tracking on a particular task, enter previous times, and see time charts for days, weeks, and months.  Here's a quick screen shot.</p>\n<p>&#160;</p>"}}}
-
-/sites/default/files/Screenshot-Overview - Hamster.png
