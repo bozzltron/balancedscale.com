@@ -12,7 +12,7 @@ and perform well.
 That being said, there are a lot of options when dealing with node.  The [Node 
 Package Manager](https://npmjs.org/) or "npm" is an open system.  Anyone can submit modules.  This presents
 a couple of good problems.  First, there are a lot of options.  Second, determining
-if the module is quality and is the want you need is on you.
+if the module is quality, and is want you need, is on you.
 
 ### Wheat
 One option that I looked at was [Wheat](https://github.com/creationix/wheat).  
