@@ -5,6 +5,8 @@
     "description":"Redesign breakdown part 1"
 }}}
 
+This post belongs to a series of posts walking through the rewrite of the site.  
+
 The only thing that I knew to begin with was that I wanted to use node.js.  I 
 wanted to build my skill using node, it would simplify keeping the site up to date, 
 and perform well.
