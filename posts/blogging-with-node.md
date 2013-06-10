@@ -1,6 +1,6 @@
 {{{
     "title":"Redesign Part 1 : Blogging with Node",
-    "tags":["Site News"],
+    "tags":["Site News", "node.js"],
     "date":"6-8-2013",
     "description":"Redesign breakdown part 1"
 }}}
