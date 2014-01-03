@@ -5,6 +5,12 @@
 var nodemailer = require('nodemailer');
 
 exports.index = function(req, res){
+    var posts = res.app.locals.getPosts(0,3);
+
+    res.render('index', {posts:posts});
+};
+
+exports.blog = function(req, res){
     var posts = res.app.locals.getPosts(0,10);
 
     var pagination = '<div class="pagination"><ul>';
@@ -19,7 +25,7 @@ exports.index = function(req, res){
         i++;
     }
     pagination += '</ul></div>';
-    res.render('index', {posts:posts, pagination:pagination});
+    res.render('blog', {posts:posts, pagination:pagination});
 };
 
 exports.post = function(req, res){

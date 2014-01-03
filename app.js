@@ -82,6 +82,7 @@ app.get( '/', routes.index );
 app.get( '/login', routes.login );
 app.get( '/about', routes.about );
 app.get( '/contact', routes.contact );
+app.get( '/blog', routes.blog);
 app.get( '/blog/:yearmonth/:post', routes.legacy );
 app.get( '/page/:page', routes.page );
 app.get( '/tags/:tag', routes.tag );
