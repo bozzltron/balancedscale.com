@@ -8,6 +8,7 @@ body{
     background: url('/img/wavegrid/wavegrid.png');*/
     background: url('/img/binding_light/binding_light.png') fixed;
     word-wrap:break-word;
+
 }
 
 h3 a {
@@ -62,4 +63,4 @@ input.textfield, textarea.textfield {
 
 textarea{ height:200px;}
 
-.gravatar { margin:0 20px 10px 0; border-radius:10px; border:1px solid #ccc;}
+.gravatar { margin:0 20px 10px 0; border-radius:3px; border:1px solid #ccc; width:50%; max-width:150px;}
