@@ -56,7 +56,7 @@ module.exports = {
 	        // Report back with the new state of the chicken
 	        req.flash("success", "Successfully update your blog.");
 	
-	        res.redirect('blog');
+	        res.redirect('/');
 	      });
 
 	  	});
@@ -244,7 +244,7 @@ module.exports = {
 	    function(callback){
 
 			// Get the specific blog post
-			Blog.findOne({link:req.path}).done(function(err, post) {
+			Blog.findOne({link:req.path}).exec(function(err, post) {
 		 
 			  // Error handling
 			  if (err) {

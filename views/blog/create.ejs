@@ -1,16 +1,4 @@
-<!-- Main body
-================== -->
-  <div class="wrapper">
-    <div class="section-header">
-	  <div class="container">
-	    <div class="row">
-	      <div class="col-md-12">
-		    <!-- Remove the .animated class if you don't want things to move -->
-			<h1 class="animated slideInLeft"><span>Blog</span></h1>
-		  </div>
-		</div>
-	  </div>
-    </div>
+
 	<div class="container">
 	  <div class="row">
 
@@ -20,10 +8,10 @@
 
 	    <!-- Contact us form -->
 		<div class="col-sm-6">
-		  <h2 class="hl top-zero">Create Blog</h2>
+		  <h2 class="">Create Blog</h2>
 		  <hr>
 		
-			<form role="form" action="/blog/create" method="POST">
+			<form class="form" role="form" action="/blog/create" method="POST">
 			  <input name="id" type="hidden" value="<%= post.id %>" />
 			  <div class="form-group">
 				<label for="title">Title</label>
@@ -87,4 +75,4 @@ IMAGES
 
 	  </div>
 	</div>
-  </div>
+

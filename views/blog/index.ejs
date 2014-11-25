@@ -46,33 +46,31 @@
 
   <% _.each(posts, function(post) { %>
 
-
-    <div class="blog-summary">
-	  <h4><a href="<%= post.link %>"><%= post.title %></a></h4>
-	  <% if(session.user) { %>
-		  <div class="pull-right">
-			  <a href="/blog/edit/<%= post.id %>"><span class="glyphicon glyphicon-pencil"></span> Edit</a>&nbsp;&nbsp;
-			  <a class="link-delete" href="#" data-id="<%= post.id %>" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-remove-circle"></span> Delete</a>
-		  </div>
-	  <% } %>
-	  <time datetime="2013-11-10" class="timestamp hidden-xs"><%= post.createAtShortDate %></time>
-	  <ul class="text-muted list-inline">
-		<li><i class="fa fa-user"></i> <a href="profile.html">Administrator</a></li>
-		<li><i class="fa fa-calendar"></i> <%= post.createdAtDate %></li>
-	  </ul>
-	  <hr>
-	  <p class="blog-summary-text">
-		<%- post.body %> 
-	  </p>
-
-	  <p class="tags">
-	    <% if(post.tags) { %>
-	    <% _.each(post.tags, function(tag){ %>
-	    	<a href="/blog/tags/<%= tag %>"><%= tag %></a>
-	    <% }); %>
-	    <% } %>
-	  </p>
-    </div>
+    <section class="post">
+      <header class="entry-header">
+        <img class="entry-avatar" alt="Michael Bosworth" height="52" width="52" src="https://en.gravatar.com/userimage/39066372/c5df350eac9d3e6ebb6db2a280bc24e9.jpeg?s=52">
+        <h2 class="entry-title"><a href="<%= post.link %>"><%= post.title %></a></h2>
+        <p class="entry-meta">
+          Posted on <a class="entry-date" href="date.html"><%= post.createAtShortDate %></a> | By <a class="entry-author" href="author.html">Michael Bosworth</a> | Tags 
+   
+              <% if(post.tags) { %>
+                <% _.each(post.tags, function(tag){ %>
+                  <a class="label label-primary" href="/blog/tags/<%= tag %>"><%= tag %></a>
+                <% }); %>
+              <% } %>
+          
+        </p>
+      </header>
+      <div class="entry-description">
+        <%- post.body %> 
+      </div>
+      <% if(session.user) { %>
+        <div class="pull-right">
+          <a href="/blog/edit/<%= post.id %>"><span class="glyphicon glyphicon-pencil"></span> Edit</a>&nbsp;&nbsp;
+          <a class="link-delete" href="#" data-id="<%= post.id %>" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-remove-circle"></span> Delete</a>
+        </div>
+      <% } %>
+    </section> <!-- /.post -->
 
     <% }); %>
 

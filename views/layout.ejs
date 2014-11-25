@@ -15,15 +15,15 @@
     <link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/bootstrap-social.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-social.css" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="css/main.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
 
     <!-- Loading bar -->
-    <script src="js/pace.min.js"></script>
+    <script src="/js/pace.min.js"></script>
 
     <!-- HTML5 shiv for IE8 support -->
     <!--[if lt IE 9]>
@@ -44,12 +44,11 @@
         <div class="tags">
           <h4>Tags</h4>
           <ul>
-            <li>
-              <a href="tag.html" class="label label-danger">CSS3</a>
-            </li>
-            <li>
-              <a href="tag.html" class="label label-primary">HTML5</a>
-            </li>
+            <% if(tags) { %>
+              <% _.each(tags, function(tag){ %>
+                <li><a class="label label-primary" href="/blog/tags/<%= tag %>"><%= tag %></a></li>
+              <% }); %>
+            <% } %>
           </ul>
         </div>
 
@@ -104,7 +103,7 @@
         <header class="header">
           <hgroup class="pull-left">
             <h1 class="site-title">
-              <a rel="home" title="Von" href="index.html">
+              <a rel="home" title="Von" href="/">
                 balanced scale
               </a>
             </h1>
@@ -164,8 +163,8 @@
     </div> <!-- /#primary -->
 
     <!-- Scripts -->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="/js/jquery-1.11.0.min.js"></script>
+    <script src="/js/custom.js"></script>
 
   </body>
 </html>
