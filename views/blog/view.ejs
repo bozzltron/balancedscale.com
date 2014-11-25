@@ -6,7 +6,7 @@
         <img class="entry-avatar" alt="Paul Laros" height="52" width="52" src="https://en.gravatar.com/userimage/39066372/c5df350eac9d3e6ebb6db2a280bc24e9.jpeg?s=52">
         <h2 class="entry-title"><a href="<%= post.link %>"><%= post.title %></a></h2>
         <p class="entry-meta">
-          Posted on <a class="entry-date" href="date.html"><%= post.createdAtDate %></a> | By <a class="entry-author" href="author.html">Paul Laros</a> | Tags 
+          Posted on <%= post.createdAtDate %> | By Michael Bosworth | Tags 
 		  <% if(post.tags && post.tags.length > 0) { %>
 			    <% _.each(post.tags, function(tag){ %>
 			    	<a class="label label-primary" href="/blog/tags/<%= tag %>"><%= tag %></a>

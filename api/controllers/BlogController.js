@@ -17,7 +17,8 @@
 
 var async = require('async'),
 	marked = require('marked'),
-	moment = require('moment');
+	moment = require('moment'),
+	ObjectId = require('mongodb').ObjectID;
 
 module.exports = {
     
@@ -37,7 +38,7 @@ module.exports = {
   	if(req.body.id) {
 
 		// Update blog
-		Blog.findOne({_id:req.body.id}).exec(function (err, blog) {
+		Blog.findOne({ id : req.body.id }).exec(function (err, blog) {
 
 	      if (err) return res.send(err,500);
 	      if (!blog) return res.send("No blogs with that id exists!", 404);
@@ -143,16 +144,16 @@ module.exports = {
   editForm: function(req, res) {
  
 	// Update blog
-	Blog.findOne({_id:req.param('id')}).exec(function (err, blog) {
+	Blog.findOne({ id : req.param('id') }).exec(function (err, blog) {
       if (err) return res.send(err,500);
       if (!blog) return res.send("No blogs with that id exists!", 404);
-      res.view('blog/create', {post:blog});
+      res.view('blog/create', {post:blog, tags:null});
   	});
   },
 
   delete: function(req, res) {
   	// Lookup a user
-	Blog.findOne({_id:req.param('id')}).exec(function(err, blog) {
+	Blog.findOne({ id : req.param('id') }).exec(function(err, blog) {
 
 	  	// destroy the record
 	  	blog.destroy(function(err) {
