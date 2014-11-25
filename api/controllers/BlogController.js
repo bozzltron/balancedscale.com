@@ -246,6 +246,7 @@ module.exports = {
 	    function(callback){
 
 			// Get the specific blog post
+			console.log("path", req.path);
 			Blog.findOne({link:req.path}).exec(function(err, post) {
 		 
 			  // Error handling

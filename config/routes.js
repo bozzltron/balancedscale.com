@@ -47,6 +47,11 @@ module.exports.routes = {
     action: 'view'
   },
 
+  'get /blog/:title': {
+    controller: 'blog',
+    action: 'view'
+  },
+
   'post /blog/create': {
     controller: 'blog',
     action: 'create'
