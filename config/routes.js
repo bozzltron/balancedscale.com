@@ -84,7 +84,10 @@ module.exports.routes = {
 
   'get /rss': {
     controller: 'blog',
-    action: 'rss'
+    action: 'rss',
+    locals: {
+      layout:null
+    }
   },
 
   'get /login': {

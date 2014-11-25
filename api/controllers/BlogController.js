@@ -45,6 +45,7 @@ module.exports = {
 	      
 	      blog.title = req.body.title;
 	      blog.body = req.body.body;
+	      blog.preview = req.body.body.substring(0 , 215);
 	      blog.tags = req.body.tags;
 	      blog.link = req.body.link;
 	      blog.updated = published;
@@ -159,7 +160,7 @@ module.exports = {
 	  	blog.destroy(function(err) {
 	    	// record has been removed
 	    	req.flash("success", "Successfully delete your blog");
-	    	res.redirect('blog');
+	    	res.redirect('/');
 	  	});
 
 	});
