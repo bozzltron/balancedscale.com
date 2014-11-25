@@ -1,0 +1,3 @@
+{{{"title":"Drupal Camp Iowa Ajax Example","tags":["Drupal"],"date":"9-17-2011","description":"This is the example module I wrote for Drupal Camp Iowa.  It demonstrates simple ajax requests inside a Drupal 7 custom module.  You can find my slides for the presentation <a href=\"https://docs.google.com/present/view?id=dhr3k9pq_63dvkp39d2\">here</a>.  Enjoy."}}}
+
+This is the example module I wrote for Drupal Camp Iowa.  It demonstrates simple ajax requests inside a Drupal 7 custom module.  You can find my slides for the presentation <a href="https://docs.google.com/present/view?id=dhr3k9pq_63dvkp39d2">here</a>.  Enjoy.

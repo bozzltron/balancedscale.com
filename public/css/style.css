@@ -1,0 +1,66 @@
+* {
+ font-family: 'Oxygen', sans-serif;
+  font-weight: regular;
+}
+
+body{
+    /*background: url('/img/grey_wash_wall/grey_wash_wall.png');
+    background: url('/img/wavegrid/wavegrid.png');*/
+    background: url('/img/binding_light/binding_light.png') fixed;
+    word-wrap:break-word;
+
+}
+
+h3 a {
+    color:#111;
+}
+
+p iframe {
+    width:100%;
+    max-width: 500px;
+}
+
+#homeview{
+    color:#111;
+}
+
+@media (min-width: 980px) {
+    #homeview{
+        margin-top:50px;
+    }
+}
+
+footer{
+    margin:20px;
+}
+
+.navbar-inverse {
+        -webkit-box-shadow: 0 7px 6px -4px #666;
+       -moz-box-shadow: 0 7px 6px -4px  #666;
+            box-shadow: 0 7px 6px -4px  #666;
+}
+
+.navbar-inverse .brand, .navbar-inverse a{
+    color:#eee;
+}
+
+.navbar-inverse .navbar-inner, .navbar-inverse .navbar-inner .container { 
+    background-image:url('/img/header_pattern.png');
+}
+
+.navbar-fixed-top { 
+    margin-bottom:8px;
+}
+
+.pull-left img {
+    margin:0 20px 20px 0;
+}
+
+input.textfield, textarea.textfield {
+    width:95%;
+    max-width:500px;
+}
+
+textarea{ height:200px;}
+
+.gravatar { margin:0 20px 10px 0; border-radius:3px; border:1px solid #ccc; width:50%; max-width:150px;}

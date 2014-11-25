@@ -1,0 +1,1367 @@
+[
+      {
+        "body": "<iframe width=\"640\" height=\"360\" src=\"http://www.youtube.com/embed/mTwzHoIdLKU?feature=player_detailpage\" frameborder=\"0\" allowfullscreen></iframe>
+
+<a href=\"https://docs.google.com/presentation/pub?id=1tg1Bipi5lnY7OC01uBUGU6wyE3Bq6oxAua3sWB1rbYE&start=false&loop=false&delayms=3000\">Slides</a>",
+        "created": "1344540852",
+        "teaser": "<iframe width=\"640\" height=\"360\" src=\"http://www.youtube.com/embed/mTwzHoIdLKU?feature=player_detailpage\" frameborder=\"0\" allowfullscreen></iframe>
+
+<a href=\"https://docs.google.com/presentation/pub?id=1tg1Bipi5lnY7OC01uBUGU6wyE3Bq6oxAua3sWB1rbYE&start=false&loop=false&delayms=3000\">Slides</a>",
+        "title": "Node.js and Drupal",
+        "changed": "1344540873",
+        "timestamp": "1344540873",
+        "name": "node.js",
+        "nid": "94"
+      },
+      {
+        "body": "<iframe width=\"640\" height=\"360\" src=\"http://www.youtube.com/embed/7XcbXmbrub8?feature=player_detailpage\" frameborder=\"0\" allowfullscreen></iframe>
+
+Talk given at Drupalcorn 2012 in Ames, Iowa
+
+Slides:
+https://docs.google.com/presentation/pub?id=11PB2Y3cScPdFDjpmLWPPL38rgrJhg-RBWLw_HaNRj0o&start=false&loop=false&delayms=3000",
+        "created": "1344540509",
+        "teaser": "<iframe width=\"640\" height=\"360\" src=\"http://www.youtube.com/embed/7XcbXmbrub8?feature=player_detailpage\" frameborder=\"0\" allowfullscreen></iframe>
+
+Talk given at Drupalcorn 2012 in Ames, Iowa
+
+Slides:
+https://docs.google.com/presentation/pub?id=11PB2Y3cScPdFDjpmLWPPL38rgrJhg-RBWLw_HaNRj0o&start=false&loop=false&delayms=3000",
+        "title": "Introduction to Backbone.js",
+        "changed": "1344540694",
+        "timestamp": "1344540694",
+        "name": "Backbone.js",
+        "nid": "93"
+      },
+      {
+        "body": "Here are my slides from DrupalCorn
+
+Introduction to Backbone.js
+https://docs.google.com/presentation/pub?id=11PB2Y3cScPdFDjpmLWPPL38rgrJhg-RBWLw_HaNRj0o&start=false&loop=false&delayms=3000
+
+Node.js and Drupal
+https://docs.google.com/presentation/pub?id=1tg1Bipi5lnY7OC01uBUGU6wyE3Bq6oxAua3sWB1rbYE&start=false&loop=false&delayms=3000
+
+Screen casts will be up within the next week or two.  I'll keep you posted.",
+        "created": "1344047543",
+        "teaser": "Here are my slides from DrupalCorn
+
+Introduction to Backbone.js
+https://docs.google.com/presentation/pub?id=11PB2Y3cScPdFDjpmLWPPL38rgrJhg-RBWLw_HaNRj0o&start=false&loop=false&delayms=3000
+
+Node.js and Drupal
+https://docs.google.com/presentation/pub?id=1tg1Bipi5lnY7OC01uBUGU6wyE3Bq6oxAua3sWB1rbYE&start=false&loop=false&delayms=3000
+
+Screen casts will be up within the next week or two.  I'll keep you posted.",
+        "title": "DrupalCorn 2012",
+        "changed": "1344047625",
+        "timestamp": "1344047625",
+        "name": "Drupal",
+        "nid": "92"
+      },
+      {
+        "body": "One of the requirements for my current project is SAML auth via onelogin.com on node.js.  After some research, I found that there is little if any SAML projects out there.  I didn't find any although there are several generic auth modules.  So I took the PHP toolkit from onelogin and translated it to node api code.  I plan on releasing a common js module on github soon so that the community can help finish the code.  At this point the SAML response is parsed only for the users id, then I look them up in mongo and give them a session.  I need to add code to verify the certification and timestamp.
+
+<pre>
+
+// Define SAML routes
+
+function routes(app, db) {
+    
+  // Receive the SAML Response here
+  app.post('/saml/consume', function(req, res){
+    
+    var libxmljs = require(\"libxmljs\");
+    
+    var samlResponse = req.body.SAMLResponse;
+    
+    var xml = new Buffer(samlResponse, 'base64').toString('ascii');
+    
+    var xmlDoc = libxmljs.parseXmlString(xml);
+    var idNode = xmlDoc.get('/samlp:Response/saml:Assertion/saml:Subject/saml:NameID', {
+      'samlp':'urn:oasis:names:tc:SAML:2.0:protocol',
+      'saml' : 'urn:oasis:names:tc:SAML:2.0:assertion'
+    });
+    
+    var email = idNode.text();
+    
+    app.settings.models.User.findOne({email:email}, function(err, user){
+      
+      if (user) {
+        req.session.currentUser = user;
+        req.flash('info', 'You are logged in as ' + email);
+        res.redirect('/');
+        return;
+      } else {
+        req.flash('error', 'Your account did not match any of our records.');
+        res.redirect('/login');
+        return;
+      }
+    });    
+    
+  });
+  
+
+  // Use this psuedo class to initiate the SAML Request
+  var SAML = {
+    
+    startAuth: function(res) {
+      var chars = \"abcdef0123456789\";
+      var chars_len = chars.length;
+      var uniqueID = \"\";
+      for (var i = 0; i < 20; i++) {
+         uniqueID += chars.substr(Math.floor((Math.random()*15)), 1);
+      }
+   
+      var id = \"_\" + uniqueID;
+ 
+      var date = new Date();
+      
+      var issue_instant = date.getUTCFullYear() + '-' + ('0' + (date.getUTCMonth()+1)).slice(-2) + '-' + ('0' + date.getUTCDate()).slice(-2) + 'T' + ('0' + (date.getUTCHours()+2)).slice(-2) + \":\" + ('0' + date.getUTCMinutes()).slice(-2) + \":\" + ('0' + date.getUTCSeconds()).slice(-2) + \"Z\";
+     
+      var const_assertion_consumer_service_url = '/admin/saml/consume';
+      var const_issuer = \"onelogin_saml\";
+      var const_name_identifier_format = \"urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress\";
+      var request =
+   &#34;&#60;samlp:AuthnRequest xmlns:samlp=\\&#34;urn:oasis:names:tc:SAML:2.0:protocol\\&#34; ID=\\&#34;&#34; + id + &#34;\\&#34; Version=\\&#34;2.0\\&#34; IssueInstant=\\&#34;&#34; + issue_instant + &#34;\\&#34; ProtocolBinding=\\&#34;urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\\&#34; AssertionConsumerServiceURL=\\&#34;&#34; + const_assertion_consumer_service_url + &#34;\\&#34;&#62;&#34; +
+         &#34;&#60;saml:Issuer xmlns:saml=\\&#34;urn:oasis:names:tc:SAML:2.0:assertion\\&#34;&#62;&#34; + const_issuer + &#34;&#60;/saml:Issuer&#62;\\n&#34; +
+         &#34;&#60;samlp:NameIDPolicy xmlns:samlp=\\&#34;urn:oasis:names:tc:SAML:2.0:protocol\\&#34; Format=\\&#34;&#34; + const_name_identifier_format + &#34;\\&#34; AllowCreate=\\&#34;true\\&#34;&#62;&#60;/samlp:NameIDPolicy&#62;\\n&#34; +
+         &#34;&#60;samlp:RequestedAuthnContext xmlns:samlp=\\&#34;urn:oasis:names:tc:SAML:2.0:protocol\\&#34; Comparison=\\&#34;exact\\&#34;&#62;&#34; +
+         &#34;&#60;saml:AuthnContextClassRef xmlns:saml=\\&#34;urn:oasis:names:tc:SAML:2.0:assertion\\&#34;&#62;urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport&#60;/saml:AuthnContextClassRef&#62;&#60;/samlp:RequestedAuthnContext&#62;\\n&#34; +
+         &#34;&#60;/samlp:AuthnRequest&#62;&#34;;
+         
+      var zlib = require('zlib');
+
+      zlib.deflateRaw(request, function(err, buffer) {
+        if (!err) {
+          
+          var deflated_request = buffer;
+              
+          var base64_request   = deflated_request.toString('base64');
+    
+          var encoded_request  = encodeURIComponent(base64_request);
+          
+          // Get api key
+          db.collection('variables', function(err, collection){
+            collection.findOne({name:'onelogin'}, function(err, doc){
+              
+              var path = doc.saml + \"?SAMLRequest=\" + encoded_request;
+              res.redirect(path);
+              
+            });    
+          });          
+          
+        }
+      });
+
+    }
+  
+  };
+  
+  app.get('/saml/start', function(req,res){
+    SAML.startAuth(res);
+  });  
+  
+  app.set('saml', SAML);
+  
+} 
+
+module.exports = routes;
+</pre>
+
+<p>Usage:</p>
+
+Add this to server.js
+<pre>
+// Routes
+require('./apps/saml/saml')(app, db);
+</pre>
+
+Now you can secure your site like this:
+*Note : I am using express framework
+<pre>
+
+  function secure(req,res,next){
+        
+    // Check session
+    if(req.session.currentUser){
+      next();
+    }else{
+      app.settings.saml.startAuth(res);
+    }
+  }
+  
+  app.all('/', secure);
+</pre>",
+        "created": "1338567953",
+        "teaser": "One of the requirements for my current project is SAML auth via onelogin.com on node.js.  After some research, I found that there is little if any SAML projects out there.  I didn't find any although there are several generic auth modules.  So I took the PHP toolkit from onelogin and translated it to node api code.  I plan on releasing a common js module on github soon so that the community can help finish the code.  At this point the SAML response is parsed only for the users id, then I look them up in mongo and give them a session.",
+        "title": "SAML on Node.js",
+        "changed": "1338568224",
+        "timestamp": "1338568224",
+        "name": "node.js",
+        "nid": "91"
+      },
+      {
+        "body": "Mongoose is an ODM for Node.js that connects to MongoDb.  I've found Mongoose to be really useful in handling Models and REST.  However, I ran into the need to connect directly to MongoDb rather that working through the Models.  Here's the code to reference Mongooses Db so you don't have to connect twice.
+
+<pre>// Database
+var connection = mongoose.connect('mongodb://username:password@localhost/db_name');
+var db = connection.connections[0].db;
+</pre>",
+        "created": "1337885883",
+        "teaser": "Mongoose is an ODM for Node.js that connects to MongoDb.  I've found Mongoose to be really useful in handling Models and REST.  However, I ran into the need to connect directly to MongoDb rather that working through the Models.  Here's the code to reference Mongooses Db so you don't have to connect twice.
+
+<pre>// Database
+var connection = mongoose.connect('mongodb://username:password@localhost/db_name');
+var db = connection.connections[0].db;
+</pre>",
+        "title": "Reference the Mongoose Database Connection",
+        "changed": "1337885883",
+        "timestamp": "1337885883",
+        "name": "node.js",
+        "nid": "89"
+      },
+      {
+        "body": "The Backbone.js wagon is a pretty sweet wagon to be on right now.  If you're just jumping in there is a learning curve and not much for documentation.  Here are some compiled resources I've found to be helpful.
+
+<p>
+<a href=\"http://documentcloud.github.com/backbone/\">Backbone.js</a>
+The official download and documentation site.  This is what I reference the most.
+</p>
+
+<p>
+<a href=\"http://addyosmani.github.com/backbone-fundamentals/\">Backbone Fundamentals</a>
+An open source book on Backbone.js.
+</p>
+
+<p>
+<a href=\"http://readystate4.com/2011/10/22/common-backbone-errors-and-what-they-mean/\">Common Backbone.js Error Messages</a>
+A list of commonly seen Backbone error messages and what they mean.  Money.
+</p>
+
+<p>
+<a href=\"http://ricostacruz.com/backbone-patterns/#anti-patterns\">Backbone.js Design Patterns</a>
+There are always more than one opinion on best practice, but this list of items is nicely laid out.  Good beginner info.
+</p>
+
+<p>
+<a href=\"https://peepcode.com/\">Backbone.js Screencasts on Peepcode</a>
+These videos are amazing as well as the source code.  Really helped me.
+</p>
+
+<p>
+<a href=\"http://coenraets.org/blog/2012/03/using-backbone-js-with-jquery-mobile/\">CHRISTOPHE COENRAETS' blog</a>
+This guy posts some cool examples using a number of technologies.  He organizes some of his code with Backbone so if you don't have peepcode you can pull down one of this guys github repos and dig into some Backbone code.
+</p>
+
+
+<p>
+<a href=\"http://pivotal.github.com/jasmine/\">Jasmine</a>
+Jasmine is a great unit testing framework for JavaScript.  A lot of projects using Backbone use Jasmine for testing.
+</p>
+
+
+<p>
+<a href=\"http://evanhahn.com/?p=181\">A Funny Jasmine Walkthrough</a>
+An entertaining blog about Jasmine.
+</p>
+
+
+",
+        "created": "1336056095",
+        "teaser": "The Backbone.js wagon is a pretty sweet wagon to be on right now.  If you're just jumping in there is a learning curve and not much for documentation.  Here are some compiled resources I've found to be helpful.
+
+<p>
+<a href=\"http://documentcloud.github.com/backbone/\">Backbone.js</a>
+The official download and documentation site.  This is what I reference the most.
+</p>
+
+<p>
+<a href=\"http://addyosmani.github.com/backbone-fundamentals/\">Backbone Fundamentals</a>
+An open source book on Backbone.js.
+</p>",
+        "title": "Backbone.js Resources",
+        "changed": "1336401780",
+        "timestamp": "1336401780",
+        "name": "Backbone.js",
+        "nid": "88"
+      },
+      {
+        "body": "It turns out you have to do a lot of digging online to find some quality solutions for generating Microsoft Word documents in PHP.  Both of these products have their quirks, but its usually all in how you setup your template.
+
+<strong>PHP Word</php>
+http://phpword.codeplex.com/
+
+This is a nice PHP library for updating doc and docx documents.  It uses a simple curly brace syntax, for example {name}, for replacing variables with real data.
+
+<strong>LiveDocX</strong>
+http://www.livedocx.com/
+
+A sweet web service that allows you to call their api, pass and array of data, and get a document back in a number of different formats include pdf, rtf, and doc.  Beware of the volume of documents that you need to generate.  The have a 1000 document limit a month on the free service.  If don't have the money and need to generate more, use PHP Word.",
+        "created": "1327877154",
+        "teaser": "It turns out you have to do a lot of digging online to find some quality solutions for generating Microsoft Word documents in PHP.  Both of these products have their quirks, but its usually all in how you setup your template.
+
+<strong>PHP Word</php>
+http://phpword.codeplex.com/
+
+This is a nice PHP library for updating doc and docx documents.",
+        "title": "Generate Word Documents With PHP",
+        "changed": "1327877154",
+        "timestamp": "1327877154",
+        "name": "PHP",
+        "nid": "87"
+      },
+      {
+        "body": "Inactive fields occur when active fields controlled by a feature are deleted from the feature and the feature is reverted on a database where the fields deleted are currently active.   Here's how to delete them.
+
+<pre>
+$fieldname = \"\";
+ db_query('DELETE FROM {content_node_field} WHERE field_name = \"%s\"', $fieldname);
+ db_query('DELETE FROM {content_node_field_instance} WHERE field_name = \"%s\"', $fieldname);
+</pre>",
+        "created": "1327756083",
+        "teaser": "Inactive fields occur when active fields controlled by a feature are deleted from the feature and the feature is reverted on a database where the fields deleted are currently active.   Here's how to delete them.
+
+<pre>
+$fieldname = \"\";
+ db_query('DELETE FROM {content_node_field} WHERE field_name = \"%s\"', $fieldname);
+ db_query('DELETE FROM {content_node_field_instance} WHERE field_name = \"%s\"', $fieldname);
+</pre>",
+        "title": "Delete CCK Inactive Fields",
+        "changed": "1327756083",
+        "timestamp": "1327756083",
+        "name": "Drupal",
+        "nid": "86"
+      },
+      {
+        "body": "I wrote this snippet to clear out some nodes that I had imported that ended up being duplicates.  I thought I would share.
+
+<pre>
+$time = mktime(0,0,0,11,23,2011);
+
+$result = db_query('SELECT * FROM node WHERE created > %d', $time);
+while ($item = db_fetch_object($result)) {
+  node_delete($item->nid);
+}
+</pre>",
+        "created": "1322186852",
+        "teaser": "I wrote this snippet to clear out some nodes that I had imported that ended up being duplicates.  I thought I would share.
+
+<pre>
+$time = mktime(0,0,0,11,23,2011);
+
+$result = db_query('SELECT * FROM node WHERE created > %d', $time);
+while ($item = db_fetch_object($result)) {
+  node_delete($item->nid);
+}
+</pre>",
+        "title": "Delete Nodes From A Certain Date in Drupal",
+        "changed": "1322232638",
+        "timestamp": "1322232638",
+        "name": "Drupal",
+        "nid": "85"
+      },
+      {
+        "body": "<p>I am a features user and if you are too then you will share my frustration when you find aspects of other modules that are not exportable, i.e. not capable of being packaged in your feature.  Such is the case with the Auto Node Title module.  However, this is to be expected right?  Ctools module provides the api for making things exportable and we should know not every developer will go ahead and implement this in their module.  So back to our discovery of the non-exportable.  When we get to this point there are several options.  One being \"don't use the module\" and another being \"write an exportable\".  Now auto node title is a common enough module that it might benefit from writing an exportable, but in my opinion that is code bloat where it is not needed.  You can accomplish the same thing as auto node title with two Drupal hooks which you can include in the .module file of your feature.  Problem solved.  
+<pre>function quick_note_form_alter(&#38;$form, &#38;$form_state, $form_id){      
+  if($form_id == 'note_node_form') {        
+    // Hide title input box     
+    $form['title']['#type'] = 'hidden';       
+    // Set a generic value to pass validation     
+    $form['title']['#value'] = 'Quick Note ';   
+  } 
+}  
+
+function quick_note_nodeapi(&#38;$node, $op, $a3 = NULL, $a4 = NULL) {   
+  if($node-&#62;type == \"note\") {     
+    switch($op) {       
+      case \"presave\":         
+        // Add timestamp to node title for uniqueness         
+        $node-&#62;title .= date();        
+      break;     
+      }   
+  } 
+}</pre></p>",
+        "created": "1317931471",
+        "teaser": "<p>I am a features user and if you are too then you will share my frustration when you find aspects of other modules that are not exportable, i.e. not capable of being packaged in your feature.  Such is the case with the Auto Node Title module.  However, this is to be expected right?  Ctools module provides the api for making things exportable and we should know not every developer will go ahead and implement this in their module.  So back to our discovery of the non-exportable.  When we get to this point there are several options.",
+        "title": "Automated Node Titles Without Auto Node Title",
+        "changed": "1317931949",
+        "timestamp": "1317931949",
+        "name": "Drupal",
+        "nid": "84"
+      },
+      {
+        "body": "This is the example module I wrote for Drupal Camp Iowa.  It demonstrates simple ajax requests inside a Drupal 7 custom module.  You can find my slides for the presentation <a href=\"https://docs.google.com/present/view?id=dhr3k9pq_63dvkp39d2\">here</a>.  Enjoy.",
+        "created": "1316277472",
+        "teaser": "This is the example module I wrote for Drupal Camp Iowa.  It demonstrates simple ajax requests inside a Drupal 7 custom module.  You can find my slides for the presentation <a href=\"https://docs.google.com/present/view?id=dhr3k9pq_63dvkp39d2\">here</a>.  Enjoy.",
+        "title": "Drupal Camp Iowa Ajax Example",
+        "changed": "1316282239",
+        "timestamp": "1316282239",
+        "name": "Drupal",
+        "nid": "83"
+      },
+      {
+        "body": "<p>Balanced Scale Media, LLC is beginning the search for a qualified PHP developer to learn Drupal and take part in the deveopment of Drupal projects.</p><p><strong> Job Description:</strong></p><p>Learn Drupal by doing! &#160;Be able to develop custom modules and custom themes for Drupal 6 and 7 based on requirements documentation and design mockups. &#160;Work hours are open. &#160;Work is part time <span style=\"text-decoration: underline;\">as needed</span>. &#160;</p><p><strong>Requirements:</strong></p><p>&#160;</p><ul><li>3 years development experience with PHP and MySQL</li><li>Personal computer for development including a local apache server or virtual machine</li><li>Familiarity with Image editing and optimization</li><li>Strong HTML and CSS skill set</li><li>Clear communicator</li><li>Self motivated</li><li>Team player</li></ul><p>&#160;</p><p><strong>Pay:</strong></p><p>$25/hour</p>",
+        "created": "1312552248",
+        "teaser": "<p>Balanced Scale Media, LLC is beginning the search for a qualified PHP developer to learn Drupal and take part in the deveopment of Drupal projects.</p><p><strong> Job Description:</strong></p><p>Learn Drupal by doing! &#160;Be able to develop custom modules and custom themes for Drupal 6 and 7 based on requirements documentation and design mockups. &#160;Work hours are open. &#160;Work is part time <span style=\"text-decoration: underline;\">as needed</span>. &#160;</p><p><strong>Requirements:</strong></p><p>&#160;</p>",
+        "title": "Get Paid To Learn Drupal!",
+        "changed": "1312556115",
+        "timestamp": "1312556115",
+        "name": "Drupal",
+        "nid": "82"
+      },
+      {
+        "body": "I've been asked to present on proper use cases for JavaScript in web development at the Iowa Drupal Users Group next Monday July 25th 2011.  The over-user of JavaScript in web applications is the main issue.  My talk will hopefully provide a clearer perspective on how to use JavaScript as a powerful front end development tool while holding on to good coding practices, design patterns, and performance.
+
+http://groups.drupal.org/node/163384",
+        "created": "1311186442",
+        "teaser": "I've been asked to present on proper use cases for JavaScript in web development at the Iowa Drupal Users Group next Monday July 25th 2011.  The over-user of JavaScript in web applications is the main issue.  My talk will hopefully provide a clearer perspective on how to use JavaScript as a powerful front end development tool while holding on to good coding practices, design patterns, and performance.
+
+http://groups.drupal.org/node/163384",
+        "title": "Presenting \"JavaScript Guidelines : When and When Not to Script\"",
+        "changed": "1311693189",
+        "timestamp": "1311693189",
+        "name": "Drupal",
+        "nid": "81"
+      },
+      {
+        "body": "<p>My latest battle with Drupal was overriding a select box that was a node reference.  Intuitively I tried to simply update $form['#options'] with my array of custom data.  No deal.  After experimenting with about five ways to implement #after_build on both the form and the field, I realized that the type of a widget is something like 'nodereference_select' instead of just select.  Switching the type back to 'select' allowed me to make the change.  Wow.  Lost a day to that one.</p><pre> function mymodule_form_alter(&#38;$form, $form_state, $form_id) {    &#160;   
+   if($form_id == 'mycontenttype_node_form') {         &#160;    
+     // setup array      &#160;     
+     $data = array();            &#160;     
+
+     // build your custom data     &#160;     
+     // i.e. write some code        &#160;     
+
+     // alter form      &#160;    
+     $form['field_myfield']['#type'] = 'select';      &#160;    
+     $form['field_myfield']['#options'] = $data;       &#160;  
+  }
+}</pre>",
+        "created": "1311022411",
+        "teaser": "<p>My latest battle with Drupal was overriding a select box that was a node reference.  Intuitively I tried to simply update $form['#options'] with my array of custom data.  No deal.  After experimenting with about five ways to implement #after_build on both the form and the field, I realized that the type of a widget is something like 'nodereference_select' instead of just select.  Switching the type back to 'select' allowed me to make the change.  Wow.  Lost a day to that one.</p>",
+        "title": "Drupal Form Alter on a Node Reference Widget",
+        "changed": "1311022440",
+        "timestamp": "1311022440",
+        "name": "Drupal",
+        "nid": "80"
+      },
+      {
+        "body": "<p>What is the paradox of Drupal?  That often, the complex tasks are simple and yet the trivial tasks are difficult.</p><p>The typical scenario for a Drupal build starts with a requirements document.  The Drupal developer lists out the functionality that he or she needs and starts to come up with a list contributed modules that may be useful for accomplishing said functionality.  To his or her surprise several of these modules \"just work\" and reports amazing progress.  There is probably one module, however, that doesn't do exactly what is needed and is substituted for an alternative.  Maybe it is even a rewrite, but this no sweat to the Drupal developer.  But then it happens!  A mundane task suddenly becomes a blocker and several Google queries / IM discussions / reading chapters of Pro Drupal Development later there is an aha moment followed by the question \"Why is this simple task so hard to do in Drupal?\".</p><p>Let's be careful now.  Its not all Drupal's fault.  After all the contributed module pool is vast and the issues I have encountered more often then not, have to do with a contributed module.  But drawing a line between core and contributed modules is merely a technicality.  A quality development framework should make difficult tasks easy and trivial tasks negligible.   So what are some examples?  Here we go.</p><p>&#160;</p><ol><li>Creating a checkbox in CCK</li><li>Assigning a menu item a JavaScript action.  (Say you want to open a dialog)</li><li>Trying to use FORM API with CCK&#160;</li><li>Form altering a form widget like nodereference</li><li>...more to come</li></ol><p>I'll be updating this as I code as a standing record of things that need cleaning.&#160;&#160;Keep in mind that I'm speaking mostly from a Drupal 6 perspective.</p><p>&#160;</p>",
+        "created": "1310138691",
+        "teaser": "<p>What is the paradox of Drupal?  That often, the complex tasks are simple and yet the trivial tasks are difficult.</p>",
+        "title": "The Paradox Of Drupal",
+        "changed": "1311021693",
+        "timestamp": "1311021693",
+        "name": "Drupal",
+        "nid": "79"
+      },
+      {
+        "body": "<p>I learned from <a href=\"http://api.drupal.org/api/drupal/modules--user--user.module/function/user_save/6\">this comment</a> on the api that user_save() will not save data to your profile_values table unless your profile field has the \"Visible in user registration form\" checkbox checked.  Save yourself some pain.</p>",
+        "created": "1307722615",
+        "teaser": "<p>I learned from <a href=\"http://api.drupal.org/api/drupal/modules--user--user.module/function/user_save/6\">this comment</a> on the api that user_save() will not save data to your profile_values table unless your profile field has the \"Visible in user registration form\" checkbox checked.  Save yourself some pain.</p>",
+        "title": "Programmatically Creating Users in Drupal with Profile Fields",
+        "changed": "1307722665",
+        "timestamp": "1307722665",
+        "name": "Drupal",
+        "nid": "77"
+      },
+      {
+        "body": "Problem:
+I have a features install in my development instance and my production instances.  I create new fields in both and then want to merge the features back into one.  I download the feature from production, copy the files to my development instance, and revert the feature.  Now the fields I created in my development instance are now inactive because they are not apart of the feature.
+
+Solution:
+Disable and reenable the feature and all the modules that come with CCK.
+
+
+That's the short answer.  Thanks to this thread http://drupal.org/node/335597",
+        "created": "1307127606",
+        "teaser": "Problem:
+I have a features install in my development instance and my production instances.  I create new fields in both and then want to merge the features back into one.  I download the feature from production, copy the files to my development instance, and revert the feature.  Now the fields I created in my development instance are now inactive because they are not apart of the feature.
+
+Solution:
+Disable and reenable the feature and all the modules that come with CCK.
+
+
+That's the short answer.  Thanks to this thread http://drupal.org/node/335597",
+        "title": "Features and inactive fields in Drupal 6 ",
+        "changed": "1307128890",
+        "timestamp": "1307128890",
+        "name": "Drupal",
+        "nid": "76"
+      },
+      {
+        "body": "Our first Drupal 7 site, http://keithfostergolfarchitect.com, was launched making another satisfied client.  We are very pleased to have the privilege of working with Keith.  Also, thanks to Chris at http://www.onawiredesign.com/ for a beautiful design.",
+        "created": "1306941920",
+        "teaser": "Our first Drupal 7 site, http://keithfostergolfarchitect.com, was launched making another satisfied client.  We are very pleased to have the privilege of working with Keith.  Also, thanks to Chris at http://www.onawiredesign.com/ for a beautiful design.",
+        "title": "Launched keithfostergolfarchitect.com",
+        "changed": "1306941945",
+        "timestamp": "1306941945",
+        "name": "Drupal",
+        "nid": "75"
+      },
+      {
+        "body": "We are beginning to leverage VPS or Cloud servers to build more custom solutions for our clients.  Thanks to services like Amazon EC2 and others, virtualization is a reality for most new companies.  The flexibility of owning your own server with the service backend of a shared host.  Cloud servers are not only flexible, but scalable.  Increasing resources to your server happens at the click of a button.",
+        "created": "1304622986",
+        "teaser": "We are beginning to leverage VPS or Cloud servers to build more custom solutions for our clients.  Thanks to services like Amazon EC2 and others, virtualization is a reality for most new companies.  The flexibility of owning your own server with the service backend of a shared host.  Cloud servers are not only flexible, but scalable.  Increasing resources to your server happens at the click of a button.",
+        "title": "We're In The Cloud",
+        "changed": "1304622986",
+        "timestamp": "1304622986",
+        "name": "Drupal",
+        "nid": "73"
+      },
+      {
+        "body": "<p>I've been itching to contribute back to the Drupal community for some time now.  Recently, I committed two sandbox projects, one of which is the <a href=\"http://drupal.org/sandbox/mtbosworth/1135792\">AJAX Get API module</a>. &#160;The idea is to create a simple way to request Drupal objects like Nodes, Forms, Views, and Users via AJAX and return HTML or JSON formats. &#160;I haven't been able to find a tool like this so I developed it with some help of my coworkers. &#160;We've incorporated this module into our latest project, which boasts a pretty slick application-like AJAX interface. &#160;We get forms, submit data, and refresh views thanks to this module and the exist Ajax module, which we use for submiting the data via ajax. &#160;Here's an example.</p><p>&#160;</p><p>&#160;</p> <pre> // Code from mymodule.js                  
+
+// Attach click event to button to dynamcally load form into a jQueryUI Dialog      
+$(\".my-button\").unbind('click').click(function(){             
+  $.ajax({url:'/ajax-get/form/mycontenttype_node_form',success:function(html){                              
+    // build the dialog                 
+    $(\"#mydialog\").remove();              
+    var dialog = $('&#60;div&#62;').attr({\"title\":\"Create MyContentType\",id:\"dialog\"}).append(html); 
+
+    // show the dialog              
+    $(dialog).dialog({width:600,modal:true,closeOnEscape:true,open:function(){                                      
+      // reload behaviors for new form                  
+      Drupal.attachBehaviors(dialog);                                   
+    }});                            
+  }})                   
+});  
+
+// Wait for DOM 
+$(document).ready(function() {      
+  // JavaScript hook for Ajax module    
+  Drupal.Ajax.plugins.mymodule = function(hooks,args){            
+    switch(hooks){        
+      case 'complete':              
+        // The AJAX form has submitted successfully so lets  update the view            
+        if(args.form_id == \"mycontenttype_node_form\"){                        
+          // close dialog               
+          $(\"#mydialog\").fadeOut('fast').remove();    
+                            
+          // update my_view (This function is provided by AJAX Get API as a helper)     
+      Drupal.AjaxGetAPI.updateView('my_view');  
+        }                     
+      return false;           
+      break;      
+    }   
+  };     
+}); </pre>",
+        "created": "1304093701",
+        "teaser": "<p>I've been itching to contribute back to the Drupal community for some time now.  Recently, I committed two sandbox projects, one of which is the <a href=\"http://drupal.org/sandbox/mtbosworth/1135792\">AJAX Get API module</a>. &#160;The idea is to create a simple way to request Drupal objects like Nodes, Forms, Views, and Users via AJAX and return HTML or JSON formats. &#160;I haven't been able to find a tool like this so I developed it with some help of my coworkers. &#160;We've incorporated this module into our latest project, which boasts a pretty slick application-like AJAX interface.",
+        "title": "Introducing AJAX Get API",
+        "changed": "1304094204",
+        "timestamp": "1304094204",
+        "name": "Drupal",
+        "nid": "72"
+      },
+      {
+        "body": "<p>This guide is based on HTC Aria, but there are links to help you with other phones.</p><p><strong>Warning:</strong></p><p>Rooting your phone may nullify your waranty.&#160; Also, realize that installing a Rom means you are going to wipe your data (Contacts, Calendar, Messages) etc.&#160; If you have this stuff backed up to Google or wherever, then you'll be fine.&#160; Also, realize you could kill your phone.</p><p><strong>Downloads: </strong></p><ul><li><a href=\"http://unrevoked.com/\" target=\"_blank\">unrevoked </a></li><li><a href=\"https://market.android.com/details?id=com.koushikdutta.rommanager&#38;feature=search_result\" target=\"_blank\">Rom manager </a></li><li><a href=\"http://download.cyanogenmod.com/?type=RC&#38;device=liberty\" target=\"_blank\">Cyanogenmod 7</a> - If you phone is not Aria/Liberty go <a href=\"http://www.cyanogenmod.com/\">here</a>.</li><li><a href=\"http://android.d3xt3r01.tk/cyanogen/gapps/gapps-gb-20110307-signed.zip\" target=\"_blank\">Google Apps</a> - If your phone is not Aria/Liberty go <a href=\"http://wiki.cyanogenmod.com/index.php?title=Latest_Version#Google_Apps\" target=\"_blank\">here</a>.</li></ul><p><strong>Installation:</strong></p><p>1. Root your phone - This is typically the scary part, but <a href=\"http://unrevoked.com/\" target=\"_blank\">unrevoked</a> makes it simple.&#160;</p><ul><li>Just plug your phone into your computer.&#160; </li><li>Enable your phone as a data store (give your computer access to the sd card).&#160; </li><li>Enable USB Debugging through your settings menu.&#160; (Setings-&#62;Application-&#62;Development-&#62;USB Debugging).</li><li>Run <a href=\"http://unrevoked.com/\" target=\"_blank\">unrevoked</a></li></ul><p>2. Download <a href=\"https://market.android.com/details?id=com.koushikdutta.rommanager&#38;feature=search_result\" target=\"_blank\">Rom Manager</a> through the Android Market - This will give you a nice app to manage flashing clockwork recovery, backups, and Rom installs.</p><ul><li>Notes: I had to run the \"flash clockwork recovery\" before backups would work.</li></ul><p>3. For extra precaution, you might want to copy your SD card contents to your computer.</p><p>4. Download <a href=\"http://download.cyanogenmod.com/?type=RC&#38;device=liberty\" target=\"_blank\">Cyanogenmod 7 to your SD card</a>.&#160; If you phone is not Aria/Liberty go <a href=\"http://www.cyanogenmod.com/\">here</a>.</p><p>5. Download <a href=\"http://android.d3xt3r01.tk/cyanogen/gapps/gapps-gb-20110307-signed.zip\" target=\"_blank\">Google Apps to your SD card</a>. If your phone is not Aria/Liberty go <a href=\"http://wiki.cyanogenmod.com/index.php?title=Latest_Version#Google_Apps\" target=\"_blank\">here</a>.</p><p>6. Open Rom Manager and install <a href=\"http://download.cyanogenmod.com/?type=RC&#38;device=liberty\" target=\"_blank\">Cyanogenmod 7</a> - Make sure you select options the options to wipe your data and to backup your existing settings.</p><ul><li>Notes: If the installation says that it failed to open the Cyanogenmod zip file then navigate to it manually by going to the install zip option in the clockwork recovery menu.&#160; Find the zip and run it.&#160; When its done select \"Go Back\" and then \"Reboot\".</li><li>Notes: If your phone boots into the Cyanogenmod loading screen (with the skateboarding Android) and loops forever then you forgot to while your data prior to the intstall.&#160; The workaround is to pull out your battery and turn your phone on while holding other buttons on your phone which will launch you into Clockwork Recovery where you can manually wipe your data.&#160; On HTC Aria I held down the optical button and the volume button while pressing power to do it.</li></ul><p>7. Open Rom Manager and install the <a href=\"http://android.d3xt3r01.tk/cyanogen/gapps/gapps-gb-20110307-signed.zip\" target=\"_blank\">Google Apps zip</a> - You do not need to backup or wipe on this install so make sure those are unchecked.&#160;</p><ul><li>Notes: If the installation says it failed to open the zip file use the same instructions to install manually as in step 6.</li></ul><p>8.&#160; There is no step 8!</p><p>One your phone is booted up you will go through the Google app setup and you will be rocking Android 2.3.1!</p><p><br />Enjoy.</p><p>&#160;</p><p>&#160;</p>",
+        "created": "1301152147",
+        "teaser": "<p>This guide is based on HTC Aria, but there are links to help you with other phones.</p><p><strong>Warning:</strong></p><p>Rooting your phone may nullify your waranty.&#160; Also, realize that installing a Rom means you are going to wipe your data (Contacts, Calendar, Messages) etc.&#160; If you have this stuff backed up to Google or wherever, then you'll be fine.&#160; Also, realize you could kill your phone.</p><p><strong>Downloads: </strong></p>",
+        "title": "Installing Cyanogenmod 7 on HTC Aria",
+        "changed": "1301155121",
+        "timestamp": "1301155121",
+        "name": "Android",
+        "nid": "71"
+      },
+      {
+        "body": "<p>I've recently switched from Firefox to Google Chrome as my development browser.  Chrome still lacks some equivalent plugins that  I used in Firefox, but with the list below I can get my most vital tasks done.  <img src=\"http://balancedscale.com/sites/default/files/screen_shot_2011-01-25_at_1.38.33_pm.png\" alt=\"\" /></p><p><span style=\"font-family: Helvetica, sans-serif; font-size: 12px;\"><a style=\"color: blue; font-size: 12px;\" href=\"https://chrome.google.com/extensions/detail/jbikhmelidedkckpokhanhejpkjfboih\"><span class=\"extension-name\" style=\"font-weight: bold;\">Google Tasks</span></a></span></p><p><span style=\"font-family: Helvetica, sans-serif; font-size: 12px;\"><span class=\"extension-name\" style=\"font-weight: bold;\"><span style=\"font-weight: normal;\"><a style=\"color: blue; font-size: 12px;\" href=\"https://chrome.google.com/extensions/detail/mfnjijpckfecpgchobgcfndicenjldoe\"><span class=\"extension-name\" style=\"font-weight: bold;\">JSON Inspector</span></a></span></span></span></p><p><span style=\"font-family: Helvetica, sans-serif; font-size: 12px;\"><span class=\"extension-name\" style=\"font-weight: bold;\"><span style=\"font-weight: normal;\"><span class=\"extension-name\" style=\"font-weight: bold;\"><span style=\"font-weight: normal;\"><a style=\"color: blue; font-size: 12px;\" href=\"https://chrome.google.com/extensions/detail/oelggcmknbjmhkpgjfhakedcfnkgbdpg\"><span class=\"extension-name\" style=\"font-weight: bold;\">Live CSS Editor</span></a></span></span></span></span></span></p><p><span style=\"font-family: Helvetica, sans-serif; font-size: 12px;\"><span class=\"extension-name\" style=\"font-weight: bold;\"><span style=\"font-weight: normal;\"><span class=\"extension-name\" style=\"font-weight: bold;\"><span style=\"font-weight: normal;\"><span class=\"extension-name\" style=\"font-weight: bold;\"><span style=\"font-weight: normal;\"><a style=\"color: blue; font-size: 12px;\" href=\"https://chrome.google.com/extensions/detail/nlbjncdgjeocebhnmkbbbdekmmmcbfjd\"><span class=\"extension-name\" style=\"font-weight: bold;\">RSS Subscription Extension (by Google)</span></a>&#160;&#160;(optional)</span></span></span></span></span></span></span></p><p><span style=\"font-family: Helvetica, sans-serif; font-size: 12px;\"><span class=\"extension-name\" style=\"font-weight: bold;\"><span style=\"font-weight: normal;\"><span class=\"extension-name\" style=\"font-weight: bold;\"><span style=\"font-weight: normal;\"><span class=\"extension-name\" style=\"font-weight: bold;\"><span style=\"font-weight: normal;\"><a style=\"color: blue; font-size: 12px;\" href=\"https://chrome.google.com/extensions/detail/gbammbheopgpmaagmckhpjbfgdfkpadb\"><span class=\"extension-name\" style=\"font-weight: bold;\">XML Tree</span></a>&#160;</span></span></span></span></span></span></span></p>",
+        "created": "1295984716",
+        "teaser": "<p>I've recently switched from Firefox to Google Chrome as my development browser.  Chrome still lacks some equivalent plugins that  I used in Firefox, but with the list below I can get my most vital tasks done.  <img src=\"http://balancedscale.com/sites/default/files/screen_shot_2011-01-25_at_1.38.33_pm.png\" alt=\"\" /></p>",
+        "title": "Web Development In Google Chrome / Chromium",
+        "changed": "1295984755",
+        "timestamp": "1295984755",
+        "name": "Browser",
+        "nid": "70"
+      },
+      {
+        "body": "<p>If you have a web host or are working with a web host that severely limits the number of joins you can do in mysql, have not fear, there is a work around.&#160; Include the following code before your mysql query is executed.</p> <p><code>mysql_query('set SQL_BIG_SELECTS=1');</code></p><p>If you are using Drupal and the Views module, which you should be, the problem is figuring out where to put this.&#160; I settled with adding it just before line 775 of view.inc inside the /views/includes/ directory.&#160; Putting the code here runs the statement above before evey views query is exectured.&#160; Let me know if there is a better way.</p><p><code>mysql_query('set SQL_BIG_SELECTS=1');&#160; $result = db_query($query, $args);</code></p>",
+        "created": "1292532990",
+        "teaser": "<p>If you have a web host or are working with a web host that severely limits the number of joins you can do in mysql, have not fear, there is a work around.&#160; Include the following code before your mysql query is executed.</p> <p><code>mysql_query('set SQL_BIG_SELECTS=1');</code></p>",
+        "title": "Workaround For Max Join Limit Using Drupal Views Module",
+        "changed": "1292533228",
+        "timestamp": "1292533228",
+        "name": "Drupal",
+        "nid": "69"
+      },
+      {
+        "body": "<p>Here is a simple bookmarklet to collect the email addresses on a web page.  Enjoy!</p> <p><strong>Code</strong></p> <pre>javascript:(function(){
+var output = '';
+var links = document.getElementsByTagName('a');
+for(var i=0; i&#60;links.length; i++){
+    if(links[i].href.indexOf('mailto') != -1){
+    output += links[i].href.substring(7);
+    output += ', ';
+}
+}
+if(output.length == 0){
+output = 'No Emails Found';
+}
+alert(output);
+})()
+</pre> <p><a href=\"javascript:(function(){var output='';var links=document.getElementsByTagName('a');for(var i=0;i&#60;links.length;i++){if(links[i].href.indexOf('mailto')!=-1){output+=links[i].href.substring(7);output+=', ';}} if(output.length==0){output='No Emails Found';}alert(output);})()\"><strong>Scrape Email Bookmarklet</strong></a></p> <p>Drag and drop this link to your bookmark bar or right click it and add it as a bookmark or favorite.</p><p><strong>Usage:</strong></p><p>Go to a web page with email links and click on the bookmark.&#160; An alert should appeart with a comma seperated list of all the email addresses on teh page.</p>",
+        "created": "1288187031",
+        "teaser": "<p>Here is a simple bookmarklet to collect the email addresses on a web page.  Enjoy!</p> <p><strong>Code</strong></p>",
+        "title": "Scrape Email Bookmarklet",
+        "changed": "1288190666",
+        "timestamp": "1288190666",
+        "name": "JavaScript",
+        "nid": "68"
+      },
+      {
+        "body": "In talking through video options with a client I came up with four possible options for the future of video on the web.  I thought I would share.
+
+1. Apple and Microsoft support Theora making  it the universal video format.  Because this involves two corporations, this will be delayed a number of years.  Apple opposes Theora because it doesn't have hardware decoding support which saves battery life on their iphone, ipod, ipad devices.  Microsoft is implementing a ton of stuff for IE9, but has not announced that they will implementing the Theora codec.  Plus they probably have hang ups similar to Apple.
+
+2. Apple supports WebM or VP8.  IE9 is going to implement WebM which makes Apple the odd man out for supporting WebM.  If the Apple adopts it, than WebM will be the universal video format for the web.  This is far more likely than the first scenario because VP8 has hardware decoding and similar if not better quality to h.264.
+
+3. H.264 is open sourced and becomes universal.  This is very unlikely because the group that owns it is not tied to a company that is developing browsers and they are making a lot of money.
+
+4. Deadlock.  Apple and Microsoft ignore Theora and Apple refuses to implement WebM for whatever reason.
+
+What do you think?",
+        "created": "1284042208",
+        "teaser": "In talking through video options with a client I came up with four possible options for the future of video on the web.  I thought I would share.
+
+",
+        "title": "The Future of HTML5 Video?",
+        "changed": "1285721848",
+        "timestamp": "1285721848",
+        "name": "Video",
+        "nid": "65"
+      },
+      {
+        "body": "I finally sat down to understand a <a href=\"http://www.lullabot.com/articles/new-features-drush-3\">recent post by lullabot</a> on Drush 3 remote capabilities.  Its taken me a couple of hours to set up, but this will save me hours in drupal updates.  Thank you drush project!
+
+My hangs were on setting up the ssh key, which I omitted at first and then realized that it was a requirement for drush.  The second hangup I had was to make sure my *.aliases.drushrc.php files were wrapped in <?php ?> tags.  Hopefully that helps some one else.
+
+Here's an example of one of the connections I set up with my remote host.
+<pre>
+$aliases['mysite.com'] = array(
+  'uri' => 'mysite.com',
+  'root' => '/path/to/drupal',
+  'remote-host' => 'myhost.com',
+  'remote-user' => 'ssh_username',
+  'path-aliases' => array(
+    '%drush' => '/path/to/drush/folder/on/server', // ~/drush
+    '%drush-script' => '/path/to/drush/script/on/folder',  //~/drush/drush
+  ), 
+);
+</pre>",
+        "created": "1282279008",
+        "teaser": "I finally sat down to understand a <a href=\"http://www.lullabot.com/articles/new-features-drush-3\">recent post by lullabot</a> on Drush 3 remote capabilities.  Its taken me a couple of hours to set up, but this will save me hours in drupal updates.  Thank you drush project!
+
+My hangs were on setting up the ssh key, which I omitted at first and then realized that it was a requirement for drush.  The second hangup I had was to make sure my *.aliases.drushrc.php files were wrapped in <?php ?> tags.  Hopefully that helps some one else.
+
+",
+        "title": "Remote Drush",
+        "changed": "1282338944",
+        "timestamp": "1282338944",
+        "name": "Drupal",
+        "nid": "64"
+      },
+      {
+        "body": "<p><strong>This Post Has Been Updated From The Original : See Bottom</strong></p> <p>This was a major hang up on my recent project.  I thought I would share in hopes of saving someone else sometime.  The explanation for the code being this tedious has to do with CCK's database structure.  Each field is given its own table, so to avoid costly queries CCK has a database cache.  Here is the code.  I had to read through several other posts to find this.  I'll try to link to those when I get time.</p><pre>// Load node to edit
+$node = node_load($your_node_id);
+
+// Index value of the cck field
+$index = 0;
+ 
+// value that you want to insert
+$new_value = 3;
+    
+// Set value
+$node-&#62;field_your_field[$index] = array('value' =&#62; $new_value);
+
+// Save Node
+node_save($node);
+
+// Update content if node exists, otherwise use content_insert()
+content_update($node);
+
+// Clear CCK data cache so the new value will be loaded for dispaly purposes
+db_query(\"DELETE FROM {cache_content} WHERE cid = '%s'\", 'content:' . $node-&#62;nid . ':' . $node-&#62;vid);
+</pre> <p><strong>Update:</strong></p> <p>Since writing this new things have come to light.  While the code above works.  It is overkill simply saving a CCK field.  Also, there are more than one scenario for updating.</p> <p>Scenario 1:  node_save</p> <pre>// Load node to edit
+$node = node_load($your_node_id);
+
+// Index value of the cck field (Depends on the number of values your field accepts)
+$index = 0;
+    
+// Set value
+$node-&#62;field_your_field[$index] = array('value' =&#62; $new_value);
+
+// Save Node
+node_save($node);
+</pre> <p>node_save runs cache_clear_all() so you don't need to delete a row from CCK cache.</p> <p>Scenario 2: db_query</p> <pre>// Load node to edit
+$node = node_load($your_node_id);
+
+// Index value of the cck field (Depends on the number of values your field accepts)
+$index = 0;
+
+// Save Node
+db_query('UPDATE {content_type_x} SET field_y=\"%s\" WHERE vid=\"%s\" AND nid=\"%s\"', $new_value, $node-&#62;vid, $node-&#62;nid);
+
+// Clear CCK data cache so the new value will be loaded for dispaly purposes
+db_query(\"DELETE FROM {cache_content} WHERE cid = '%s'\", 'content:' . $node-&#62;nid . ':' . $node-&#62;vid);
+</pre>",
+        "created": "1277234262",
+        "teaser": "<p><strong>This Post Has Been Updated From The Original : See Bottom</strong></p> <p>This was a major hang up on my recent project.  I thought I would share in hopes of saving someone else sometime.  The explanation for the code being this tedious has to do with CCK's database structure.  Each field is given its own table, so to avoid costly queries CCK has a database cache.  Here is the code.  I had to read through several other posts to find this.  I'll try to link to those when I get time.</p>",
+        "title": "Update CCK Fields In Custom Drupal Nodes",
+        "changed": "1316698980",
+        "timestamp": "1316698980",
+        "name": "Drupal",
+        "nid": "61"
+      },
+      {
+        "body": "<pre>
+$(document).ready(function(){
+    $(\"img\").bind(\"contextmenu\",function(){ return false; });
+});
+</pre>
+
+This simple piece of code prevents the right click menu from opening on images.",
+        "created": "1274563808",
+        "teaser": "<pre>
+$(document).ready(function(){
+    $(\"img\").bind(\"contextmenu\",function(){ return false; });
+});
+</pre>
+
+This simple piece of code prevents the right click menu from opening on images.",
+        "title": "Image Security Made Simple With jQuery",
+        "changed": "1274563808",
+        "timestamp": "1274563808",
+        "name": "jQuery",
+        "nid": "60"
+      },
+      {
+        "body": "<p>Here is a simple script for backing up your local server settings and databases. &#160;Replace \"/media/storage/_backup<span style=\"font-family: monospace; font-size: 16px; white-space: pre;\">\"</span> with your destination directory.</p><p>&#160;</p> <pre>cp /etc/hosts /media/storage/_backup/hosts
+cp -r /etc/apache2/sites-available /media/storage/_backup/sites-avialable
+mysqldump -u root -psecret --all-databases &#62; /media/storage/_backup/backup.sql</pre>",
+        "created": "1274560004",
+        "teaser": "<p>Here is a simple script for backing up your local server settings and databases. &#160;Replace \"/media/storage/_backup<span style=\"font-family: monospace; font-size: 16px; white-space: pre;\">\"</span> with your destination directory.</p><p>&#160;</p> <pre>cp /etc/hosts /media/storage/_backup/hosts
+cp -r /etc/apache2/sites-available /media/storage/_backup/sites-avialable
+mysqldump -u root -psecret --all-databases &#62; /media/storage/_backup/backup.sql</pre>",
+        "title": "Simple Apache / MySql Backup Script",
+        "changed": "1274560527",
+        "timestamp": "1274560527",
+        "name": "MySql",
+        "nid": "59"
+      },
+      {
+        "body": "<p>I needed to find a way to have only one settings.php file maintain my database configurations across both my local development and environment and my production server.  Here is my solution.  Is there a better way?</p><p>&#160;</p> <pre>if($_SERVER['SERVER_NAME'] == \"local.mydomain.com\"){
+    $db_url = 'mysql://username:password@localhost/databasename';
+}
+else{
+    $db_url = 'mysql://username:password@production/databasename';
+}
+</pre>",
+        "created": "1268672875",
+        "teaser": "<p>I needed to find a way to have only one settings.php file maintain my database configurations across both my local development and environment and my production server.  Here is my solution.  Is there a better way?</p><p>&#160;</p> <pre>if($_SERVER['SERVER_NAME'] == \"local.mydomain.com\"){
+    $db_url = 'mysql://username:password@localhost/databasename';
+}
+else{
+    $db_url = 'mysql://username:password@production/databasename';
+}
+</pre>",
+        "title": "Environment Based Database Selection In Drupal",
+        "changed": "1268672948",
+        "timestamp": "1268672948",
+        "name": "Drupal",
+        "nid": "58"
+      },
+      {
+        "body": "<p>This is not a comprehensive comparison, but is a comparison of the functions that I used the most.  Readers should note that while syntax appears similar, the philosophies of MooTools and jQuery are very different resulting in a fundamental differences in their implementation.  This data is intended for those that are analyzing cost in switching frameworks and is not intended for someone trying to determine which framework to use.</p> <table border=\"0\"><tbody><tr class=\"rShim\"><td class=\"rShim\" style=\"width: 0pt;\">&#160;</td><td class=\"rShim\" style=\"width: 350px;\">&#160;</td><td class=\"rShim\" style=\"width: 350px;\">&#160;</td><td class=\"rShim\" style=\"width: 350px;\">&#160;</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td> <td class=\"s0\"><h3>Mootools 1.12</h3></td> <td class=\"s1\"><h3>Mootools 1.2.4</h3></td> <td class=\"s1\"><h3>jQuery 1.4.2</h3></td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\"><strong>.</strong></p></td><td class=\"s2\"><strong>Browser Detection</strong></td><td>&#160;</td><td>&#160;</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">window.ie6</td><td class=\"s4\">Browser.Engine.trident4</td><td class=\"s4\">jQuery.browser</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s5\">&#160;</td><td>&#160;</td><td>&#160;</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\"><strong>.</strong></p></td><td class=\"s2\"><strong>Element</strong></td><td>&#160;</td><td>&#160;</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">el.setHTML(string|array)</td><td class=\"s4\">el.set('html', string|array)</td><td class=\"s4\">e.html('html')</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">el.getText()</td><td class=\"s4\">el.get('text')</td><td class=\"s4\">el.text()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">el.setText(string)</td><td class=\"s4\">el.set('text', string)</td><td class=\"s4\">el.text('text')</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">el.setStyle(style,value)</td><td class=\"s4\">el.setStyle(style,value)</td><td class=\"s4\">el.css(style,value)</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">el.setStyles(object)</td><td class=\"s4\">el.setStyles(object)</td><td class=\"s4\">el.css(object)</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">el.addClass(classname)</td><td class=\"s4\">el.addClass(classname)</td><td class=\"s4\">el.addClass(classname)</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">el.removeClass(classname)</td><td class=\"s4\">el.removeClass(classname)</td><td class=\"s4\">el.removeClass(classname)</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">el.remove()</td><td class=\"s4\">el.dispose()</td><td class=\"s4\">e.remove()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">el.replaceWith(element)</td><td class=\"s4\">element.replaces(el)</td><td class=\"s4\">el.replaceWith(el)</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">new Fx(el,obj)</td><td class=\"s4\">new Fx.Morph(el, obj)</td><td class=\"s4\">el.animate()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">new Element(type,params)</td><td class=\"s4\">new Element(type,params)</td><td class=\"s4\">el.append(html)/el.appendTo(html)</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">$('selector')</td><td class=\"s4\">$('selector')</td><td class=\"s4\">$('#selector')</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">$$('.classname')</td><td class=\"s4\">$$('.classname')</td><td class=\"s4\">$('.classname')</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">$E(selector)</td><td class=\"s4\">$$('selector').getFirst()</td><td class=\"s4\">$(selector).first()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">$ES(selector)</td><td class=\"s4\">$$('selector')</td><td class=\"s4\">$(selector)</td></tr> <tr class=\"rShim\"><td class=\"rShim\" style=\"width: 0pt;\">&#160;</td><td class=\"rShim\" style=\"width: 350px;\">&#160;</td><td class=\"rShim\" style=\"width: 350px;\">&#160;</td><td class=\"rShim\" style=\"width: 350px;\">&#160;</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s3\">el.getSize().size.x/ el.getSize().size.y</td><td class=\"s4\">el.getSize().x/ el.getSize().y</td><td class=\"s4\">el.height() / el.width()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.getValue()</td><td class=\"s7\">el.get('value')</td><td class=\"s7\">el.val()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.setProperty(attribute,value)</td><td class=\"s7\">el.setProperty(attribute,value)</td><td class=\"s7\">el.attr(attribute,value)</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.getProperty(attribute)</td><td class=\"s7\">el.getProperty(attribute)</td><td class=\"s7\">el.attr(attribute)</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.injectInside(el)</td><td>&#160;</td><td class=\"s7\">el.appendTo(el)</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.injectAfter(el)</td><td>&#160;</td><td class=\"s7\">el.insertAfter(el)</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.getParent()</td><td class=\"s7\">el.getParent()</td><td class=\"s7\">el.parent()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.getChildren()</td><td class=\"s7\">el.getChildren()</td><td class=\"s7\">el.children()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.getNext()</td><td class=\"s7\">el.getNext()</td><td class=\"s7\">el.next()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.getPrevious()</td><td class=\"s7\">el.getPrevious()</td><td class=\"s7\">el.prev()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.getLast()</td><td class=\"s7\">el.getLast()</td><td class=\"s7\">el.first() / $(selector:first-child)</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.getFirst()</td><td class=\"s7\">el.getFirst()</td><td class=\"s7\">el.last() / $(selector:last-child)</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s5\">&#160;</td><td>&#160;</td><td>&#160;</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s8\"><strong>Event</strong></td><td>&#160;</td><td>&#160;</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">window.addEvent(\"domready\",fn)</td><td class=\"s7\">window.addEvent(\"domready\",fn)</td><td class=\"s7\">$(document).ready(fn)</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.addEvent(\"click\",fn)</td><td class=\"s7\">el.addEvent(\"click\",fn)</td><td class=\"s7\">el.click()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.addEvent(\"focus\",fn)</td><td class=\"s7\">el.addEvent(\"focus\",fn)</td><td class=\"s7\">el.focus()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.addEvent(\"blur\",fn)</td><td class=\"s7\">el.addEvent(\"blur\",fn)</td><td class=\"s7\">el.blur()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.addEvent(\"mouseenter\",fn)</td><td class=\"s7\">el.addEvent(\"mouseenter\",fn)</td><td class=\"s7\">el.mouseenter()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.addEvent(\"mouseleave\",fn)</td><td class=\"s7\">el.addEvent(\"mouseleave\",fn)</td><td class=\"s7\">el.mouseleave()</td></tr> <tr class=\"rShim\"><td class=\"rShim\" style=\"width: 0pt;\">&#160;</td><td class=\"rShim\" style=\"width: 350px;\">&#160;</td><td class=\"rShim\" style=\"width: 350px;\">&#160;</td><td class=\"rShim\" style=\"width: 350px;\">&#160;</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.addEvent(\"unload\",fn)</td><td class=\"s7\">el.addEvent(\"unload\",fn)</td><td class=\"s7\">el.unload()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.addEvent(\"submit\",fn)</td><td class=\"s7\">el.addEvent(\"submit\",fn)</td><td class=\"s7\">el.submit()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">el.removeEvent(event)</td><td class=\"s7\">el.removeEvent(event)</td><td class=\"s7\">el.unbind(event)</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">event.stop()</td><td class=\"s7\">event.stop()</td><td class=\"s7\">event.stopPropagation()</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">event.preventDefault()</td><td class=\"s7\">event.preventDefault()</td><td class=\"s7\">event.preventDefault()</td></tr> <tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s5\">&#160;</td><td>&#160;</td><td>&#160;</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\"><strong>.</strong></p></td><td class=\"s11\"><strong>Array</strong></td><td>&#160;</td><td>&#160;</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">[].merge([])</td><td class=\"s7\">3. [].combine([])</td><td class=\"s4\">jQuery.merge([],[])</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s5\">&#160;</td><td>&#160;</td><td>&#160;</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\"><strong>.</strong></p></td><td class=\"s2\"><strong>Ajax</strong></td><td>&#160;</td><td>&#160;</td></tr><tr><td class=\"hd\"><p style=\"height: 19px;\">.</p></td><td class=\"s6\">new Ajax</td><td class=\"s7\">new Request</td><td class=\"s9\">jQuery.ajax()</td></tr></tbody></table>",
+        "created": "1268420357",
+        "teaser": "<p>This is not a comprehensive comparison, but is a comparison of the functions that I used the most.  Readers should note that while syntax appears similar, the philosophies of MooTools and jQuery are very different resulting in a fundamental differences in their implementation.  This data is intended for those that are analyzing cost in switching frameworks and is not intended for someone trying to determine which framework to use.</p>",
+        "title": "Comparing Syntax of MooTools 1.1 with MooTools 1.2 and jQuery 1.4",
+        "changed": "1268928947",
+        "timestamp": "1268928947",
+        "name": "JavaScript",
+        "nid": "57"
+      },
+      {
+        "body": "<p>For one of my recent projects, I had the privelege of learning how to use the Drupal panels module.&#160; I needed a panel that swapped out content based on which page I was on.&#160; Here is how to do it:</p><ol><li>Install Panels </li><li>Go The Panels Admin Page in your Drupal install and instead of Creating a new panel, edit the Node Template.</li><li>Click the \"Add Variant\" button</li><li>Give the Variant a Title, check the \"Selection Rules\" box in the options, and click \"Create Variant\".</li><li>Define a Selection Rule of type \"Node Type\" and set it to page. (You only want the panel responding to Page nodes)</li><li>Define a Selection Rule of type \"PHP Code\".</li><li>In the PHP Code text area paste \"return arg(1) == 2;\" replacing the \"2\" with the nid, or node id, of the page that you want this panel variant to show up on.</li><li>Click \"Continue\"</li><li>Choose your layout.</li><li>Add Content to each panel area in the layout that you chose. (Click on the gear icon in each panel and select \"Add Content\")</li><li>Click \"Update and Save\"</li><li>Repeat steps 3-11 for each page.</li></ol><p>Note that the order of the variants is important.&#160; You can think of the vertical list of variants for the panel as a switch statement.&#160; This means Drupal will check if the first variants selection rules match and move on to the next if they do not.&#160; However, if they do match then it ignores the rest of the variants.&#160; This was confusing to me until I figured out how it worked.&#160; This could be leveraged if you want to used a default variant whose selectoin rules are more broadly satisfied.</p><p><img src=\"file:///home/boz/Documents/screenshot/screenshot_003.png\" alt=\"\" /></p>",
+        "created": "1268189251",
+        "teaser": "<p>For one of my recent projects, I had the privelege of learning how to use the Drupal panels module.&#160; I needed a panel that swapped out content based on which page I was on.&#160; Here is how to do it:</p>",
+        "title": "Nid Based Panel Variants in Drupal",
+        "changed": "1268189372",
+        "timestamp": "1268189372",
+        "name": "Drupal",
+        "nid": "56"
+      },
+      {
+        "body": "<p>Another round of security updates were sucessfull as of February 8th, 2010.&#160; All hosted sites are up to date.</p>",
+        "created": "1265740070",
+        "teaser": "<p>Another round of security updates were sucessfull as of February 8th, 2010.&#160; All hosted sites are up to date.</p>",
+        "title": "Security Updates for 2010",
+        "changed": "1265740070",
+        "timestamp": "1265740070",
+        "name": "Site News",
+        "nid": "54"
+      },
+      {
+        "body": "<p>We recently had the opportunity to contribute a <a title=\"Wordpress\" href=\"http://wordpress.org/\" target=\"_blank\">Wordpress</a> theme to <a title=\"Sandy's Ankeny\" href=\"http://www.sandysankeny.com/\" target=\"_blank\">Sandy's Ankeny</a> thanks to <a title=\"Slash Web Studios\" href=\"http://slashwebstudios.com/\" target=\"_blank\">Slash Web Studios</a>.&#160; Sandy's Ankeny is a new blog maintained by, well, Sandy, who has previously worked at the Register and the Ankeny Press Citizen.&#160; Congratulations to Sandy on the new project!</p>",
+        "created": "1265314052",
+        "teaser": "<p>We recently had the opportunity to contribute a <a title=\"Wordpress\" href=\"http://wordpress.org/\" target=\"_blank\">Wordpress</a> theme to <a title=\"Sandy's Ankeny\" href=\"http://www.sandysankeny.com/\" target=\"_blank\">Sandy's Ankeny</a> thanks to <a title=\"Slash Web Studios\" href=\"http://slashwebstudios.com/\" target=\"_blank\">Slash Web Studios</a>.&#160; Sandy's Ankeny is a new blog maintained by, well, Sandy, who has previously worked at the Register and the Ankeny Press Citizen.&#160; Congratulations to Sandy on the new project!</p>",
+        "title": "Contribution to Sandy's Ankeny",
+        "changed": "1265314492",
+        "timestamp": "1265314492",
+        "name": "Site News",
+        "nid": "52"
+      },
+      {
+        "body": "<p>I recently installed Windows 7 via VirtualBox for some cross browser testing. &#160;While in development I needed to map localhost from the Windows 7 Guest OS to my Apache server in Ubuntu. &#160;Some quick searching around turned up the following ip address. &#160;All I had to do was update the current localhost line in my Windows 7 hosts file.</p> <pre>10.0.2.2    localhost</pre>",
+        "created": "1259869719",
+        "teaser": "<p>I recently installed Windows 7 via VirtualBox for some cross browser testing. &#160;While in development I needed to map localhost from the Windows 7 Guest OS to my Apache server in Ubuntu. &#160;Some quick searching around turned up the following ip address. &#160;All I had to do was update the current localhost line in my Windows 7 hosts file.</p> <pre>10.0.2.2    localhost</pre>",
+        "title": "Access localhost from a VirtualBox Guest OS on Ubuntu",
+        "changed": "1259869719",
+        "timestamp": "1259869719",
+        "name": "Ubuntu",
+        "nid": "49"
+      },
+      {
+        "body": "<p>I've found the cleanest way to upgrade Ubuntu is to do a fresh install.&#160; Here   is a list of steps that I take to upgrade.</p> <ol> <li> <strong>Backup Your Installed Applications<br /></strong>Unfortunately, Ubuntu does       not provide a tool to backup/restore your currently installed applications.&#160;       However, there is a way!&#160; Using dpkg you can dump a list of your installed       packages into a text file, which you can used later to reinstall them.&#160; I       found this method in the <a href=\"http://ubuntuforums.org/showthread.php?t=261366\" target=\"_blank\">Ubuntu forums</a>, but will repost it here from convenience.<br /> <br /> To dump a list of your installed packages into a text file run this.<br /> <pre><span>dpkg --get-selections &#62; installed-software<br /></span></pre> <p>Make sure to store this file in your user directory for the next step.</p> </li> <li> <strong>Backup Server Configuration (optional)</strong> <em><br /> If you don't use Apache or MySQL you can skip steps <strong>3</strong>, <strong>4,       8, and 9</strong>.</em><br /> <br /> Backup your /etc/apache2 folder.<br /> <pre>sudo tar cfzv apache_backup.tar.gz etc/apache2/
+sudo mv apache_backup.tar.gz /home/username</pre> <p>&#160;</p> </li> <li> <strong>Backup MySQL Databases (optional)</strong><br /> Dump your databases to a text file.<br /> <pre>mysqldump --all-databases -uroot -p &#62; mysql.backup.sql
+sudo mv mysql.backup.sql /home/username</pre> <p>&#160;</p> </li> <li> <strong>Backup your user directory</strong><br /> It's best practice to keep all of your files in your user directory       (/home/&#60;username&#62;/), so hopefully you won't need to to worry about much       outside of this.&#160; I've used both SBackup and Rsync for backup.&#160; Both are       available via Synaptic or apt-get.&#160; I prefer Rsync and highly recommend       install the gui package <a href=\"http://en.wikipedia.org/wiki/Grsync\" target=\"_blank\">Grsync</a>, which is also available via Synaptic or apt-get.&#160; I       backup to an external hard drive.&#160; <em>If you have large files, i.e. larger       than 4GB, make sure your external hard drive uses a file system that supports large       file transfers.&#160; I had to reformat my external drive because it was formatted       fat32, which only supports 4GB file transfers.<br /> <br /></em>You can install grsync like this.<br /> <pre><span>sudo apt-get install grsync </span><br /></pre> <p>&#160;</p> </li> <li><strong>Install Ubuntu!<br /></strong>Download the latest and greatest Ubuntu     image from <a href=\"http://www.ubuntu.com\" target=\"_blank\">www.ubuntu.com</a>.&#160;     Burn the images to CD or to a thumbdrive and follow the installation     instructions.<br /> <strong>&#160;</strong></li> <li><strong>Merge the backup of your user directory into your new user     directory<br /></strong>You don't want to copy everything from your previous user     directory to the new user directory just yet.&#160; Ubuntu applications store     configuration settings in your user directory, usually in directories that start with     \".\".&#160; You can copy everything and risk it, but I prefer to just copy my personal     files first and restore application configuration directories as needed.&#160; You     may not need the old ones at all!<br /> <br /></li> <li> <strong>Reinstall your application packages<br /></strong>First, select the       packages to install from the text file we created in step 1.<br /> <pre><span>dpkg --set-selections &#60; installed-software</span></pre> Now, we need to install them.<br /> <pre><span>dselect</span></pre> <p>This may take some time.<br /> <br /></p> </li> <li> <strong>Restore your apache configuration (optional)</strong><br /> Copy your apache backup to your new user folder and extract it.&#160; Then       overwrite your existing apache config directory with your backup.<br /> <pre><span>sudo cp -f -r apache2 /etc/apache2</span><br /></pre> <p>&#160;</p> </li> <li> <p><strong>Restore MySQL Databases (optional)</strong><br /> Restore the databases from the dump file that we created in</p> <pre><span>mysql --verbose --user=XXXXXXXX --password=XXXXXXXX DB_NAME &#60; /PATH/TO/DUMPFILE.SQL</span></pre> </li> </ol> <p>Finished!&#160;</p> <p>&#160;</p>",
+        "created": "1256659783",
+        "teaser": "<p>I've found the cleanest way to upgrade Ubuntu is to do a fresh install.&#160; Here   is a list of steps that I take to upgrade.</p>",
+        "title": "An Ubuntu Upgrade Guide",
+        "changed": "1256680104",
+        "timestamp": "1256680104",
+        "name": "Ubuntu",
+        "nid": "48"
+      },
+      {
+        "body": "<p>I have a friend who recently informed me of their venture into the world of Linux.&#160; I started to build up a good set of links and thought I would share.&#160; Here you go.</p>
+<p>&#160;</p>
+<p><strong><a href=\"http://ubuntuguide.org/wiki/Ubuntu:Karmic\">The Ubuntu Guide</a></strong> - A Wiki for common setup and configuration tasks in Ubuntu.</p>
+<p>&#160;</p>
+<p><strong><a href=\"http://ubuntu-tweak.com/\">Ubuntu Tweak</a></strong> - Simplifies some Ubuntu configuration tasks as well as application and driver installation.</p>
+<p>&#160;</p>
+<p><strong><a href=\"http://appnr.com/\">Appnr</a></strong> - Find Linux Applications</p>
+<p>&#160;</p>
+<p><strong><a href=\"https://help.ubuntu.com/community/WindowsDualBoot\">Dual Boot Reference</a></strong> - For those who want to hang to Windows just in case.</p>
+<p>&#160;</p>
+<p><strong><a href=\"http://do.davebsd.com/index.shtml\">Gnome Do</a></strong> - This is one of my favorite applications in Ubuntu.&#160; Thanks to Gnome Do, I never have to swim through menus to launch an application.&#160; Learn it.&#160; It will save you time.</p>
+<p>&#160;</p>
+<p>Here are some good Linux blogs.</p>
+<p>&#160;</p>
+<p><strong><a href=\"http://productivelinux.com/\">Productive Linux</a></strong> - A blog about performance and efficiency in Ubuntu.</p>
+<p>&#160;</p>
+<p><strong><a href=\"http://www.omgubuntu.co.uk/\">OMG! UBUNTU!</a></strong> - A blog that follows Ubuntu news very closely.</p>
+<p>&#160;</p>
+<p><strong><a href=\"http://fullcirclemagazine.org/\">Full Circle Magazine</a></strong> - A Ubuntu magazine.</p>
+<p>&#160;</p>
+<p><strong><a href=\"http://www.markshuttleworth.com/\">Mark Shuttleworth's Blog</a></strong> - Founder of Canonical Ltd. which backs Ubuntu.</p>",
+        "created": "1254941713",
+        "teaser": "<p>I have a friend who recently informed me of their venture into the world of Linux.&#160; I started to build up a good set of links and thought I would share.&#160; Here you go.</p>
+<p>&#160;</p>
+<p><strong><a href=\"http://ubuntuguide.org/wiki/Ubuntu:Karmic\">The Ubuntu Guide</a></strong> - A Wiki for common setup and configuration tasks in Ubuntu.</p>
+<p>&#160;</p>
+<p><strong><a href=\"http://ubuntu-tweak.com/\">Ubuntu Tweak</a></strong> - Simplifies some Ubuntu configuration tasks as well as application and driver installation.</p>
+<p>&#160;</p>",
+        "title": "Links for New Ubuntu Users",
+        "changed": "1254941836",
+        "timestamp": "1254941836",
+        "name": "Ubuntu",
+        "nid": "47"
+      },
+      {
+        "body": "<p>1. Install tomcat6 via synaptic.</p>
+<pre>sudo apt-get tomcat6 tomcat6-admin<br /></pre>
+<p>There may be some tweaks that you need to do after install.&#160; I didn't need to change anything, but you can find help from the <a href=\"https://help.ubuntu.com/community/ApacheTomcat5\" target=\"_blank\">ubuntu help page for tomcat</a>.</p>
+<p>2. Download the <a href=\"http://opensource.adobe.com/wiki/display/blazeds/Release+Builds\" target=\"_blank\">turnkey version of BlazeDS</a> from Adobe.&#160; The turnkey version comes with a preintegrated version of tomcat which we won't need.&#160; All that we need are blazeds.war, samples.war, and ds-console.war.&#160; Unzip the file.&#160; You'll find the files you need in the root of the directory.</p>
+<p>3. Copy the files above to /var/lib/tomcat6/webapps/</p>
+<pre>cp *.war /var/lib/tomcat6/webapps<br /></pre>
+<p>4. Restart tomcat.&#160; This will install BlazeDS.</p>
+<pre>sudo /etc/init.d/tomcat6 restart<br /></pre>
+<p>5. Try hitting <a href=\"http://localhost:8080/ds-samples/\" target=\"_blank\">http://localhost:8080/ds-samples/</a></p>
+<p>You're done.</p>",
+        "created": "1251668833",
+        "teaser": "<p>1. Install tomcat6 via synaptic.</p>
+<pre>sudo apt-get tomcat6 tomcat6-admin<br /></pre>
+<p>There may be some tweaks that you need to do after install.&#160; I didn't need to change anything, but you can find help from the <a href=\"https://help.ubuntu.com/community/ApacheTomcat5\" target=\"_blank\">ubuntu help page for tomcat</a>.</p>",
+        "title": "Installing Tomcat + BlazeDs on Ubuntu",
+        "changed": "1251722635",
+        "timestamp": "1251722635",
+        "name": "Ubuntu",
+        "nid": "46"
+      },
+      {
+        "body": "<p>My development environment varies based on the project that I'm working with.&#160; For my latest project I'm creating a Flex media player and though I started using Gedit, I've moved to Eclipse + Flex Builder so as to take advantage of Flex's Builders code completion feature.&#160; Other features that I needed for this project were support for FTP, Bazaar, PHP, and JQuery.&#160; Here are the steps I took to build the IDE for this project.&#160;</p>
+<p>1. The backend is PHP so I started with <a href=\"http://www.eclipse.org/pdt/downloads/\" target=\"_blank\">PDT all-in-one package</a> of Eclipse version Galileo (3.5).&#160;</p>
+<p>2. For Flex support, I installed the <a href=\"http://labs.adobe.com/downloads/flexbuilder_linux.html\" target=\"_blank\">Flex Builder plugin</a>.&#160; The Eclipse plugin from Adobe is set up for Eclipse version 3.3.x, but you can get it to work with the current Eclipse version thanks to this <a href=\"http://www.experts-exchange.com/articles/Web_Development/Web_Languages-Standards/Flex/Getting-Flex-Builder-for-Linux-working-with-Eclipse-3-5-Galileo.html\" target=\"_blank\">blog post</a>.&#160; I also opted to use the <a href=\"http://www.adobe.com/support/flashplayer/downloads.html\" target=\"_blank\">flash 10 debugger</a> rather than the flash 9 debugger, which is what the Flex Builder plugin will install.</p>
+<p>3. For Bazaar support,&#160; I installed the <a href=\"http://bazaar-vcs.org/BzrEclipse\" target=\"_blank\">Bazaar plugin</a> for Eclipse.</p>
+<p>4. For FTP and JQuery support I installed the <a href=\"http://aptana.com/studio/download\" target=\"_blank\">Aptana plugin</a>.</p>
+<p>Enjoy!</p>",
+        "created": "1251477195",
+        "teaser": "<p>My development environment varies based on the project that I'm working with.&#160; For my latest project I'm creating a Flex media player and though I started using Gedit, I've moved to Eclipse + Flex Builder so as to take advantage of Flex's Builders code completion feature.&#160; Other features that I needed for this project were support for FTP, Bazaar, PHP, and JQuery.&#160; Here are the steps I took to build the IDE for this project.&#160;</p>",
+        "title": "Eclipse Galileo + Aptana + PDT + Flex Builder + Bazaar",
+        "changed": "1251482576",
+        "timestamp": "1251482576",
+        "name": "Flex",
+        "nid": "45"
+      },
+      {
+        "body": "<p>Whenever I start to get overwhelmed with development tasks it is best for me to make a list so that I can see what needs done.&#160; From there I can prioritize and execute.&#160; On my current project I've been using <a href=\"http://live.gnome.org/Tasque\" target=\"_blank\">Tasque</a> for simple development task management.&#160; I've found it helpful to prefix my tasks with the language it pertains to.&#160; Tasque sorts tasks alphabetically so it naturally groups tasks of the same sort.&#160; Happy developing!</p>
+<p style=\"text-align: center;\"><img src=\"/sites/default/files/Screenshot-Tasque.png\" alt=\"Tasque\" width=\"600\" height=\"600\" /></p>",
+        "created": "1250021063",
+        "teaser": "<p>Whenever I start to get overwhelmed with development tasks it is best for me to make a list so that I can see what needs done.&#160; From there I can prioritize and execute.&#160; On my current project I've been using <a href=\"http://live.gnome.org/Tasque\" target=\"_blank\">Tasque</a> for simple development task management.&#160; I've found it helpful to prefix my tasks with the language it pertains to.&#160; Tasque sorts tasks alphabetically so it naturally groups tasks of the same sort.&#160; Happy developing!</p>",
+        "title": "Development Task Management with Tasque",
+        "changed": "1250021147",
+        "timestamp": "1250021147",
+        "name": "Ubuntu",
+        "nid": "44"
+      },
+      {
+        "body": "<p>Balanced Scale Media is proud to announce the the integration of <a title=\"Piwik\" href=\"http://piwik.org/\" target=\"_blank\">Piwik</a> Web Analytic software as a free feature to existing and future clients.&#160; Existing clients will recieve login information as soon as there is a sufficient amount of data to work with.&#160; Enjoy!&#160;</p>",
+        "created": "1247866248",
+        "teaser": "<p>Balanced Scale Media is proud to announce the the integration of <a title=\"Piwik\" href=\"http://piwik.org/\" target=\"_blank\">Piwik</a> Web Analytic software as a free feature to existing and future clients.&#160; Existing clients will recieve login information as soon as there is a sufficient amount of data to work with.&#160; Enjoy!&#160;</p>",
+        "title": "Piwik Web Analytics",
+        "changed": "1247866248",
+        "timestamp": "1247866248",
+        "name": "Site News",
+        "nid": "43"
+      },
+      {
+        "body": "<p>The newly redesigned <a href=\"http://www.loftusheatingandac.com\">Loftus Heating and AC website</a> is now up and running.&#160; This site was redone from the ground up from their initial static html site.&#160; They now have a database driven website complete with the integration of the Lennox Product API!&#160; It is my hope that they and their customers find it to be an improvement.</p>",
+        "created": "1241184498",
+        "teaser": "<p>The newly redesigned <a href=\"http://www.loftusheatingandac.com\">Loftus Heating and AC website</a> is now up and running.&#160; This site was redone from the ground up from their initial static html site.&#160; They now have a database driven website complete with the integration of the Lennox Product API!&#160; It is my hope that they and their customers find it to be an improvement.</p>",
+        "title": "Loftus Heating and AC Redesign",
+        "changed": "1241184498",
+        "timestamp": "1241184498",
+        "name": "Site News",
+        "nid": "41"
+      },
+      {
+        "body": "<p>Using <a href=\"http://en.wikipedia.org/wiki/Ssh\" target=\"_blank\">SSH</a> is quick to manage your webspace.&#160; It is much faster that FTP depending on the task.&#160; I learned today that in Linux you can store your SSH connection in a the file \"~/.ssh/config\" using the following format.</p>
+<pre>Host myhost1
+User username1
+Port 8322
+HostName machine.example1.com 
+</pre>
+<p>Once you've edited and saved this file with your SSH configuration settings you can start ssh sessions from the command like so.</p>
+<pre>ssh myhost1</pre>
+<p>On top of that I found that Gnome Do, one of my favorite Linux apps, parses my ~/.ssh/config file so that I can start ssh sessions from Gnome Do!  For more information on this <a href=\"http://do.davebsd.com/wiki/index.php?title=SSH_Plugin\" target=\"_blank\">check out this pos</a>t on the Gnome Do site.</p>",
+        "created": "1240866577",
+        "teaser": "<p>Using <a href=\"http://en.wikipedia.org/wiki/Ssh\" target=\"_blank\">SSH</a> is quick to manage your webspace.&#160; It is much faster that FTP depending on the task.&#160; I learned today that in Linux you can store your SSH connection in a the file \"~/.ssh/config\" using the following format.</p>
+<pre>Host myhost1
+User username1
+Port 8322
+HostName machine.example1.com 
+</pre>
+<p>Once you've edited and saved this file with your SSH configuration settings you can start ssh sessions from the command like so.</p>",
+        "title": "Quicker SSH sessions with Console and Gnome Do",
+        "changed": "1242661128",
+        "timestamp": "1242661128",
+        "name": "Linux",
+        "nid": "40"
+      },
+      {
+        "body": "<p>I'm happy to announce that BalancedScale.com and all client sites will now be running on a dedicated server!&#160; That means more performance for you and a more flexible development platform for us.&#160; We will able to offer more features and will have the resources to take on bigger clients.&#160; Yeah, for progress!</p>",
+        "created": "1240776266",
+        "teaser": "<p>I'm happy to announce that BalancedScale.com and all client sites will now be running on a dedicated server!&#160; That means more performance for you and a more flexible development platform for us.&#160; We will able to offer more features and will have the resources to take on bigger clients.&#160; Yeah, for progress!</p>",
+        "title": "Performance Upgrade",
+        "changed": "1240776266",
+        "timestamp": "1240776266",
+        "name": "Site News",
+        "nid": "39"
+      },
+      {
+        "body": "<p>I've been keeping documentation on my development life cycle processes.&#160; Just recently, I realized that I could do away with a lot of these little tasks with <a title=\"Shell Scripts\" href=\"http://en.wikipedia.org/wiki/Shell_scripting\" target=\"_blank\">shell scripts</a>.&#160; Here's a look at one of my \"to-do lists\" for setting up a Drupal site on my local Apache server.</p>
+<pre> 1. Setup Database &bull; Create Database/ Grant Permission    
+  &bull; mysql -u root -p       
+  &bull; create database ___;       &#38;
+  &bull; grant all privileges on ___.* to boz@localhost ;     
+
+2. Add server name to host file /etc/hosts    
+
+3. Enable site in Apache      
+  &bull; Create file in /etc/apache2/sites-available 
+  &bull; Add DocumentRoot and ServerName info.  If you add a custom error log, 
+           make sure the directory and file exist in the file system.    
+           DocumentRoot /var/www/drupal   ServerName local.______.com
+  &bull; Link file to /etc/apache2/site-enabled or 'sudo a2ensite' sitename
+  * sudo /etc/init.d/apache2 reload
+</pre>
+<p>Now lets look at the script.  The Ubuntu Community page for Drupal contains an <a href=\"https://help.ubuntu.com/community/Drupal#Install%20Script\" target=\"_blank\">installer shell script</a> that I used for as a starting point for writing this one.  Let's walk through it piece by piece.</p>
+<h3>Configuration</h3>
+<p>The installer script is set up to accept a bunch parameters.  I didn't want to have to type the same things over and over so I hard coded some of my system information as variables at the top. * Note: Lines starting with # are comments.</p>
+<pre> # User configuration 
+user=username
+password=system_password 
+dbpass=mysql_password 
+# End User configuration 
+</pre>
+<h3>Setting up Drupal files</h3>
+<p>I use a <a href=\"http://drupal.org/node/43816\">multi-site configuration</a> in Drupal so that I don't have to have mutiple copies of Drupal core files and so that I don't have to manage more that one Drupal install.  This part of the scripts sets up the files and their permissions required by Drupal.  The variables $1 is the first argument passed to the script dynamically and refers to the site domain name.</p>
+<pre>echo \"Setting up local.$1\"
+
+echo \"Setup required files/directories\"
+mkdir /home/$user/public_html/drupal/sites/$1
+mkdir /home/$user/public_html/drupal/sites/$1/modules
+mkdir /home/$user/public_html/drupal/sites/$1/themes
+mkdir /home/$user/public_html/drupal/sites/$1/files
+
+echo \"Set permissions\"
+chmod -R 777 /home/$user/public_html/drupal/sites/$1/files
+</pre>
+<h3>Setup MySQL Database</h3>
+<p>This section of the script sets up a database named $2 is a reference to the second argument passed to the script.</p>
+<pre>echo \"Create database reload mysql privileges\"
+mysql -uroot -p$dbpass -e \"DROP DATABASE IF EXISTS $2;\"
+mysql -uroot -p$dbpass -e \"CREATE DATABASE IF NOT EXISTS $2;\"
+mysql -uroot -p$dbpass -e \"GRANT USAGE ON $2.* TO '$user'@'localhost' IDENTIFIED BY '$password';\"
+mysql -uroot -p$dbpass -e \"GRANT ALL PRIVILEGES ON $2.* TO '$user'@'localhost';\"
+mysql -uroot -p$dbpass -e \"flush privileges;\"
+</pre>
+<h3>Drupal Site Settings file</h3>
+<p>Adding a new site to Drupal requires a clean settings.php file, which Drupal will detect and redirect you to the install.php page once everything is set up.  I give full permission to this file so that Drupal can write to it later.</p>
+<pre>echo \"Config Drupal settings.php\"
+touch /home/$user/public_html/drupal/sites/$1/settings.php
+chmod 777 /home/$user/public_html/drupal/sites/$1/settings.php
+</pre>
+<h3>Enabling the Domain to Apache</h3>
+<p>This section tells Apache where to point to when the new domain is hit from the browser.  I'm just pointing it to my drupal folder.  Notice that I use \"local.\" in front of my domain.  This is just my preference when I set up a development site.  You can use whatever domain you like.  The \"a2ensite\" command enables the site in Apache.</p>
+<pre>echo \"Set up Apache config file\" 
+echo \"\" &#62;/etc/apache2/sites-available/local.$1
+echo \"  DocumentRoot /var/www/drupal\" &#62;&#62;/etc/apache2/sites-available/local.$1
+echo \"  ServerName $1\" &#62;&#62;/etc/apache2/sites-available/local.$1
+echo \"\" &#62;&#62;/etc/apache2/sites-available/local.$1
+
+echo \"Enable Apache site\"
+a2ensite local.$1
+</pre>
+<h3>Add Domain to your Host file</h3>
+<p>All that's left to do now is to write the new domain to your host file and restart Apache.</p>
+<pre>echo \"Add domain to host file\"
+echo \"127.0.0.1 local.$1\" &#62;&#62;/etc/hosts
+
+echo \"Restart apache\"
+/etc/init.d/apache2 force-reload
+
+echo \"Done\"
+</pre>
+<p>Once the script has finished executing I can pull up my browser, enter in the new domain, which pulls up the Drupal install page.  Enjoy!</p>
+<p>Here's the full script!</p>
+<pre># User configuration
+user=
+password=
+dbpass=
+# End User configuration
+
+echo \"Setting up local.$1\"
+
+echo \"Setup required files/directories\"
+mkdir /home/$user/public_html/drupal/sites/$1
+mkdir /home/$user/public_html/drupal/sites/$1/modules
+mkdir /home/$user/public_html/drupal/sites/$1/themes
+mkdir /home/$user/public_html/drupal/sites/$1/files
+
+echo \"Set permissions\"
+chmod -R 777 /home/$user/public_html/drupal/sites/$1/files
+
+echo \"Create database reload mysql privileges\"
+mysql -uroot -p$dbpass -e \"DROP DATABASE IF EXISTS $2;\"
+mysql -uroot -p$dbpass -e \"CREATE DATABASE IF NOT EXISTS $2;\"
+mysql -uroot -p$dbpass -e \"GRANT USAGE ON $2.* TO '$user'@'localhost' IDENTIFIED BY '$password';\"
+mysql -uroot -p$dbpass -e \"GRANT ALL PRIVILEGES ON $2.* TO '$user'@'localhost';\"
+mysql -uroot -p$dbpass -e \"flush privileges;\"
+
+echo \"Config Drupal settings.php\"
+#  $db_url = 'mysql://username:password@localhost/databasename';
+touch /home/$user/public_html/drupal/sites/$1/settings.php
+chmod 777 /home/$user/public_html/drupal/sites/$1/settings.php
+
+echo \"Set up Apache config file\" 
+echo \"\" &#62;/etc/apache2/sites-available/local.$1
+echo \"  DocumentRoot /var/www/drupal\" &#62;&#62;/etc/apache2/sites-available/local.$1
+echo \"  ServerName $1\" &#62;&#62;/etc/apache2/sites-available/local.$1
+echo \"\" &#62;&#62;/etc/apache2/sites-available/local.$1
+
+echo \"Enable Apache site\"
+a2ensite local.$1
+
+echo \"Add domain to host file\"
+echo \"127.0.0.1 local.$1\" &#62;&#62;/etc/hosts
+
+echo \"Restart apache\"
+/etc/init.d/apache2 force-reload
+
+echo \"Done\"
+</pre>",
+        "created": "1240420433",
+        "teaser": "<p>I've been keeping documentation on my development life cycle processes.&#160; Just recently, I realized that I could do away with a lot of these little tasks with <a title=\"Shell Scripts\" href=\"http://en.wikipedia.org/wiki/Shell_scripting\" target=\"_blank\">shell scripts</a>.&#160; Here's a look at one of my \"to-do lists\" for setting up a Drupal site on my local Apache server.</p>",
+        "title": "Setup A Local Drupal Site Programatically",
+        "changed": "1242660514",
+        "timestamp": "1242660514",
+        "name": "Linux",
+        "nid": "38"
+      },
+      {
+        "body": "<p>Symbolic links work kind of like shortcuts in Windows.&#160; I have found a couple of very useful scenarios.&#160; The first is my local development environment.&#160; For Linux users, it is best practice to keep all your files in your user folder.&#160; For me, this is mainly to keep my system directories clean and to make backup of my files easier.&#160; This leads me to my first usage:</p>
+<p><strong>1. Managing Development Files for Apache</strong></p>
+<p>Apache is looking for my files in the /var/www directory.&#160; I want to keep my development files in my user directory.&#160; To solve this I create a link to my development folders and store them in /var/www.&#160; For example, if I wanted to run drupal local, which I do.&#160; I create a link to drupal in /var/www like so:</p>
+<p><code>ln -s /home/boz/public_html/drupal /var/www/drupal</code></p>
+<p><a title=\"ln\" href=\"http://unixhelp.ed.ac.uk/CGI/man-cgi?ln\" target=\"_blank\">ln</a> is the command, \"-s\" means symbolic link, as opposed to a hard link, followed by the source directory and the new link.&#160; Now I can access my drupal site in apache while maintaining my development files from my user directory.</p>
+<p><strong>2. Managing Multisite Configuration in Drupal</strong></p>
+<p>Drupal allows you to run as many domains as you like while sharing the same core Drupal files.&#160; Included in my development cycle is the creation of a test site for my clients to look over my work and make sure everything good to go before we publish the site.&#160; If I haven't transfered the domain for their site to my host then I usually just use a subdomain of this site for the testing i.e. somesite.balancedscale.com.&#160; Drupal's multisite configuration is based on directories named after the domains they correspond to.&#160; I don't want to maintain two different Drupal directories for the same project and so I create a symbolic link on my host servers between the test site domain directory and the target domain directory.&#160; Here's is an example that I used on my most recent project for the website loftusheatingandac.com.</p>
+<p><code>ln -s /drupal/sites/loftusheatingandac.com /drupal/sites/loftuslennox.balancedscale.com</code></p>
+<p>Now when the domain is transfered I can just point it to the drupal folder and all is good.&#160; The test site and the production site use the same files and the same database.</p>
+<p>How do use Symbolic Links?</p>",
+        "created": "1240085572",
+        "teaser": "<p>Symbolic links work kind of like shortcuts in Windows.&#160; I have found a couple of very useful scenarios.&#160; The first is my local development environment.&#160; For Linux users, it is best practice to keep all your files in your user folder.&#160; For me, this is mainly to keep my system directories clean and to make backup of my files easier.&#160; This leads me to my first usage:</p>
+<p><strong>1. Managing Development Files for Apache</strong></p>",
+        "title": "Practical Usage of Symbolic Links",
+        "changed": "1242660921",
+        "timestamp": "1242660921",
+        "name": "Linux",
+        "nid": "36"
+      },
+      {
+        "body": "<p>Greetings.&#160; I just stumbled upon a great resource from the Drupal Twitter feed.&#160; The <a title=\"DrupalCon DC Videos\" href=\"http://dc2009.drupalcon.org/sessions\" target=\"_blank\">videos for each session</a> of DrupalCon DC are posted on the DrupalCon DC website.&#160; Check em' out!</p>",
+        "created": "1238786439",
+        "teaser": "<p>Greetings.&#160; I just stumbled upon a great resource from the Drupal Twitter feed.&#160; The <a title=\"DrupalCon DC Videos\" href=\"http://dc2009.drupalcon.org/sessions\" target=\"_blank\">videos for each session</a> of DrupalCon DC are posted on the DrupalCon DC website.&#160; Check em' out!</p>",
+        "title": "DrupalCon DC Session Videos",
+        "changed": "1238786472",
+        "timestamp": "1238786472",
+        "name": "Drupal",
+        "nid": "34"
+      },
+      {
+        "body": "<p>For those of you that use Skype for business or personal use, I finally fixed my audio issues with <a title=\"Skype 2.0 in Ubuntu\" href=\"http://skype.com/download/skype/linux/choose/\" target=\"_blank\">Skype 2.0 in Ubuntu</a>.&#160; I was experiencing poor audio quality (low volume, choppy ouput) since I installed it.&#160; The soluction was simple enough.&#160; In the options menu select \"Sound Devices\" and then uncheck \"Allow Skype to Automatically change my mixer levels\".&#160; I found that when I change this setting everything works fine.&#160; The audio is now just a crisp as you can expect with <acronym title=\"Voice Over Internet Protocol\">VOIP</acronym>.&#160;</p>
+<p>&#160;</p>
+<p style=\"text-align: center;\"><img src=\"/sites/default/files/skype.png\" alt=\"Skype Screenshot\" width=\"696\" height=\"460\" /></p>",
+        "created": "1238089859",
+        "teaser": "<p>For those of you that use Skype for business or personal use, I finally fixed my audio issues with <a title=\"Skype 2.0 in Ubuntu\" href=\"http://skype.com/download/skype/linux/choose/\" target=\"_blank\">Skype 2.0 in Ubuntu</a>.&#160; I was experiencing poor audio quality (low volume, choppy ouput) since I installed it.&#160; The soluction was simple enough.&#160; In the options menu select \"Sound Devices\" and then uncheck \"Allow Skype to Automatically change my mixer levels\".&#160; I found that when I change this setting everything works fine.&#160; The audio is now just a crisp as you can expe",
+        "title": "How to Fix Poor Skype Audio Quality in Linux",
+        "changed": "1238089859",
+        "timestamp": "1238089859",
+        "name": "Linux",
+        "nid": "32"
+      },
+      {
+        "body": "<p>If you're like me, you want to know how much time you're actually spending on projects.  I've been using a very useful applet for <a title=\"Gnome\" href=\"http://www.gnome.org/\" target=\"_blank\">Gnome</a> desktop called <a title=\"Hamster\" href=\"http://projecthamster.wordpress.com\" target=\"_blank\">Hamster</a>.  With Hamster, I'm able to start and stop time tracking on a particular task, enter previous times, and see time charts for days, weeks, and months.  Here's a quick screen shot.</p>
+<p>&#160;</p>
+<p style=\"text-align: center;\"><img src=\"/sites/default/files/Screenshot-Overview - Hamster.png\" alt=\"Hamster Screenshot\" width=\"720\" height=\"600\" /></p>
+<p>&#160;</p>
+<p style=\"text-align: left;\">To install Hamster in Ubuntu you can either search for \"hamster-applet\" in Synaptic or use apt-get.</p>
+<pre>sudo apt-get install hamster-applet</pre>
+<p>Otherwise, check out <a title=\"Install Hamster\" href=\"http://projecthamster.wordpress.com/building-and-running/\" target=\"_blank\">Hamster documentation</a>.  Once you've installed it, right click on your menu and select \"Add to Panel\".  In the \"Add to Panel\" window select \"Time Tracker\".  Enjoy.</p>",
+        "created": "1237594714",
+        "teaser": "<p>If you're like me, you want to know how much time you're actually spending on projects.  I've been using a very useful applet for <a title=\"Gnome\" href=\"http://www.gnome.org/\" target=\"_blank\">Gnome</a> desktop called <a title=\"Hamster\" href=\"http://projecthamster.wordpress.com\" target=\"_blank\">Hamster</a>.  With Hamster, I'm able to start and stop time tracking on a particular task, enter previous times, and see time charts for days, weeks, and months.  Here's a quick screen shot.</p>
+<p>&#160;</p>",
+        "title": "Time Tracking in Gnome with Hamster",
+        "changed": "1237781434",
+        "timestamp": "1237781434",
+        "name": "Linux",
+        "nid": "31"
+      },
+      {
+        "body": "I just found this and thought I'd pass it along. Firebug is an extension for the Firefox browser which provides a rich interface for JavaScript debugging among other features. FirePHP is an extension that allows use to leverage Firebug rich interface for PHP debugging. To install FirePHP for Drupal follow the instructions provided by FirePHP HQ.
+
+<ol>
+   <li>Download and enable devel-module from http://drupal.org/project/devel</li>
+   <li>Create a folder FirePHPCore in the devel-modul-folder (modules/devel)</li>
+   <li>Download the FirePHPCore library from http://www.firephp.org/HQ</li>
+   <li>Unpack the <a href=\"http://www.firephp.org/DownloadRelease/FirePHPLibrary-FirePHPCore-0.2.1\">FirePHPCore library</a> and copy the lib folder to the FirePHPCore folder in the devel-module (modules/devel/FirePHPCore/lib) </li>
+</ol>
+
+The final file structure should be:
+
+modules/devel/FirePHPCore/lib/FirePHPCore/fb.php
+modules/devel/FirePHPCore/lib/FirePHPCore/FirePHP.class.php
+
+For logging to Firebug use dfb() instead of fb(). Both functions take the same arguments. You can find a reference here.
+
+<?php
+
+dfb('Log message', FirePHP::LOG);
+
+?>",
+        "created": "1236434108",
+        "teaser": "I just found this and thought I'd pass it along. Firebug is an extension for the Firefox browser which provides a rich interface for JavaScript debugging among other features. FirePHP is an extension that allows use to leverage Firebug rich interface for PHP debugging. To install FirePHP for Drupal follow the instructions provided by FirePHP HQ.
+
+<ol>
+   <li>Download and enable devel-module from http://drupal.org/project/devel</li>
+   <li>Create a folder FirePHPCore in the devel-modul-folder (modules/devel)</li>
+   <li>Download the FirePHPCore library from http://www.firephp.org/HQ</li>
+",
+        "title": "Installing FirePHP For Drupal",
+        "changed": "1236434108",
+        "timestamp": "1236434108",
+        "name": "Drupal",
+        "nid": "29"
+      },
+      {
+        "body": "Announcing the redesign and relaunch of <a href=\"http://www.shotguncongress.com\">Shotgun Congress.com</a>.  The site has had a number of features added to it.  Hopefully, you will find it more community oriented, user friendly, and pleasing to the eye.",
+        "created": "1233024252",
+        "teaser": "Announcing the redesign and relaunch of <a href=\"http://www.shotguncongress.com\">Shotgun Congress.com</a>.  The site has had a number of features added to it.  Hopefully, you will find it more community oriented, user friendly, and pleasing to the eye.",
+        "title": "Shotgun Congress Relaunch",
+        "changed": "1233024252",
+        "timestamp": "1233024252",
+        "name": "Site News",
+        "nid": "27"
+      },
+      {
+        "body": "In the my experience of Drupal I've found a set of contributed modules that I keep coming back to.  The features that they provide are, for the most part, useful on any site.  Those modules include the following.
+
+Menus
+<ul>
+<li><a href=\"http://drupal.org/project/menutrails\">Menu Trails</a> - Maintains a breadcrumb based on your menu hierarchy</li>
+<li><a href=\"http://drupal.org/project/page_title\">DHTML Menus</a> - Quick navigation via js menuâ€¨</li>
+</ul>
+
+SEO
+<ul>
+<li><a href=\"http://drupal.org/project/pathauto\">Path Auto</a> - Automated and manual URL aliasing</li>
+<li><a href=\"http://drupal.org/project/globalredirect\">Global Redirect</a> - If you use URL aliases, this module makes sure that you don't take SEO hits for duplicate content.</li>
+<li><a href=\"http://drupal.org/project/page_title\">Page Title</a> - Gives you more control over the Page Title</li>
+</ul>
+
+Content
+<ul>
+<li><a href=\"http://drupal.org/project/views\">Views</a> - Graphically build SQL queries and markup to retrieve your content and render it.</li>
+<li><a href=\"http://drupal.org/project/cck\">CCK</a> - Allows you to create your own content types</li>
+<li><a href=\"http://drupal.org/project/contemplate\">Contemplate</a> - Gives you total control over the template used to render the content types that you create using CCK.</li>
+</ul>
+
+Enjoy!",
+        "created": "1232153250",
+        "teaser": "In the my experience of Drupal I've found a set of contributed modules that I keep coming back to.  The features that they provide are, for the most part, useful on any site.  Those modules include the following.
+
+Menus
+<ul>
+<li><a href=\"http://drupal.org/project/menutrails\">Menu Trails</a> - Maintains a breadcrumb based on your menu hierarchy</li>
+<li><a href=\"http://drupal.org/project/page_title\">DHTML Menus</a> - Quick navigation via js menuâ€¨</li>
+</ul>
+
+SEO
+<ul>
+<li><a href=\"http://drupal.org/project/pathauto\">Path Auto</a> - Automated and manual URL aliasing</li>
+",
+        "title": "Essential Drupal Modules",
+        "changed": "1236442610",
+        "timestamp": "1236442610",
+        "name": "Drupal",
+        "nid": "26"
+      },
+      {
+        "body": "Unfortunately, this was not straight forward task for me, which may be due to my lack of skills.  So, in order to ease someone else's pain, I'm posting my method of installing flex builder on Ubuntu 8.10.  
+
+<ol>
+ <li><a href=\"http://archive.eclipse.org/eclipse/downloads/drops/R-3.3-200706251500/index.php\"><strong>Download Eclipse 3.3 Europa</strong></a>
+The download link for Europa 3.3 is post worthy in and of itself due to Eclipse Project's troublesome site navigation.  I downloaded the Linux (x86/GTK 2) version on to my 32-bit machine (64 bit also available).
+</li>
+<li><strong>Extract Eclipse 3.3 Europa</strong>
+Europa is not the latest version of Eclipse, which I also use, so after extracting Europa to my /home/<username> folder I renamed it to \"europa\".  
+</li>
+<li><a href=\"http://labs.adobe.com/technologies/flex/flexbuilder_linux/\"><strong>Download Flex Builder Linux Alpha</a> from Adobe Labs</strong></li>
+<li><strong>Run The Flex Builder Install Script</strong>
+Follow the instructions from the Adobe Labs on running the install script.  Note that before running these commands you need to open up a terminal and navigate to the folder where your \".bin\" file is located.
+<blockquote>
+Run the installer either marking it as executable (chmod +x) or by using a shell to execute it (sh flexbuilder_linux_install_a4_081408.bin).
+
+When prompted, specify whether to install Flash Player 9 (note that this is an updated version of Flash Player 9 and that Flex Builder Linux will work with earlier versions of Flash Player 9 for Linux). This is the debug version of Flash Player 9, which is required for debugging support and exception display.
+</blockquote>
+The install script will ask you where eclipse is located which is when you want to point it to your eclipse folder, in my case named \"europa\".
+<li><strong>Run Eclipse</strong>
+Now when you run Eclipse, it will ask you what workspace you want to use.  Make sure that you create and new Flex workspace and are not using a workspace used by another Eclipse install. 
+</li>
+<li><strong>Start A Flex Project</strong>
+Once Eclipse has opened you should be able to create a Flex project by clicking \"File->New->Other...\".  In the window click the Flex Builder folder icon which has several options including \"Flex Project\", which is generally what you will use for a Flex application.
+</li>
+</ol>",
+        "created": "1230313518",
+        "teaser": "Unfortunately, this was not straight forward task for me, which may be due to my lack of skills.  So, in order to ease someone else's pain, I'm posting my method of installing flex builder on Ubuntu 8.10.  
+
+<ol>
+ <li><a href=\"http://archive.eclipse.org/eclipse/downloads/drops/R-3.3-200706251500/index.php\"><strong>Download Eclipse 3.3 Europa</strong></a>
+The download link for Europa 3.3 is post worthy in and of itself due to Eclipse Project's troublesome site navigation.  I downloaded the Linux (x86/GTK 2) version on to my 32-bit machine (64 bit also available).
+</li>",
+        "title": "Installing Flex Builder on Ubuntu 8.10 Intrepid Ibex",
+        "changed": "1230336364",
+        "timestamp": "1230336364",
+        "name": "Linux",
+        "nid": "24"
+      },
+      {
+        "body": "If you haven't heard, Adobe recently published the <a href=\"http://www.adobe.com/devnet/flex/videotraining/\">Flex in a Week</a> video series.  The bummer for us Linux users is that to watch the videos you need to install <abbr title=\"Adobe Media Player\">AMP</abbr>, which is not compatible.  However, today I found that you can watch the videos if you import the video series xml feed into <a href=\"http://www.getmiro.com/\">Miro</a>.
+
+<ol>
+<li>Install <a href=\"http://www.getmiro.com/\">Miro</a></li>
+<li>Go to \"Channels\"->\"Add Channel\"</li>
+<li>Paste http://sessions.adobe.com/FlexInAWeek/feed.xml</li>
+</ol>
+
+Enjoy!",
+        "created": "1229983695",
+        "teaser": "If you haven't heard, Adobe recently published the <a href=\"http://www.adobe.com/devnet/flex/videotraining/\">Flex in a Week</a> video series.  The bummer for us Linux users is that to watch the videos you need to install <abbr title=\"Adobe Media Player\">AMP</abbr>, which is not compatible.  However, today I found that you can watch the videos if you import the video series xml feed into <a href=\"http://www.getmiro.com/\">Miro</a>.
+
+<ol>
+<li>Install <a href=\"http://www.getmiro.com/\">Miro</a></li>
+<li>Go to \"Channels\"->\"Add Channel\"</li>
+",
+        "title": "Learning Flex With Linux",
+        "changed": "1230308146",
+        "timestamp": "1230308146",
+        "name": "Flex",
+        "nid": "23"
+      },
+      {
+        "body": "All sites were down today for regular maintenance as well as expansion.  Balanced Scale Media is not only more secure, but has greater capacity to meet its recent growth.  ",
+        "created": "1217561895",
+        "teaser": "All sites were down today for regular maintenance as well as expansion.  Balanced Scale Media is not only more secure, but has greater capacity to meet its recent growth.  ",
+        "title": "Security Updates",
+        "changed": "1230307986",
+        "timestamp": "1230307986",
+        "name": "Site News",
+        "nid": "14"
+      },
+      {
+        "body": "The official launch of the writer's blog \"Shotgun Congress\" happened today.  This site will be a source for fiction writing and thoughts on the writing process courtesy of site owner Mark Bosworth.  Check it out @ www.shotguncongress.com.",
+        "created": "1217561480",
+        "teaser": "The official launch of the writer's blog \"Shotgun Congress\" happened today.  This site will be a source for fiction writing and thoughts on the writing process courtesy of site owner Mark Bosworth.  Check it out @ www.shotguncongress.com.",
+        "title": "Announcing the launch of shotguncongress.com!",
+        "changed": "1230307967",
+        "timestamp": "1230307967",
+        "name": "Site News",
+        "nid": "13"
+      },
+      {
+        "body": "I just added a new portfolio page to showcase some of our work.  Feel free to browse through it.  I would like to add some code and functionality samples in the future.",
+        "created": "1215279951",
+        "teaser": "I just added a new portfolio page to showcase some of our work.  Feel free to browse through it.  I would like to add some code and functionality samples in the future.",
+        "title": "Portfolio Added",
+        "changed": "1230308009",
+        "timestamp": "1230308009",
+        "name": "Site News",
+        "nid": "12"
+      },
+      {
+        "body": "Things have been picking up here.  We just launched www.handymarv.com!  This a site for Marv's Handyman Service out of Woodbine, Iowa.  Thanks goes out to <a href=\"http://www.labresh.com\">LaBresh Media</a> for the contract design work.  The latest project is for a company named Kingdom Builders.  We are looking to have a homepage up for them this week.  I'll be adding a portfolio section to the site soon to showcase our work.  
+
+Cheers.",
+        "created": "1210772862",
+        "teaser": "Things have been picking up here.  We just launched www.handymarv.com!  This a site for Marv's Handyman Service out of Woodbine, Iowa.  Thanks goes out to <a href=\"http://www.labresh.com\">LaBresh Media</a> for the contract design work.  The latest project is for a company named Kingdom Builders.  We are looking to have a homepage up for them this week.  I'll be adding a portfolio section to the site soon to showcase our work.  
+
+Cheers.",
+        "title": "New Projects",
+        "changed": "1230308031",
+        "timestamp": "1230308031",
+        "name": "Site News",
+        "nid": "4"
+      },
+      {
+        "body": "Welcome to balanced scale.com!  This is the official site launch.  We are a company specializing in hosting and developing PHP websites with content management.  We can also provide maintenence to your currently existing sites.  Contact us for more information.",
+        "created": "1203346120",
+        "teaser": "Welcome to balanced scale.com!  This is the official site launch.  We are a company specializing in hosting and developing PHP websites with content management.  We can also provide maintenence to your currently existing sites.  Contact us for more information.",
+        "title": "Site Launch",
+        "changed": "1230308056",
+        "timestamp": "1230308056",
+        "name": "Site News",
+        "nid": "1"
+      }
+    ]
