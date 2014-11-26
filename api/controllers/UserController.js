@@ -48,7 +48,7 @@ module.exports = {
 	        });
 	      } else {
 	      	req.flash('danger', 'User not found!');
-	        res.redirect('login');
+	        return res.view('user/login', {tags: []});
 	      }
 	    });
 	},
@@ -59,7 +59,7 @@ module.exports = {
 	},
 
 	form: function(req, res) {
-		return res.view('user/login');
+		return res.view('user/login', {tags: []});
 	},
 
   /**
