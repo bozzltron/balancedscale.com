@@ -69,6 +69,7 @@ module.exports = {
 		Blog.create({
 		  title: req.body.title,
 		  body: req.body.body,
+		  preview: req.body.body.substring(0 , 215),
 		  tags: req.body.tags,
 		  published: published,
 		  userId: req.session.user 
