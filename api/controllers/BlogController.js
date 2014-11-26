@@ -82,7 +82,7 @@ module.exports = {
 		  // The User was created successfully!
 		  }else {
 		  	req.flash("success", "Successfully created a new blog!");
-		  	return res.redirect('blog');
+		  	return res.redirect('/');
 		  }
 		});
 

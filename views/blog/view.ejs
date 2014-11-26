@@ -5,18 +5,25 @@
       <header class="entry-header">
         <img class="entry-avatar" alt="Paul Laros" height="52" width="52" src="https://en.gravatar.com/userimage/39066372/c5df350eac9d3e6ebb6db2a280bc24e9.jpeg?s=52">
         <h2 class="entry-title"><a href="<%= post.link %>"><%= post.title %></a></h2>
+
         <p class="entry-meta">
           Posted on <%= post.createdAtDate %> | By Michael Bosworth | Tags 
-		  <% if(post.tags && post.tags.length > 0) { %>
-			    <% _.each(post.tags, function(tag){ %>
-			    	<a class="label label-primary" href="/blog/tags/<%= tag %>"><%= tag %></a>
-			    <% }); %>	
-		  <% } %>
+    		  <% if(post.tags && post.tags.length > 0) { %>
+    			    <% _.each(post.tags, function(tag){ %>
+    			    	<a class="label label-primary" href="/blog/tags/<%= tag %>"><%= tag %></a>
+    			    <% }); %>	
+    		  <% } %>
         </p>
       </header>
       <div class="entry-description">
         <%- post.body %>
       </div>
+        <% if(session.user) { %>
+          <div class="pull-right">
+            <a href="/blog/edit/<%= post.id %>"><span class="glyphicon glyphicon-pencil"></span> Edit</a>&nbsp;&nbsp;
+            <a class="link-delete" href="#" data-id="<%= post.id %>" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-remove-circle"></span> Delete</a>
+          </div>
+        <% } %>
     </section>
 
     <div class="comments">

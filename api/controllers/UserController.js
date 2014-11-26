@@ -48,7 +48,7 @@ module.exports = {
 	        });
 	      } else {
 	      	req.flash('danger', 'User not found!');
-	        return res.view('user/login', {tags: []});
+	        return res.view('user/login');
 	      }
 	    });
 	},

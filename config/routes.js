@@ -39,7 +39,10 @@ module.exports.routes = {
 
   'get /blog/create': {
     controller: 'blog',
-    action: 'form'
+    action: 'form',
+    locals: {
+      layout: "admin-layout"
+    }
   },
 
   'get /blog/:year/:month/:title': {
@@ -54,12 +57,15 @@ module.exports.routes = {
 
   'post /blog/create': {
     controller: 'blog',
-    action: 'create'
+    action: 'create',
   },
 
   'get /blog/edit/:id': {
     controller: 'blog',
-    action: 'editForm'
+    action: 'editForm',
+    locals: {
+      layout: "admin-layout"
+    }
   },
 
   'get /blog/delete/:id': {
@@ -97,7 +103,10 @@ module.exports.routes = {
 
   'get /login': {
     controller: 'user',
-    action: 'form'
+    action: 'form',
+    locals: {
+      layout: "admin-layout"
+    }
   },
 
   'post /login': {
