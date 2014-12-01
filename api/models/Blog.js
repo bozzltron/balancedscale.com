@@ -39,7 +39,7 @@ module.exports = {
     title = title.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
 
     // Generate fancy url
-    attrs.link = '/' + ['blog', date.getFullYear(),  date.getMonth() + 1, title].join('/');
+    attrs.link = '/' + ['blog', title].join('/');
 
     next();
   },    
