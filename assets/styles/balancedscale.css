@@ -6,3 +6,9 @@ body {
 	width:33px;
 	margin-bottom:11px;
 }
+
+@media (max-width: 768px) {
+    .content{
+        margin:1em auto;
+    }
+}
