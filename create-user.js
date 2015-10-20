@@ -1,9 +1,9 @@
-var bcrypt = require("bcrypt");
+
 if(process.argv[2]) {
 
 	console.log("Hashing " + process.argv[2]);
 
-    var bcrypt = require('bcrypt');
+    var bcrypt = require('bcrypt-nodejs');
 
     bcrypt.genSalt(10, function(err, salt) {
       if (err) console.log(err);
