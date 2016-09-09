@@ -100,7 +100,7 @@ module.exports = {
 	    function(callback){
 
 			// Get all blogs
-			Blog.find({}).sort('published DESC').exec(function(err, posts) {
+			Blog.find({}).sort('createdAt DESC').exec(function(err, posts) {
 
 		      // Format for display
 		      _.each(posts, function(post){
@@ -160,7 +160,7 @@ module.exports = {
 	  	// destroy the record
 	  	blog.destroy(function(err) {
 	    	// record has been removed
-	    	req.flash("success", "Successfully delete your blog");
+	    	req.flash("success", "Successfully deleted your blog");
 	    	res.redirect('/');
 	  	});
 
@@ -393,7 +393,7 @@ module.exports = {
 	  	// Filter to unique tags only
 	  	var uniqTags = _.uniq(allTags);
 
-       	callback(null, uniqTags);
+       	callback(null, uniqTags || []);
 
 	  }
 	});

@@ -55,11 +55,12 @@
         <div class="tags">
           <h4>Tags</h4>
           <ul>
-            <% if(tags) { %>
+            <% var tags = tags || []; %>
+       
               <% _.each(tags, function(tag){ %>
                 <li><a class="label label-primary" href="/blog/tags/<%= tag %>"><%= tag %></a></li>
               <% }); %>
-            <% } %>
+        
           </ul>
         </div>
 

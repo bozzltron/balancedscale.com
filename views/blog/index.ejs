@@ -27,7 +27,7 @@
       <% if(session.user) { %>
         <div class="pull-right">
           <a href="/blog/edit/<%= post.id %>"><span class="glyphicon glyphicon-pencil"></span> Edit</a>&nbsp;&nbsp;
-          <a class="link-delete" href="#" data-id="<%= post.id %>" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-remove-circle"></span> Delete</a>
+          <a class="link-delete" href="/blog/delete/<%= post.id %>" data-id="<%= post.id %>" onclick="return confirm('are you sure?')"><span class="glyphicon glyphicon-remove-circle"></span> Delete</a>
         </div>
       <% } %>
     </section> <!-- /.post -->

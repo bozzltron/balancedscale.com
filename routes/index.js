@@ -7,7 +7,7 @@ var nodemailer = require('nodemailer');
 exports.index = function(req, res){
     var posts = res.app.locals.getPosts(0,3);
 
-    res.render('index', {posts:posts});
+    res.render('index', {posts:posts, tags:[]});
 };
 
 exports.blog = function(req, res){

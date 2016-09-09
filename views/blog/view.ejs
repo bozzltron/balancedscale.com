@@ -3,7 +3,7 @@
 
     <section class="post">
       <header class="entry-header">
-        <img class="entry-avatar" alt="Paul Laros" height="52" width="52" src="https://en.gravatar.com/userimage/39066372/c5df350eac9d3e6ebb6db2a280bc24e9.jpeg?s=52">
+  
         <h2 class="entry-title"><a href="<%= post.link %>"><%= post.title %></a></h2>
 
         <p class="entry-meta">
@@ -21,7 +21,7 @@
         <% if(session.user) { %>
           <div class="pull-right">
             <a href="/blog/edit/<%= post.id %>"><span class="glyphicon glyphicon-pencil"></span> Edit</a>&nbsp;&nbsp;
-            <a class="link-delete" href="#" data-id="<%= post.id %>" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-remove-circle"></span> Delete</a>
+            <a class="link-delete" href="/blog/delete/<%= post.id %>" data-id="<%= post.id %>" onclick="return confirm('are you sure?')" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-remove-circle"></span> Delete</a>
           </div>
         <% } %>
     </section>
