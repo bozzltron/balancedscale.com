@@ -417,9 +417,9 @@ module.exports = {
     }
 
     if(limit) {
-    	Blog.find(query).limit(limit).sort('published DESC').exec(response);
+    	Blog.find(query).limit(limit).sort('createdAt DESC').exec(response);
     } else {
-    	Blog.find(query).sort('published DESC').exec(response);
+    	Blog.find(query).sort('createdAt DESC').exec(response);
     }
 
   },
