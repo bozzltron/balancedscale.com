@@ -1,17 +1,11 @@
 - text: Home
   href: "#body"
 
-- text: About
-  href: "#about"
-
-- text: Experience
-  href: "#experience"
-
-- text: Work
+- text: Web
   href: "#work"
 
-- text: Contact
-  href: "#contact"
+- text: Audio
+  href: "#about"
 
 - text: Blog
   href: "/archives/"
