@@ -1,0 +1,15 @@
+{
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-balancedscalecom-prod-111837-authRole",
+      "UnauthRoleArn": "arn:aws:iam::346920067321:role/amplify-balancedscalecom-prod-111837-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::346920067321:role/amplify-balancedscalecom-prod-111837-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-balancedscalecom-prod-111837-deployment",
+      "UnauthRoleName": "amplify-balancedscalecom-prod-111837-unauthRole",
+      "StackName": "amplify-balancedscalecom-prod-111837",
+      "StackId": "arn:aws:cloudformation:us-east-1:346920067321:stack/amplify-balancedscalecom-prod-111837/6595cf60-4c55-11eb-a16b-12cd1b220bcb",
+      "AmplifyAppId": "d1ssp56h9d7ocr"
+    }
+  }
+}
