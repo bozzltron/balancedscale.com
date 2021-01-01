@@ -1,0 +1,25 @@
+
+<%
+// adds default data usign "theme/aircv/scripts/default-data.js" helper
+let hero = (site.data.hero !== undefined) ? site.data.hero : defaultData('hero');
+let social = (site.data.social !== undefined) ? site.data.social : defaultData('social');
+%>
+
+<!--========== HERO ==========-->
+<div class="promo-block parallax-window" data-parallax="scroll" data-image-src="<%= hero.image %>" data-position="-300px center">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-6">
+              <div class="promo-block-divider">
+                  <h1 class="promo-block-title"><%- hero.title %></h1>
+                  <p class="promo-block-text"><%- hero.proposal_value %></p>
+              </div>
+              <ul class="list-inline">
+        
+              </ul>
+          </div>
+      </div>
+      <!--// end row -->
+  </div>
+</div>
+<!--========== HERO ==========-->
