@@ -1,5 +1,5 @@
 ---
-title: Hello 2021
+title: Accepting New Projects
 ---
 Starting the New Year advertising some new services.   Balanced Scale Media is now accepting requests for composition, recording, and mastering audio projects.  
 

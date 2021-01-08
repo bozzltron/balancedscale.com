@@ -10,7 +10,7 @@
     <div class="content content-width row">
 
       <%# --- post list block --- %>
-      <div class="post-list-container col-md-8">
+      <div class="post-list-container col-md-12">
         <% page.posts.each( (post, index) => { %>
           <% if( index === 0) { %>
             <%- partial('_partial/hexo/archive_item/first_post_item', {post: post}) %>
