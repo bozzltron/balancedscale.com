@@ -1,0 +1,55 @@
+{
+  "name": "Balanced Scale Media",
+  "short_name": "Balanced Scale",
+  "description": "Austin-based independent record label. 100% revenue to artists, zero recoupable costs. Artist-first values.",
+  "start_url": "/?utm_source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "orientation": "any",
+  "dir": "ltr",
+  "lang": "en-US",
+  "categories": ["music", "entertainment", "lifestyle"],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "icons": [
+    {
+      "src": "/scale-balanced.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Artists",
+      "short_name": "Artists",
+      "description": "View all artists on the label",
+      "url": "/artists",
+      "icons": [
+        {
+          "src": "/scale-balanced.svg",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Press",
+      "short_name": "Press",
+      "description": "Latest press releases and news",
+      "url": "/press",
+      "icons": [
+        {
+          "src": "/scale-balanced.svg",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+}
+

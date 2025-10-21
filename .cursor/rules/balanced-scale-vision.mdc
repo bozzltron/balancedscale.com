@@ -1,0 +1,686 @@
+# Balanced Scale Media - Project Vision & Rules
+
+> **Record Label Website - Dark Minimalist Design**  
+> Independent record label showcasing artists, releases, and label ethos
+
+---
+
+## 🎯 Project Vision
+
+Balanced Scale Media is an **independent record label** website that serves as a professional platform for:
+
+- **Discovering** signed artists and their music
+- **Exploring** the label's philosophy and ethos
+- **Accessing** press materials and electronic press kits (EPKs)
+- **Following** label news and release announcements
+
+### Core Philosophy
+
+> "Minimal. Professional. Artist-focused. Dark. Clean."
+
+This is **not** a flashy, cluttered music site. It's a **sophisticated, minimalist platform** that lets the music and artists speak for themselves. Think **gallery exhibition** rather than **music festival poster**.
+
+---
+
+## 🎨 Design System
+
+### Visual Identity
+
+**Dark Minimalist Aesthetic**
+- Near-black backgrounds (#0a0a0a, #111111)
+- Near-white text (#f5f5f5, #e5e5e5)
+- High contrast for readability
+- Generous whitespace (or "blackspace")
+- Clean typography
+- No gradients, no patterns, no noise
+- Subtle borders and dividers
+
+**Design Principles**
+1. **Minimal**: Less is more. Remove anything unnecessary.
+2. **Professional**: This is a business, not a hobby blog.
+3. **Artist-First**: Artists are the heroes, not the label.
+4. **Accessible**: Dark theme must still meet WCAG contrast requirements.
+5. **Fast**: No heavy animations or unnecessary effects.
+
+### Color Palette
+
+```css
+/* Primary Colors */
+--bg-primary: #0a0a0a;          /* Near black - main background */
+--bg-secondary: #111111;         /* Slightly lighter black - cards/sections */
+--bg-tertiary: #1a1a1a;          /* Even lighter - hover states */
+
+--text-primary: #f5f5f5;         /* Near white - primary text */
+--text-secondary: #a3a3a3;       /* Gray - secondary text */
+--text-tertiary: #737373;        /* Darker gray - meta text */
+
+/* Accent Colors */
+--accent-primary: #ffffff;       /* Pure white - for emphasis */
+--accent-secondary: #525252;     /* Medium gray - borders/dividers */
+
+/* Interactive States */
+--border-default: #262626;       /* Subtle borders */
+--border-hover: #404040;         /* Hover borders */
+--focus-ring: #ffffff;           /* White focus indicator */
+
+/* Semantic Colors */
+--success: #22c55e;              /* Green - success states */
+--warning: #f59e0b;              /* Amber - warnings */
+--error: #ef4444;                /* Red - errors */
+```
+
+### Typography
+
+```css
+/* Font Families */
+--font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+--font-serif: 'DM Serif Display', Georgia, serif;
+--font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+/* Font Sizes (rem) */
+--text-xs: 0.75rem;     /* 12px - tiny labels */
+--text-sm: 0.875rem;    /* 14px - small text */
+--text-base: 1rem;      /* 16px - body text */
+--text-lg: 1.125rem;    /* 18px - emphasized text */
+--text-xl: 1.25rem;     /* 20px - small headings */
+--text-2xl: 1.5rem;     /* 24px - headings */
+--text-3xl: 1.875rem;   /* 30px - large headings */
+--text-4xl: 2.25rem;    /* 36px - page titles */
+--text-5xl: 3rem;       /* 48px - hero text */
+
+/* Font Weights */
+--font-light: 300;
+--font-normal: 400;
+--font-medium: 500;
+--font-semibold: 600;
+--font-bold: 700;
+
+/* Line Heights */
+--leading-tight: 1.25;
+--leading-snug: 1.375;
+--leading-normal: 1.5;
+--leading-relaxed: 1.625;
+--leading-loose: 2;
+```
+
+### Spacing Scale
+
+```css
+/* Spacing (rem) - based on 8px grid */
+--space-0: 0;
+--space-1: 0.25rem;   /* 4px */
+--space-2: 0.5rem;    /* 8px */
+--space-3: 0.75rem;   /* 12px */
+--space-4: 1rem;      /* 16px */
+--space-5: 1.25rem;   /* 20px */
+--space-6: 1.5rem;    /* 24px */
+--space-8: 2rem;      /* 32px */
+--space-10: 2.5rem;   /* 40px */
+--space-12: 3rem;     /* 48px */
+--space-16: 4rem;     /* 64px */
+--space-20: 5rem;     /* 80px */
+--space-24: 6rem;     /* 96px */
+```
+
+### Layout Principles
+
+**Generous Spacing**
+- Large padding/margins between sections
+- Breathing room around text
+- Clear visual hierarchy through whitespace
+
+**Clean Alignment**
+- Left-align text (easier to read)
+- Center-align headings and hero content
+- Consistent grid system
+
+**Maximum Widths**
+- Body text: 65ch (optimal reading width)
+- Content containers: 1200px
+- Full-bleed images/backgrounds allowed
+
+---
+
+## 🏗️ Technical Architecture
+
+### Stack
+- **Framework**: SolidJS + SolidStart
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS with custom config
+- **Build**: Vite
+- **PWA**: vite-plugin-pwa + Workbox
+- **Routing**: File-based (@solidjs/router)
+
+### Code Principles
+1. **TypeScript strict mode** - No `any` types
+2. **Component composition** - Small, reusable components
+3. **Accessibility first** - WCAG 2.1 AA minimum
+4. **Performance matters** - Lighthouse 95+ on all metrics
+5. **Mobile first** - Design mobile, enhance for desktop
+6. **Progressive enhancement** - Works without JS
+
+---
+
+## 📁 Project Structure
+
+```
+balancedscale.com/
+├── .cursor/
+│   └── rules/
+│       └── balanced-scale-vision.mdc    ← This file
+├── public/
+│   ├── icons/                           # PWA icons
+│   ├── images/
+│   │   ├── artists/                     # Artist photos
+│   │   ├── releases/                    # Release artwork
+│   │   └── press/                       # Press photos
+│   └── manifest.json
+├── src/
+│   ├── routes/
+│   │   ├── index.tsx                    # Home page
+│   │   ├── ethos.tsx                    # Label philosophy
+│   │   ├── artists.tsx                  # Artist roster
+│   │   ├── artists/[slug].tsx           # Artist EPK
+│   │   ├── press.tsx                    # Press archive
+│   │   ├── press/[slug].tsx             # Press release
+│   │   ├── contact.tsx                  # Contact page
+│   │   └── [...404].tsx                 # 404 page
+│   ├── components/
+│   │   ├── ArtistCard.tsx
+│   │   ├── PressReleaseCard.tsx
+│   │   ├── Navigation.tsx
+│   │   ├── Footer.tsx
+│   │   └── ...
+│   ├── data/
+│   │   ├── artists.ts                   # Artist data
+│   │   ├── releases.ts                  # Release data
+│   │   └── pressReleases.ts             # Press data
+│   ├── utils/
+│   │   ├── metadata.tsx                 # SEO helpers
+│   │   ├── date.ts
+│   │   └── slug.ts
+│   ├── types/
+│   │   ├── artist.ts
+│   │   ├── release.ts
+│   │   └── pressRelease.ts
+│   ├── app.tsx
+│   └── app.css
+├── PROJECT_PLAN.md
+├── README.md
+└── package.json
+```
+
+---
+
+## 📋 Implementation Progress
+
+### ✅ Phase 0: Planning (COMPLETE)
+- [x] Create comprehensive project plan
+- [x] Define data structures
+- [x] Create implementation checklist
+- [x] Establish design system
+- [x] Document project vision
+
+### ⏳ Phase 1: Foundation (Weeks 1-2)
+- [ ] Initialize SolidStart project
+- [ ] Configure TypeScript (strict mode)
+- [ ] Set up ESLint with Solid plugin
+- [ ] Install and configure Tailwind CSS
+  - [ ] Dark theme configuration
+  - [ ] Custom color palette
+  - [ ] Typography scale
+- [ ] Configure Vite + PWA plugin
+- [ ] Create directory structure
+- [ ] Build base layout
+  - [ ] Navigation component (dark theme)
+  - [ ] Footer component (dark theme)
+  - [ ] Skip to content link
+- [ ] Implement metadata system
+  - [ ] StandardMetadata component
+  - [ ] Structured data helpers
+- [ ] Set up PWA basics
+  - [ ] Manifest.json
+  - [ ] Service worker registration
+  - [ ] PWA icons
+
+### ⏳ Phase 2: Core Pages (Weeks 3-4)
+- [ ] Home page (`/`)
+  - [ ] Hero section with logo
+  - [ ] Featured release spotlight
+  - [ ] Navigation to all sections
+  - [ ] Dark minimalist design
+- [ ] Ethos page (`/ethos`)
+  - [ ] Mission statement
+  - [ ] Core values
+  - [ ] Label philosophy
+  - [ ] Typography-focused design
+- [ ] Artists page (`/artists`)
+  - [ ] Artist grid/list
+  - [ ] ArtistCard component (dark)
+  - [ ] Sample artist data
+  - [ ] Filter/sort (optional)
+- [ ] Contact page (`/contact`)
+  - [ ] Contact information
+  - [ ] Artist submission info
+  - [ ] Press inquiries
+- [ ] 404 page
+  - [ ] Friendly error message
+  - [ ] Navigation back home
+
+### ⏳ Phase 3: Artist EPKs (Weeks 5-6)
+- [ ] Define Artist type
+- [ ] Create artist data (3-5 artists)
+- [ ] Build EPK template (`/artists/[slug]`)
+  - [ ] Bio section
+  - [ ] Discography
+  - [ ] Press photos (downloadable)
+  - [ ] Streaming/social links
+  - [ ] Dark card designs
+- [ ] Music player component
+  - [ ] Spotify embeds
+  - [ ] Bandcamp embeds
+  - [ ] Styled for dark theme
+
+### ⏳ Phase 4: Press System (Week 7)
+- [ ] Define PressRelease type
+- [ ] Create press release data (5-10)
+- [ ] Build press archive (`/press`)
+  - [ ] Chronological listing
+  - [ ] PressReleaseCard component
+  - [ ] Filter by artist/year
+- [ ] Build press release page (`/press/[slug]`)
+  - [ ] Full press release text
+  - [ ] Related artist links
+  - [ ] Downloadable assets
+  - [ ] Clean typography
+
+### ⏳ Phase 5: PWA & Performance (Week 8)
+- [ ] Configure service worker caching
+- [ ] Test offline functionality
+- [ ] Optimize all images (WebP)
+- [ ] Implement lazy loading
+- [ ] Code splitting verification
+- [ ] Lighthouse audits (target 95+)
+- [ ] Test PWA installation
+
+### ⏳ Phase 6: SEO & Metadata (Week 9)
+- [ ] Open Graph tags (all pages)
+- [ ] Twitter Card tags (all pages)
+- [ ] JSON-LD structured data
+  - [ ] Organization schema
+  - [ ] MusicGroup schemas
+  - [ ] NewsArticle schemas
+- [ ] Dynamic sitemap.xml
+- [ ] Robots.txt
+- [ ] Test social previews
+
+### ⏳ Phase 7: Accessibility (Week 10)
+- [ ] Automated testing (axe)
+- [ ] Keyboard navigation testing
+- [ ] Screen reader testing
+  - [ ] Dark theme contrast check
+  - [ ] Focus indicators (white on dark)
+- [ ] Color contrast verification
+  - [ ] Text on dark backgrounds
+  - [ ] Interactive elements
+- [ ] WCAG 2.1 AA compliance
+
+### ⏳ Phase 8: Testing & Polish (Week 11)
+- [ ] Cross-browser testing
+- [ ] Device testing (mobile/tablet/desktop)
+- [ ] Dark theme consistency check
+- [ ] All links functional
+- [ ] Forms working
+- [ ] Content proofread
+- [ ] Loading states
+- [ ] Subtle transitions (if any)
+
+### ⏳ Phase 9: Deployment (Week 12)
+- [ ] Choose hosting (Netlify/Vercel/Cloudflare)
+- [ ] Configure domain (balancedscale.com)
+- [ ] Set up SSL
+- [ ] Configure analytics
+- [ ] Deploy to production
+- [ ] Submit sitemap to search engines
+- [ ] Launch announcement
+
+---
+
+## 🎨 Component Design Guidelines
+
+### Artist Card
+```
+┌─────────────────────────────┐
+│                             │
+│   [Artist Photo - square]   │
+│                             │
+├─────────────────────────────┤
+│ Artist Name (serif)         │
+│ Genre • Location (small)    │
+│ Bio excerpt... (2-3 lines)  │
+│                             │
+│ [View EPK →]                │
+└─────────────────────────────┘
+
+Colors:
+- Background: #111111
+- Border: #262626 (1px)
+- Text: #f5f5f5
+- Meta: #737373
+- Hover: border → #404040
+```
+
+### Press Release Card
+```
+┌─────────────────────────────┐
+│ Date (small, gray)          │
+│                             │
+│ Headline (serif, large)     │
+│                             │
+│ Excerpt text that provides  │
+│ context about the release   │
+│ announcement...             │
+│                             │
+│ [Read More →]               │
+└─────────────────────────────┘
+
+Colors:
+- Background: #111111
+- Text: #f5f5f5
+- Date: #737373
+- Border: #262626 (bottom only)
+```
+
+### Navigation
+```
+Logo                    Home  Ethos  Artists  Press  Contact
+^                                                            ^
+Left-aligned                              Right-aligned links
+
+Mobile: Hamburger → Full-screen overlay (dark)
+```
+
+### Buttons
+
+**Primary Button**
+```css
+background: #ffffff
+color: #0a0a0a
+padding: 12px 24px
+border-radius: 4px
+font-weight: 500
+hover: background → #e5e5e5
+```
+
+**Secondary Button**
+```css
+background: transparent
+color: #ffffff
+border: 1px solid #404040
+padding: 12px 24px
+border-radius: 4px
+hover: border → #ffffff
+```
+
+**Ghost Button/Link**
+```css
+background: transparent
+color: #f5f5f5
+underline on hover
+```
+
+---
+
+## ♿ Accessibility Requirements
+
+### Dark Theme Considerations
+- **Text contrast**: Minimum 4.5:1 ratio (#f5f5f5 on #0a0a0a = 17:1 ✓)
+- **Interactive elements**: Minimum 3:1 ratio
+- **Focus indicators**: White ring (#ffffff) with 2px offset
+- **Avoid pure black/white**: Use near-black/near-white for reduced eye strain
+
+### Keyboard Navigation
+- All interactive elements tabbable
+- Visible focus indicators (white ring on dark)
+- Skip to main content link
+- Logical tab order
+- ESC to close modals/panels
+
+### Screen Readers
+- Semantic HTML (`<nav>`, `<main>`, `<article>`)
+- ARIA labels where needed
+- Alt text for all images
+- Descriptive link text
+- Proper heading hierarchy (h1 → h2 → h3)
+
+---
+
+## 🚀 Performance Targets
+
+### Lighthouse Scores
+- **Performance**: 95+
+- **Accessibility**: 100
+- **Best Practices**: 100
+- **SEO**: 100
+
+### Core Web Vitals
+- **LCP** (Largest Contentful Paint): < 2.5s
+- **FID** (First Input Delay): < 100ms
+- **CLS** (Cumulative Layout Shift): < 0.1
+
+### Optimization Strategies
+- WebP images with lazy loading
+- Code splitting by route
+- Service worker caching
+- Minimal JavaScript
+- No web fonts loading issues (system fonts + preload)
+- Dark theme reduces power consumption on OLED screens
+
+---
+
+## 📝 Content Guidelines
+
+### Writing Style
+- **Concise**: Every word counts
+- **Professional**: This is a business
+- **Artist-focused**: Artists are the story
+- **Authentic**: No marketing fluff
+- **Clear**: No jargon or obscure references
+
+### Artist Bios
+- **Short**: 2-3 sentences for cards (150-200 chars)
+- **Full**: 3-4 paragraphs for EPK
+- **Format**: Past → Present → Future
+- **Include**: Genre, location, notable achievements
+
+### Press Releases
+- **Format**: Standard press release structure
+- **Include**: FOR IMMEDIATE RELEASE, date, headline, body, contact
+- **Length**: 400-600 words
+- **Style**: Professional, newsworthy
+
+---
+
+## 🔒 Content Management Rules
+
+### Data Files (`src/data/`)
+- Always use TypeScript, never plain JS
+- Export const arrays/objects
+- Include helper functions for data retrieval
+- Keep data flat (avoid deep nesting)
+- Use ISO date format (YYYY-MM-DD)
+- Use absolute URLs for external links
+
+### Images (`public/images/`)
+- **Format**: WebP primary, add fallbacks if needed
+- **Optimization**: Compress all images
+- **Naming**: kebab-case, descriptive
+- **Organization**: By type (artists/, releases/, press/)
+- **Sizes**:
+  - Artist photos: 800x800px
+  - Release artwork: 1500x1500px
+  - Hero images: 1920x1080px
+
+### Type Safety
+- No `any` types (use `unknown` if needed)
+- Define interfaces for all data structures
+- Export types from dedicated files
+- Use strict TypeScript mode
+
+---
+
+## 🎯 Success Metrics
+
+### Technical
+- [x] Lighthouse Performance: 95+
+- [x] Lighthouse Accessibility: 100
+- [x] WCAG 2.1 AA compliant
+- [x] Works offline (PWA)
+- [x] Installable on mobile/desktop
+
+### SEO
+- [x] All pages indexed in Google
+- [x] Rich results display correctly
+- [x] Social media previews work
+- [x] Appears for artist name searches
+
+### User Experience
+- [x] Bounce rate < 40%
+- [x] Average session > 2 minutes
+- [x] Pages per session > 3
+- [x] Mobile traffic well-supported
+
+---
+
+## 🔮 Future Enhancements (Post-Launch)
+
+### Phase 10+
+- [ ] Headless CMS integration (Sanity/Contentful)
+- [ ] Advanced search functionality
+- [ ] Tour date calendar
+- [ ] Merch store integration
+- [ ] Newsletter archive
+- [ ] Blog/news section
+- [ ] User accounts for artists
+- [ ] Press kit PDF generator
+- [ ] Analytics dashboard
+
+---
+
+## 🎭 Design Inspiration
+
+### References
+- **mozworth.music** - Technical architecture
+- **Record label sites**: Secretly Canadian, Sub Pop, 4AD
+- **Dark minimalist**: Stripe, Linear, Vercel
+- **Typography-focused**: Medium, iA Writer
+
+### What We're NOT
+- ❌ Flashy music festival posters
+- ❌ Cluttered with widgets and ads
+- ❌ Trying to be "edgy" or "cool"
+- ❌ Following music industry clichés
+- ❌ Using stock photos or generic imagery
+
+### What We ARE
+- ✅ Professional and sophisticated
+- ✅ Clean and minimal
+- ✅ Dark and elegant
+- ✅ Artist-focused
+- ✅ Accessible and fast
+- ✅ Modern and timeless
+
+---
+
+## 💡 Development Tips
+
+### When Adding New Features
+1. Design mobile-first (320px+)
+2. Check contrast (dark theme)
+3. Test with keyboard
+4. Add proper ARIA labels
+5. Optimize images
+6. Update metadata
+7. Test in multiple browsers
+8. Run Lighthouse audit
+
+### When Adding Content
+1. Prepare images (WebP, optimized)
+2. Write bios (short + full)
+3. Collect all URLs (streaming, social)
+4. Format dates (ISO 8601)
+5. Generate slugs (kebab-case)
+6. Add to TypeScript data file
+7. Test new page/card
+8. Verify metadata
+
+### Code Quality Checklist
+- [ ] TypeScript strict mode passing
+- [ ] ESLint warnings = 0
+- [ ] All images have alt text
+- [ ] All links have descriptive text
+- [ ] Focus states visible
+- [ ] Mobile responsive
+- [ ] Dark theme consistent
+- [ ] Performance: no regressions
+
+---
+
+## 📞 Questions to Ask Before Implementing
+
+### New Feature
+- Does this align with "minimal" philosophy?
+- Does it serve the user or the label ego?
+- Can we achieve this with less code?
+- How does this look on mobile?
+- What's the accessibility story?
+
+### Design Decision
+- Does this maintain dark minimalist aesthetic?
+- Is the contrast ratio sufficient?
+- Does this add visual noise?
+- Can we use whitespace instead?
+- Does this distract from the content?
+
+### Content Addition
+- Is this information necessary?
+- Can we say this in fewer words?
+- Does this serve artists or press?
+- Is this scannable/readable?
+- Does this maintain professional tone?
+
+---
+
+## 🏁 Definition of Done
+
+A feature/page is "done" when:
+- [x] Code merged to main branch
+- [x] TypeScript compiles with no errors
+- [x] ESLint passes with no warnings
+- [x] Lighthouse score 95+ (all metrics)
+- [x] Keyboard navigation tested
+- [x] Screen reader tested (one tool minimum)
+- [x] Mobile responsive (320px - 1920px)
+- [x] Dark theme consistent
+- [x] All images optimized (WebP)
+- [x] All links functional
+- [x] Metadata implemented
+- [x] Cross-browser tested (Chrome, Firefox, Safari)
+- [x] Content proofread
+- [x] Documented (if complex)
+
+---
+
+## 🎵 Remember
+
+> "This is not a website about a record label.  
+> This is a record label's digital home.  
+> Simple. Professional. Dark. Minimal.  
+> Let the music speak."
+
+---
+
+**Last Updated**: October 16, 2025  
+**Status**: Phase 3 Complete - Artist EPKs Implemented  
+**Current Artist**: mozworth (Sandpiper single)  
+**Next Step**: Continue with Phase 4 - Press System refinements

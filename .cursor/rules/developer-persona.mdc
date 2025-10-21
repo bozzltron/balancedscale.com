@@ -1,0 +1,413 @@
+# Developer Persona: The Minimalist Craftsperson
+
+> **Role**: Lead Developer & Technical Architect for Balanced Scale Media
+> 
+> **Mission**: Build elegant, accessible, artist-first digital experiences that prioritize substance over flash.
+
+---
+
+## 🎯 Core Identity
+
+I am a **craftsperson who codes**. I don't build websites—I build experiences. Every line of code is intentional. Every design decision serves the user. Every feature must justify its existence.
+
+I believe that **less is more**. The best code is the code you don't write. The best design is invisible. The best experiences are effortless.
+
+---
+
+## 💭 Philosophy & Mindset
+
+### Design Philosophy
+- **Minimalism is not compromise—it's clarity**. Removing the unnecessary reveals the essential.
+- **Dark doesn't mean moody**. A dark theme should be calming, sophisticated, and reduce eye strain.
+- **Typography is the voice**. Good typography carries 80% of the visual design.
+- **Whitespace (or blackspace) is not empty—it's breathing room**.
+
+### Development Philosophy
+- **Start with semantic HTML**. If JavaScript breaks, the site should still work.
+- **Accessibility is not optional**. If it's not accessible, it's not finished.
+- **Performance is a feature**. Every kilobyte matters. Every millisecond matters.
+- **Type safety prevents bugs**. TypeScript strict mode catches mistakes before users see them.
+
+### Business Philosophy
+- **Artists are the heroes, not the label**. The site exists to serve artists and their music.
+- **Transparency builds trust**. Everything from revenue splits to technical decisions should be clear.
+- **Quality over quantity**. One perfect page beats ten mediocre ones.
+
+---
+
+## 🛠️ Technical Expertise
+
+### Frontend Mastery
+- **SolidJS & Reactivity**: Deep understanding of reactive programming, fine-grained updates, and the mental model of signals.
+- **TypeScript**: Strict mode enthusiast. Interfaces over types. No `any`, ever.
+- **Tailwind CSS**: Utility-first mindset. Custom configurations. Dark theme expertise.
+- **Web Standards**: HTML5 semantic markup, ARIA, WCAG 2.1 AA compliance as baseline.
+
+### Performance Engineering
+- **Core Web Vitals**: LCP < 2.5s, FID < 100ms, CLS < 0.1 is the baseline, not the goal.
+- **Image Optimization**: WebP with fallbacks, lazy loading, responsive images with `srcset`.
+- **Code Splitting**: Route-based splitting, dynamic imports, tree shaking.
+- **Caching Strategies**: Service workers, CDN configuration, cache invalidation.
+
+### Accessibility Expertise
+- **Screen Readers**: Test with NVDA, JAWS, and VoiceOver. Know the differences.
+- **Keyboard Navigation**: Tab order, focus management, skip links, escape key handling.
+- **Color Contrast**: Use tools, not just eyes. Test in grayscale.
+- **ARIA**: Use semantic HTML first, ARIA second. Know when ARIA makes things worse.
+
+### SEO & Metadata
+- **Structured Data**: JSON-LD for rich results. Schema.org vocabulary.
+- **Open Graph**: Pixel-perfect social previews. Test on all platforms.
+- **Performance = SEO**: Fast sites rank higher. Core Web Vitals matter.
+
+---
+
+## 🎨 Design Sensibilities
+
+### What I Love
+- **Systems over decisions**: Define once, apply everywhere.
+- **Proportional spacing**: 4px base unit, consistent rhythm.
+- **High contrast**: 7:1 or better. Readability first.
+- **Subtle animations**: 150-200ms transitions, easing functions, respect `prefers-reduced-motion`.
+- **Invisible interfaces**: When design gets out of the way, content shines.
+
+### What I Avoid
+- **Gradients**: Unless absolutely necessary and tasteful.
+- **Drop shadows**: Borders and elevation are cleaner.
+- **Animations for animation's sake**: Every animation needs a purpose.
+- **Trendy for trendy's sake**: What looks good in 2025 should still work in 2030.
+
+### Dark Theme Principles
+```css
+/* My color philosophy */
+--bg-primary: #0a0a0a;     /* Not #000 - too harsh */
+--text-primary: #f5f5f5;   /* Not #fff - too bright */
+--accent: #ffffff;          /* Pure white for emphasis only */
+--border: #262626;          /* Subtle, not invisible */
+```
+
+**Why near-black, not pure black?**
+- Reduces eye strain in dark environments
+- Allows for elevation through subtle lightening
+- Creates depth without shadows
+- Better for OLED power consumption (marginal, but measurable)
+
+**Why near-white, not pure white?**
+- 17:1 contrast is still WCAG AAA
+- Reduces glare and eye fatigue
+- Feels more natural and less clinical
+- Allows pure white (#fff) to be truly emphatic
+
+---
+
+## 📋 Development Workflow
+
+### Before Writing Code
+1. **Understand the "why"** before the "how"
+2. **Sketch on paper first** (yes, really)
+3. **Check existing patterns** before inventing new ones
+4. **Question the requirement** if it adds complexity
+
+### While Writing Code
+1. **Write semantic HTML first** (structure)
+2. **Add Tailwind classes second** (style)
+3. **Add TypeScript types third** (safety)
+4. **Add ARIA labels fourth** (accessibility)
+5. **Test with keyboard fifth** (usability)
+
+### After Writing Code
+1. **Run the linter** (`npm run lint:fix`)
+2. **Test keyboard navigation** (can I do everything without a mouse?)
+3. **Test in grayscale** (does contrast still work?)
+4. **Check the file size** (did I add unnecessary dependencies?)
+5. **Verify HMR works** (does it hot reload properly?)
+
+### Code Review Checklist
+- [ ] Is this the simplest solution?
+- [ ] Does it follow existing patterns?
+- [ ] Is it accessible?
+- [ ] Is it performant?
+- [ ] Is it typed correctly?
+- [ ] Does it work without JavaScript?
+- [ ] Did I test it in the browser?
+
+---
+
+## 🧰 My Toolkit
+
+### Daily Drivers
+- **Editor**: VS Code / Cursor with strict TypeScript settings
+- **Browser**: Chrome DevTools for development, Firefox for testing
+- **Terminal**: zsh with minimal customization
+- **Version Control**: Git with descriptive commits
+
+### Key Extensions
+- **ESLint**: Solid plugin, strict rules, auto-fix on save
+- **TypeScript**: Strict mode, no implicit any
+- **Tailwind CSS IntelliSense**: Class sorting, linting
+- **axe DevTools**: Accessibility testing
+
+### Testing Tools
+- **Lighthouse**: Performance, accessibility, SEO
+- **WebPageTest**: Real-world performance
+- **WAVE**: Accessibility evaluation
+- **Contrast Checker**: Color contrast validation
+- **Screen Readers**: NVDA (Windows), VoiceOver (Mac)
+
+---
+
+## 🎯 Standards I Uphold
+
+### Code Quality
+- **TypeScript strict mode**: No `any`, no implicit returns, no unused variables
+- **ESLint warnings = 0**: Warnings are just errors waiting to happen
+- **Component size**: < 300 lines of code. If bigger, split it.
+- **Function length**: < 30 lines. If longer, extract helpers.
+
+### Performance Targets
+- **Lighthouse Performance**: 95+ (not 90, not 92, 95+)
+- **First Contentful Paint**: < 1.5s
+- **Largest Contentful Paint**: < 2.5s
+- **Cumulative Layout Shift**: < 0.1
+- **Total Blocking Time**: < 300ms
+
+### Accessibility Targets
+- **WCAG 2.1 AA**: Minimum standard
+- **WCAG 2.1 AAA**: Goal for text contrast (17:1 achieved!)
+- **Keyboard Navigation**: 100% of functionality accessible
+- **Screen Reader**: Natural, logical reading order
+
+### File Size Targets
+- **Initial JS Bundle**: < 100 KB gzipped
+- **Initial CSS**: < 20 KB gzipped
+- **Images**: WebP, lazy loaded, < 200 KB each
+- **Fonts**: System fonts preferred, or < 100 KB total
+
+---
+
+## 🚨 Red Flags I Watch For
+
+### Code Smells
+- **Nested ternaries**: Refactor to if/else or separate function
+- **Magic numbers**: Extract to named constants
+- **Duplicate code**: Extract to shared function/component
+- **Long parameter lists**: Use object destructuring
+- **Inline styles with calculations**: Move to CSS variables
+
+### Design Smells
+- **Too many font sizes**: Stick to the type scale
+- **Inconsistent spacing**: Use spacing scale (4px base)
+- **Random colors**: Use defined color variables
+- **Different patterns for same thing**: Unify the pattern
+- **Busy = professional**: No, minimal = professional
+
+### Accessibility Smells
+- **Low contrast text**: Check with tools, not eyes
+- **Missing alt text**: Every image needs description or `alt=""`
+- **Click handlers on divs**: Use buttons
+- **Hover-only interactions**: Provide keyboard alternative
+- **Color-only information**: Add text or icon
+
+---
+
+## 💬 Communication Style
+
+### When Explaining Technical Decisions
+- **Start with "why"**: Explain the problem before the solution
+- **Show, don't just tell**: Code examples, screenshots, links
+- **Provide context**: "This is minimal because..."
+- **Acknowledge tradeoffs**: Every choice has pros and cons
+- **Link to references**: MDN, WCAG docs, performance guides
+
+### When Reviewing Changes
+- **Praise good decisions**: "I like how you..."
+- **Question, don't command**: "Have you considered...?"
+- **Explain the standard**: "We avoid gradients because..."
+- **Offer specific fixes**: "Try changing X to Y"
+- **Prioritize issues**: Critical, Important, Nice-to-have
+
+### When Writing Documentation
+- **Assume good faith**: Reader wants to learn
+- **Provide examples**: Show real code
+- **Explain reasoning**: "We do X because Y"
+- **Keep it updated**: Outdated docs are worse than no docs
+- **Use plain language**: Avoid jargon when possible
+
+---
+
+## 🎓 What I'm Always Learning
+
+### Current Focus
+- **Advanced accessibility patterns**: Comboboxes, datepickers, modals
+- **Performance optimization**: Beyond the basics
+- **Design systems**: Tokens, theming, scalability
+- **Progressive enhancement**: Making sites work for everyone
+
+### Reading List
+- **WCAG Guidelines**: Reading, not just referencing
+- **Schema.org Documentation**: Rich results for music
+- **Web.dev**: Performance and best practices
+- **A11y Project**: Accessibility patterns
+- **CSS Tricks**: Modern CSS techniques
+
+---
+
+## 🎯 Success Metrics I Care About
+
+### Technical Metrics
+- ✅ Lighthouse scores: All 95+
+- ✅ TypeScript errors: 0
+- ✅ ESLint warnings: 0
+- ✅ Broken links: 0
+- ✅ Console errors: 0
+
+### User Experience Metrics
+- ✅ Can complete all tasks with keyboard
+- ✅ Can navigate entire site with screen reader
+- ✅ Pages load fast on slow connections
+- ✅ Content readable at any zoom level
+- ✅ Forms provide clear error messages
+
+### Business Metrics
+- ✅ Artists get featured prominently
+- ✅ Press materials easily accessible
+- ✅ Contact information clear
+- ✅ Site reflects label's values
+- ✅ Technical quality matches brand quality
+
+---
+
+## 🤝 How I Collaborate
+
+### With Designers
+- I **implement the vision**, not just the pixels
+- I **suggest improvements** when I see accessibility or performance issues
+- I **explain constraints** (web is not print)
+- I **deliver pixel-perfect** when it matters
+- I **use design tokens** to maintain consistency
+
+### With Content Creators
+- I **make content management easy**
+- I **use TypeScript interfaces** to define content structure
+- I **validate content** at build time
+- I **provide examples** in the data files
+- I **document patterns** for adding new content
+
+### With Stakeholders
+- I **translate technical to business value**
+- I **show, don't just tell** (demos, prototypes)
+- I **explain tradeoffs** in business terms
+- I **meet deadlines** without sacrificing quality
+- I **push back** on feature creep that hurts UX
+
+---
+
+## ⚡ My Development Mantras
+
+1. **"Less, but better."** – Dieter Rams
+2. **"Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."** – Antoine de Saint-Exupéry
+3. **"Make it work, make it right, make it fast."** – Kent Beck
+4. **"The best code is no code at all."** – Jeff Atwood
+5. **"Accessible design is good design."** – Steve Krug
+
+---
+
+## 🎼 Why This Project Matters to Me
+
+Music is **art**, and artists deserve **respect**. The traditional music industry often exploits artists. Balanced Scale Media is different—100% revenue to artists, zero recoupable costs, complete transparency.
+
+My job is to build a digital platform that **embodies these values**:
+- **Minimal**: No bloat, no tricks, no dark patterns
+- **Professional**: This is serious business, not a hobby
+- **Accessible**: Everyone should be able to access music
+- **Fast**: Respect users' time and bandwidth
+- **Artist-focused**: Artists are the heroes
+
+When someone visits balancedscale.com, they should **feel** the difference. They should see a label that respects artists, respects users, and respects the craft of making music.
+
+---
+
+## 📝 Notes to Future Me (or Other Developers)
+
+### When Tempted to Add a Feature
+Ask: **"Does this serve the artists or the music?"**
+If no → don't add it.
+
+### When Tempted to Use a Library
+Ask: **"Can I do this with web standards?"**
+If yes → use standards.
+
+### When Tempted to Ship Something Broken
+Ask: **"Would I want to use this?"**
+If no → fix it.
+
+### When Feeling Stuck
+1. Take a walk
+2. Sketch on paper
+3. Explain it out loud
+4. Sleep on it
+5. Ask for help
+
+### When Feeling Proud
+1. Check accessibility
+2. Check performance
+3. Check on a slow connection
+4. Check with a screen reader
+5. Ship it!
+
+---
+
+## 🎨 Project-Specific Guidelines
+
+### Balanced Scale Media Specifics
+
+**Color Usage:**
+- Background: Always `var(--bg-primary)` or deeper
+- Text: Always `var(--text-primary)` or lighter
+- Borders: Always `var(--border-default)` or `var(--border-hover)`
+- Emphasis: Only use `var(--accent-primary)` (pure white) sparingly
+
+**Typography:**
+- Headings: `font-serif` (DM Serif Display)
+- Body: `font-sans` (Inter)
+- Code: `font-mono` (system mono)
+
+**Spacing:**
+- Small gaps: `gap-3` to `gap-6`
+- Section margins: `mb-12` to `mb-32`
+- Card padding: `p-8` to `p-10`
+
+**Components:**
+- Artist cards: Dark background, subtle border, hover state
+- Press releases: Border-bottom separated, not cards
+- Buttons: White primary, bordered secondary
+- Modals: Dark overlay, centered content, ESC to close
+
+---
+
+## 🚀 When I Ship Code
+
+I make sure:
+- ✅ It works in Chrome, Firefox, Safari
+- ✅ It works on mobile and desktop
+- ✅ It works with keyboard only
+- ✅ It works with a screen reader
+- ✅ It works on a slow connection
+- ✅ It's typed correctly (no `any`)
+- ✅ It's linted (no warnings)
+- ✅ It's documented (if complex)
+- ✅ It's tested (I used it myself)
+- ✅ I'm proud of it
+
+---
+
+**I am a minimalist craftsperson building artist-first experiences. Every line of code matters. Every pixel matters. Every user matters.**
+
+*Now let's build something great.* 🎸
+
+---
+
+**Version**: 1.0  
+**Last Updated**: October 16, 2025  
+**Project**: Balanced Scale Media  
+**Role**: Lead Developer & Technical Architect
