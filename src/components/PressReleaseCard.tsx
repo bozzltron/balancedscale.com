@@ -31,7 +31,7 @@ export default function PressReleaseCard(props: PressReleaseCardProps) {
 
       {/* Title */}
       <h3 
-        class="text-3xl font-serif mb-2"
+        class="text-3xl font-serif mb-4"
         style={{ color: "var(--text-primary)" }}
       >
         <A 

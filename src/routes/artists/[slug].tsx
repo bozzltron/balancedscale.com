@@ -123,7 +123,7 @@ export default function ArtistEPK() {
                   }}
                   aria-labelledby="featured-release-heading"
                 >
-                  <h2 id="featured-release-heading" class="text-2xl font-bold mb-4 text-accent-primary">Featured Release</h2>
+                  <h2 id="featured-release-heading" class="text-2xl font-bold mb-6 text-accent-primary">Featured Release</h2>
                   <article class="flex flex-col md:flex-row gap-6 items-center">
                     <iframe
                       src="https://bandcamp.com/EmbeddedPlayer/track=2363697352/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
@@ -134,7 +134,7 @@ export default function ArtistEPK() {
                       loading="lazy"
                     />
                     <div class="flex-1">
-                      <h3 class="text-3xl font-bold mb-2">Sandpiper</h3>
+                      <h3 class="text-3xl font-bold mb-4">Sandpiper</h3>
                       <p class="text-text-secondary mb-2">
                         <span class="sr-only">Release type:</span>Single 
                         <span aria-hidden="true"> • </span>
@@ -233,7 +233,7 @@ export default function ArtistEPK() {
                   }}
                   aria-labelledby="download-assets-heading"
                 >
-                  <h2 id="download-assets-heading" class="text-2xl font-bold mb-4 text-accent-primary">Download Assets</h2>
+                  <h2 id="download-assets-heading" class="text-2xl font-bold mb-6 text-accent-primary">Download Assets</h2>
                   <p class="text-text-secondary mb-4">High-resolution press materials for media use</p>
                   <nav aria-label="Downloadable press materials">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -333,7 +333,7 @@ export default function ArtistEPK() {
                   <h2 id="press-coverage-heading" class="text-2xl font-bold mb-6 text-accent-primary">Press Coverage</h2>
                   <div class="space-y-6">
                     <div class="border-b border-border-default pb-6 last:border-b-0 last:pb-0">
-                      <h3 class="text-xl font-semibold mb-2">Plastic Magazine</h3>
+                      <h3 class="text-xl font-semibold mb-3">Plastic Magazine</h3>
                       <p class="text-text-secondary text-sm mb-3">September 22, 2025</p>
                       <p class="text-text-primary/80 mb-3 leading-relaxed">
                         Plastic Magazine praises "Sandpiper" as "a spectacular alternative jam that's timeless and truly absorbing throughout," highlighting the track's "intricate ebb and flow between the mellow verses and charge of exhilarating choruses." The review celebrates mozworth's "songwriting flair and performance talent" and calls it "an incredible display" of his musical evolution.
@@ -348,7 +348,7 @@ export default function ArtistEPK() {
                       </a>
                     </div>
                     <div class="border-b border-border-default pb-6 last:border-b-0 last:pb-0">
-                      <h3 class="text-xl font-semibold mb-2">The Big Takeover</h3>
+                      <h3 class="text-xl font-semibold mb-3">The Big Takeover</h3>
                       <p class="text-text-secondary text-sm mb-3">September 17, 2025</p>
                       <p class="text-text-primary/80 mb-3 leading-relaxed">
                         The Big Takeover praises "Sandpiper" for its depth and duality, describing it as music that "ebbs and flows between folky understatement and the roar of rock and roll at its finest" and calling it "a blend of indie delicacy, rock muscle, psychedelic colour, and surf finesse."
@@ -363,7 +363,7 @@ export default function ArtistEPK() {
                       </a>
                     </div>
                     <div class="border-b border-border-default pb-6 last:border-b-0 last:pb-0">
-                      <h3 class="text-xl font-semibold mb-2">It's All Indie</h3>
+                      <h3 class="text-xl font-semibold mb-3">It's All Indie</h3>
                       <p class="text-text-secondary text-sm mb-3">September 14, 2025</p>
                       <p class="text-text-primary/80 mb-3 leading-relaxed">
                         It's All Indie describes "Sandpiper" as "a clear-cut slice of shimmering indie-pop with a slightly scuzzy undertone of grunge guitar sounds" and praises the track as "a breezy indie-pop gem with grungy undertones, jangly new-wave hooks, and lush melodies."
@@ -401,7 +401,7 @@ export default function ArtistEPK() {
                   }}
                   aria-labelledby="credits-heading"
                 >
-                  <h2 id="credits-heading" class="text-2xl font-bold mb-4 text-accent-primary">Credits - Sandpiper</h2>
+                  <h2 id="credits-heading" class="text-2xl font-bold mb-6 text-accent-primary">Credits - Sandpiper</h2>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-text-primary/90">
                     <div>
                       <p class="mb-2">Songwriting by Michael Bosworth</p>
@@ -437,7 +437,7 @@ export default function ArtistEPK() {
                 }}
                 aria-labelledby="about-heading"
               >
-                <h2 id="about-heading" class="text-2xl font-bold mb-4 text-accent-primary">About {artist.name}</h2>
+                <h2 id="about-heading" class="text-2xl font-bold mb-6 text-accent-primary">About {artist.name}</h2>
                 <div class="text-text-primary/90 leading-relaxed space-y-4">
                   <For each={artist.bio.full.split('\n\n')}>
                     {(paragraph) => <p>{paragraph}</p>}
@@ -455,7 +455,7 @@ export default function ArtistEPK() {
                   }}
                   aria-labelledby="contact-heading"
                 >
-                  <h2 id="contact-heading" class="text-2xl font-bold mb-4 text-accent-primary">Media Contact</h2>
+                  <h2 id="contact-heading" class="text-2xl font-bold mb-6 text-accent-primary">Media Contact</h2>
                   <div class="text-text-primary/90 mb-4">For interviews, press materials, or media inquiries:</div>
                   <div class="text-lg mb-4">
                     <p class="font-semibold">Balanced Scale Media</p>

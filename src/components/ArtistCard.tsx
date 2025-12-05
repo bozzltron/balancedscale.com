@@ -38,7 +38,7 @@ export default function ArtistCard(props: ArtistCardProps) {
         <div class="p-6">
           {/* Artist Name */}
           <h3 
-            class="text-2xl font-serif mb-2"
+            class="text-2xl font-serif mb-4"
             style={{ color: "var(--text-primary)" }}
           >
             {props.artist.name}

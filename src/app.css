@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@layer base {
+  /* Remove default margins - but allow Tailwind utilities to override */
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+  }
+}
+
 :root {
   /* Background Colors */
   --bg-primary: #0a0a0a;
@@ -101,11 +108,6 @@ html {
 ::selection {
   background-color: var(--accent-primary);
   color: var(--bg-primary);
-}
-
-/* Remove default margins */
-h1, h2, h3, h4, h5, h6, p {
-  margin: 0;
 }
 
 /* Improve readability */

@@ -47,12 +47,12 @@ export default function Artists() {
               >
                 Our Artists
               </h1>
-              <p 
+              <div 
                 class="text-xl"
                 style={{ color: "var(--text-secondary)" }}
               >
                 Meet the innovative musicians creating meaningful work with Balanced Scale Media.
-              </p>
+              </div>
             </div>
 
             {/* Artists Grid */}

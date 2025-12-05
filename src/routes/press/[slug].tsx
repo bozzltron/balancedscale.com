@@ -116,7 +116,7 @@ export default function PressReleasePage() {
           {/* Artist Link */}
           <Show when={artist()}>
             <div class="bg-bg-secondary rounded-xl p-8 border border-border-default mb-8">
-              <h2 class="text-2xl font-serif font-bold mb-4">About the Artist</h2>
+              <h2 class="text-2xl font-serif font-bold mb-6">About the Artist</h2>
               <div class="flex items-center gap-4 mb-4">
                 <img 
                   src={artist()!.image.thumbnail} 

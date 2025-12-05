@@ -64,12 +64,12 @@ export default function Home() {
               Independent record label that puts artists first
             </p>
             
-            <p 
+            <div 
               class="text-base mb-8"
               style={{ color: "var(--text-tertiary)" }}
             >
               100% of all royalties to artists • Zero recoupable costs • Complete creative control
-            </p>
+            </div>
           </div>
 
           {/* Featured Release Section */}
