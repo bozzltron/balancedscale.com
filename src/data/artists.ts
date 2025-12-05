@@ -40,7 +40,8 @@ Under Balanced Scale Media, mozworth released his breakout single "Sandpiper" in
     contact: {
       press: 'ryan@pressjunkiepr.com',
       general: 'info@balancedscale.com'
-    }
+    },
+    epkPdf: '/mozworth-EPK.pdf'
   }
 ];
 

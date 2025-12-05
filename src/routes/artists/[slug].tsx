@@ -40,13 +40,15 @@ export default function ArtistEPK() {
         type="music.musician"
         keywords={`${artist.name}, press kit, EPK, electronic press kit, ${artist.genre.join(', ')}, ${artist.location.city}, Balanced Scale Media`}
         author={artist.name}
-        imageUrl={artist.image.hero}
+        image={artist.image.hero}
         imageAlt={`${artist.name} official press photo`}
         structuredData={createArtistData({
           name: artist.name,
+          url: `https://balancedscale.com/artists/${artist.slug}/`,
+          image: artist.image.hero,
           description: artist.bio.full,
-          genre: artist.genre.join(', '),
-          location: `${artist.location.city}, ${artist.location.state || ''} ${artist.location.country}`.trim(),
+          genre: artist.genre,
+          location: artist.location,
         })}
       />
 
@@ -91,9 +93,9 @@ export default function ArtistEPK() {
                   fetchpriority="high"
                 />
                 <h1 class="text-4xl md:text-5xl font-bold mb-2">Press Kit</h1>
-                <p class="text-text-secondary text-lg">
+                <div class="text-text-secondary text-lg text-center">
                   {artist.location.city}-based {artist.genre[0]} Artist
-                </p>
+                </div>
               </div>
 
               {/* Banner Image */}
@@ -156,7 +158,7 @@ export default function ArtistEPK() {
 
               {/* Quick Links */}
               <section class="mb-12" aria-labelledby="quick-links-heading">
-                <h2 id="quick-links-heading" class="text-2xl font-bold mb-4 text-accent-primary">Quick Links</h2>
+                <h2 id="quick-links-heading" class="text-2xl font-bold mb-8 text-accent-primary">Quick Links</h2>
                 <nav aria-label="Press kit quick links">
                   <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                     <Show when={artist.socialLinks?.spotify}>
@@ -257,16 +259,21 @@ export default function ArtistEPK() {
                           <div class="text-xs opacity-70">Official artist photo</div>
                         </div>
                       </a>
-                      <a 
-                        href="#press-release" 
-                        class="flex items-center px-4 py-3 bg-transparent text-white rounded-lg border border-border-default hover:border-border-hover hover:bg-bg-primary transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-focus-ring"
-                        aria-label="Jump to Sandpiper press release section below"
-                      >
-                        <div>
-                          <div class="font-semibold">Press Release</div>
-                          <div class="text-xs opacity-70">Sandpiper - Full text below</div>
-                        </div>
-                      </a>
+                      <Show when={artist.epkPdf}>
+                        <a 
+                          href={artist.epkPdf!}
+                          download={`${artist.slug}-epk.pdf`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="flex items-center px-4 py-3 bg-transparent text-white rounded-lg border border-border-default hover:border-border-hover hover:bg-bg-primary transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-focus-ring"
+                          aria-label={`Download ${artist.name} electronic press kit (PDF)`}
+                        >
+                          <div>
+                            <div class="font-semibold">EPK PDF</div>
+                            <div class="text-xs opacity-70">Complete press kit document</div>
+                          </div>
+                        </a>
+                      </Show>
                       <a 
                         href="/contact"
                         class="flex items-center px-4 py-3 bg-transparent text-white rounded-lg border border-border-default hover:border-border-hover hover:bg-bg-primary transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-focus-ring"
@@ -449,7 +456,7 @@ export default function ArtistEPK() {
                   aria-labelledby="contact-heading"
                 >
                   <h2 id="contact-heading" class="text-2xl font-bold mb-4 text-accent-primary">Media Contact</h2>
-                  <p class="text-text-primary/90 mb-4">For interviews, press materials, or media inquiries:</p>
+                  <div class="text-text-primary/90 mb-4">For interviews, press materials, or media inquiries:</div>
                   <div class="text-lg mb-4">
                     <p class="font-semibold">Balanced Scale Media</p>
                     <p class="text-text-secondary">Austin, TX</p>

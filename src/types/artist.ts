@@ -36,5 +36,6 @@ export interface Artist {
     booking?: string;
     general?: string;
   };
+  epkPdf?: string;  // Path to EPK PDF file (e.g., '/mozworth-EPK.pdf')
 }
 
