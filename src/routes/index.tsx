@@ -51,14 +51,6 @@ export default function Home() {
               Balanced Scale Media
             </h1>
             
-            {/* Description */}
-            <p 
-              class="text-xl md:text-2xl mb-4 leading-relaxed"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              Independent record label that puts artists first
-            </p>
-            
             <div 
               class="text-base mb-8"
               style={{ color: "var(--text-tertiary)" }}
