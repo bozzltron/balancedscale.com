@@ -2,6 +2,7 @@ import { A } from "@solidjs/router";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { StandardMetadata } from "../utils/metadata";
+import ScaleLogo from "../components/ScaleLogo";
 
 export default function NotFound() {
   return (
@@ -22,11 +23,9 @@ export default function NotFound() {
         >
           <div class="max-w-2xl mx-auto text-center">
             {/* Logo */}
-            <img 
-              src="/scale-balanced.svg" 
-              alt="Balanced Scale Media" 
-              class="w-24 h-24 mx-auto mb-8 opacity-50"
-            />
+            <div class="w-24 h-24 mx-auto mb-8 opacity-50" style={{ color: "var(--text-primary)" }}>
+              <ScaleLogo width="96" height="96" class="w-full h-full" />
+            </div>
             
             {/* Error Message */}
             <h1 

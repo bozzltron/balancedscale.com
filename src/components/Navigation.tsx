@@ -1,4 +1,5 @@
 import { A } from "@solidjs/router";
+import ScaleLogo from "./ScaleLogo";
 
 export default function Navigation() {
   return (
@@ -15,17 +16,13 @@ export default function Navigation() {
         <A 
           href="/" 
           class="flex items-center gap-3 focus:outline-none focus:ring-2 rounded"
-          style={{ "focus:ring-color": "var(--focus-ring)" }}
+          style={{ "focus:ring-color": "var(--focus-ring)", "color": "var(--text-primary)" }}
           aria-label="Balanced Scale Media Home"
         >
-          <img 
-            src="/scale-balanced.svg" 
-            alt="Balanced Scale Media logo" 
+          <ScaleLogo 
             class="w-8 h-8"
             width="32"
             height="32"
-            loading="eager"
-            fetchpriority="high"
           />
           <span 
             class="text-xl font-serif hidden sm:inline"

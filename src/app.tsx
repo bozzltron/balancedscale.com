@@ -2,21 +2,19 @@ import { Router } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
 import { Suspense, onMount, ErrorBoundary, createSignal } from "solid-js";
 import { registerSW } from 'virtual:pwa-register';
+import ScaleLogo from "./components/ScaleLogo";
 import "./app.css";
 
 function GlobalErrorFallback(err: unknown) {
   console.error("Global error boundary:", err);
   return (
     <div class="min-h-screen flex flex-col items-center justify-center" style={{ "background": "var(--bg-primary)" }}>
-      <a href="/" aria-label="Go to home page">
-        <img 
-          src="/scale-balanced.svg" 
-          alt="Balanced Scale Media logo" 
-          class="w-32 h-32 object-contain mb-8 focus:outline-none focus:ring-4 rounded transition-shadow" 
+      <a href="/" aria-label="Go to home page" style={{ "color": "var(--text-primary)" }}>
+        <ScaleLogo 
+          width="128" 
+          height="128" 
+          class="w-32 h-32 mb-8 focus:outline-none focus:ring-4 rounded transition-shadow"
           style={{ "focus:ring-color": "var(--focus-ring)" }}
-          width="128"
-          height="128"
-          loading="eager"
         />
       </a>
       <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center" style={{ color: "var(--text-primary)" }}>
@@ -68,7 +66,7 @@ export default function App() {
               <div 
                 class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 rounded-lg px-4 py-2 text-sm shadow-lg"
                 style={{ 
-                  "background": "rgba(17, 17, 17, 0.9)",
+                  "background": "rgba(26, 26, 26, 0.9)",
                   "border": "1px solid var(--border-default)",
                   "color": "var(--text-primary)"
                 }}
@@ -82,7 +80,7 @@ export default function App() {
               <div 
                 class="fixed bottom-0 left-0 right-0 z-40"
                 style={{ 
-                  "background": "rgba(10, 10, 10, 0.95)",
+                  "background": "rgba(18, 18, 18, 0.95)",
                   "border-top": "1px solid var(--border-default)",
                   "color": "var(--text-primary)"
                 }}

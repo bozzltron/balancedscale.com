@@ -23,7 +23,7 @@ export default function ArtistEPK() {
         <div class="text-center">
           <h1 class="text-4xl font-bold mb-4">Artist Not Found</h1>
           <p class="text-text-secondary mb-8">The artist you're looking for doesn't exist.</p>
-          <A href="/artists" class="px-6 py-3 bg-white text-bg-primary rounded-md hover:bg-gray-200 transition-colors">
+          <A href="/artists" class="px-6 py-3 bg-transparent text-white rounded-md border border-border-default hover:border-border-hover hover:bg-bg-tertiary transition-colors">
             View All Artists
           </A>
         </div>
@@ -77,7 +77,7 @@ export default function ArtistEPK() {
               class="rounded-xl p-6 md:p-10 border" 
               style={{ 
                 "background": "var(--bg-secondary)", 
-                "border-color": "#0d0d0d" 
+                "border-color": "var(--border-default)" 
               }}
             >
               
@@ -125,29 +125,27 @@ export default function ArtistEPK() {
                 >
                   <h2 id="featured-release-heading" class="text-2xl font-bold mb-6 text-accent-primary">Featured Release</h2>
                   <article class="flex flex-col md:flex-row gap-6 items-center">
-                    <iframe
-                      src="https://bandcamp.com/EmbeddedPlayer/track=2363697352/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
-                      seamless
-                      class="w-full md:w-80 h-[420px] rounded-lg shadow-lg"
-                      title="Sandpiper by mozworth - Bandcamp music player"
-                      aria-label="Bandcamp music player for Sandpiper by mozworth"
+                    <img
+                      src="/storyofanartist.webp"
+                      alt="Story of an Artist cover art"
+                      class="w-full md:w-80 h-[420px] rounded-lg shadow-lg object-cover"
                       loading="lazy"
                     />
                     <div class="flex-1">
-                      <h3 class="text-3xl font-bold mb-4">Sandpiper</h3>
+                      <h3 class="text-3xl font-bold mb-4">Story of an Artist</h3>
                       <p class="text-text-secondary mb-2">
                         <span class="sr-only">Release type:</span>Single 
                         <span aria-hidden="true"> • </span>
                         <span class="sr-only">Released on:</span>
-                        <time datetime="2025-09-15">Released September 15, 2025</time>
+                        <time datetime="2026-01-22">Released January 22, 2026</time>
                       </p>
                       <p class="text-text-primary/90 mb-4 leading-relaxed">
-                        A guitar-driven, ocean-soaked anthem inspired by myth, nature, and the quiet messengers all around us.
+                        A dreamy DIY reinterpretation of Daniel Johnston's classic, honoring the original by digging deep into Daniel's own inspiration and playing in the spirit of his heroes. Released on Hi, How Are You Day—a celebration of Daniel's birthday and Austin's city-wide reminder to check in on friends' mental health.
                       </p>
                       <A 
                         href={`/press/${artistPressReleases()[0]?.slug}`}
                         class="inline-block px-6 py-3 bg-transparent text-white rounded-full font-semibold border border-border-default hover:border-border-hover hover:bg-bg-tertiary transition-colors focus:outline-none focus:ring-2 focus:ring-focus-ring"
-                        aria-label="View more information about Sandpiper"
+                        aria-label="View more information about Story of an Artist"
                       >
                         More Info
                       </A>
@@ -161,6 +159,16 @@ export default function ArtistEPK() {
                 <h2 id="quick-links-heading" class="text-2xl font-bold mb-8 text-accent-primary">Quick Links</h2>
                 <nav aria-label="Press kit quick links">
                   <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <Show when={artist.socialLinks?.website}>
+                      <a 
+                        href={artist.socialLinks!.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="px-4 py-3 bg-transparent text-white rounded-lg border border-border-default hover:border-border-hover hover:bg-bg-primary transition-colors font-medium text-center focus:outline-none focus:ring-2 focus:ring-focus-ring"
+                      >
+                        Website
+                      </a>
+                    </Show>
                     <Show when={artist.socialLinks?.spotify}>
                       <a 
                         href={artist.socialLinks!.spotify}
@@ -169,6 +177,16 @@ export default function ArtistEPK() {
                         class="px-4 py-3 bg-transparent text-white rounded-lg border border-border-default hover:border-border-hover hover:bg-bg-primary transition-colors font-medium text-center focus:outline-none focus:ring-2 focus:ring-focus-ring"
                       >
                         Spotify
+                      </a>
+                    </Show>
+                    <Show when={artist.socialLinks?.appleMusic}>
+                      <a 
+                        href={artist.socialLinks!.appleMusic}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="px-4 py-3 bg-transparent text-white rounded-lg border border-border-default hover:border-border-hover hover:bg-bg-primary transition-colors font-medium text-center focus:outline-none focus:ring-2 focus:ring-focus-ring"
+                      >
+                        Apple Music
                       </a>
                     </Show>
                     <Show when={artist.socialLinks?.bandcamp}>
@@ -191,6 +209,16 @@ export default function ArtistEPK() {
                         YouTube
                       </a>
                     </Show>
+                    <Show when={artist.socialLinks?.soundcloud}>
+                      <a 
+                        href={artist.socialLinks!.soundcloud}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="px-4 py-3 bg-transparent text-white rounded-lg border border-border-default hover:border-border-hover hover:bg-bg-primary transition-colors font-medium text-center focus:outline-none focus:ring-2 focus:ring-focus-ring"
+                      >
+                        SoundCloud
+                      </a>
+                    </Show>
                     <Show when={artist.socialLinks?.instagram}>
                       <a 
                         href={artist.socialLinks!.instagram}
@@ -201,6 +229,16 @@ export default function ArtistEPK() {
                         Instagram
                       </a>
                     </Show>
+                    <Show when={artist.socialLinks?.tiktok}>
+                      <a 
+                        href={artist.socialLinks!.tiktok}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="px-4 py-3 bg-transparent text-white rounded-lg border border-border-default hover:border-border-hover hover:bg-bg-primary transition-colors font-medium text-center focus:outline-none focus:ring-2 focus:ring-focus-ring"
+                      >
+                        TikTok
+                      </a>
+                    </Show>
                     <Show when={artist.socialLinks?.bluesky}>
                       <a 
                         href={artist.socialLinks!.bluesky}
@@ -209,6 +247,26 @@ export default function ArtistEPK() {
                         class="px-4 py-3 bg-transparent text-white rounded-lg border border-border-default hover:border-border-hover hover:bg-bg-primary transition-colors font-medium text-center focus:outline-none focus:ring-2 focus:ring-focus-ring"
                       >
                         Bluesky
+                      </a>
+                    </Show>
+                    <Show when={artist.socialLinks?.facebook}>
+                      <a 
+                        href={artist.socialLinks!.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="px-4 py-3 bg-transparent text-white rounded-lg border border-border-default hover:border-border-hover hover:bg-bg-primary transition-colors font-medium text-center focus:outline-none focus:ring-2 focus:ring-focus-ring"
+                      >
+                        Facebook
+                      </a>
+                    </Show>
+                    <Show when={artist.socialLinks?.reddit}>
+                      <a 
+                        href={artist.socialLinks!.reddit}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="px-4 py-3 bg-transparent text-white rounded-lg border border-border-default hover:border-border-hover hover:bg-bg-primary transition-colors font-medium text-center focus:outline-none focus:ring-2 focus:ring-focus-ring"
+                      >
+                        Reddit
                       </a>
                     </Show>
                     <Show when={artist.contact?.press}>
@@ -238,13 +296,14 @@ export default function ArtistEPK() {
                   <nav aria-label="Downloadable press materials">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <a 
-                        href="/sandpiper.webp" 
-                        download="mozworth-sandpiper-cover-art.webp"
+                        href="https://drive.google.com/file/d/1bGnOTxiOLAvLUJ4WrSCue-HCdEdbCSkO/view?usp=sharing" 
+                        target="_blank"
+                        rel="noopener noreferrer"
                         class="flex items-center px-4 py-3 bg-transparent text-white rounded-lg border border-border-default hover:border-border-hover hover:bg-bg-primary transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-focus-ring"
-                        aria-label="Download Sandpiper cover art (high-resolution image)"
+                        aria-label="Download Story of an Artist cover art (high-resolution image)"
                       >
                         <div>
-                          <div class="font-semibold">Sandpiper Cover Art</div>
+                          <div class="font-semibold">Story of an Artist Cover Art</div>
                           <div class="text-xs opacity-70">High-resolution image</div>
                         </div>
                       </a>
@@ -303,91 +362,21 @@ export default function ArtistEPK() {
                   <h2 id="press-release-heading" class="text-2xl font-bold mb-6 text-accent-primary">Press Release</h2>
                   <article class="prose prose-invert max-w-none text-text-primary/90 leading-relaxed">
                     <p class="font-bold mb-4">FOR IMMEDIATE RELEASE</p>
-                    <p class="mb-4 text-xl font-semibold">mozworth Bridges Worlds with New Summer Single "Sandpiper"</p>
-                    <p class="mb-4 italic">A guitar-driven, ocean-soaked anthem inspired by myth, nature, and the quiet messengers all around us</p>
-                    <p class="mb-4"><strong>AUSTIN, TX – August 21, 2025</strong> — South Austin songwriter mozworth releases Sandpiper, a sweeping new single shaped by the rhythms of the Gulf Coast, the weight of mythology, and the search for answers in uncertain times. It follows this spring's The Sky Is Falling and acts as its emotional companion — where one named the fracture, the other seeks the bridge.</p>
-                    <p class="mb-4">The song took shape during a family trip to Surfside Beach, Texas — days filled with skimboarding, saltwater, and long walks along the shore. It was there that the sandpiper first caught mozworth's attention. "When you're walking along the coastline, you have the ocean to one side and land to the other. Ahead of you is that narrow strip of wet sand. That's where you find the sandpiper," he says.</p>
-                    <p class="mb-4">Drawn deeper, he found the sandpiper in Native American, Celtic, and Japanese myths — as a navigator, a survivor, a lost soul, and a messenger between worlds. "The idea of the messenger grabbed me the most", says mozworth.  "I started to see the sandpiper as inspiration. If this bird can merge two wildly different words, perhaps so can we. I love the idea that the answer is hidden in plain sight in the form of this humble creature."</p>
-                    <p class="mb-4">The recording process was loose and instinctual. "I had a lot of lyrical ideas, but no sound yet," he says. Starting with a one-mic drum improv and a bassline, he followed what felt good. Listening back, what is now the driving bassline of the song was found. A guitar melody soon took shape using his daughter's Harley Benton JA-60, now a fixture of the song's identity. "That guitar — it just sang. The leads started sounding like birds to me."</p>
-                    <p class="mb-4">The band brought the track to life. Longtime collaborator Ken Mockler locked in the drum parts before relocating to Denver, making this one of his last recordings with the group. "Ken loved the chorus — we really wrestled with the verses to make sure that left room for the chorus to break through" says mozworth. Guitarist Mark Heaps added shimmering textures and dynamic contrast, while bassist Jack Schultz nailed a tone the whole group instantly fell in love with.</p>
-                    <p class="mb-4">The final mix, crafted by Steve Glaze at Tone Freq Studios, opens with the nostalgic click of a guitar cable — a subtle link to the lo-fi textures of '90s alt-rock. If you play The Sky Is Falling first, it fades out like a radio switching off. Sandpiper clicks right back on — not planned, but somehow perfect.</p>
-                    <p class="mb-4">The single was recorded at mozworth's home studio in South Austin, drums at Ken's place just across town. "We wanted to capture who we are right now — together, in this moment," he says.</p>
-                    <p class="mb-4">With Ken's move, drummer Mike Hall steps in for the Sandpiper single release. Introduced by Ken and already a kindred spirit, Mike brings a new heartbeat to mozworth's evolving sound — raw, melodic, and rooted in the human experience.</p>
-                    <p class="mb-4 font-semibold">Sandpiper drops September 15, 2025</p>
+                    <p class="mb-4 text-xl font-semibold">mozworth – Indie‑Alt Rock Outfit Releases a New Cover of Daniel Johnston's "Story of an Artist"</p>
+                    <p class="mb-4"><strong>Austin, TX – January 9, 2026</strong></p>
+                    <p class="mb-4">South‑Austin band mozworth is proud to announce the digital release of their re‑imagined version of Daniel Johnston's classic <em>Story of an Artist</em>. The track drops on January 22, 2026—the day that celebrates both Johnston's birthday and Austin's "Hi, How Are You Day," a city‑wide reminder to check in on friends' mental health. By pairing the tribute with this civic observance, mozworth hopes to honor Daniel's legacy in song and in community.</p>
+                    <p class="mb-4">The song has long spoke to Michael Bosworth. "It is such a vivid picture of Daniel's experience. It contains some profound perspectives along with some deep pain. Sonically, it's beautiful." he says. "I remember working on the demo and getting caught up with emotion. I was able to connect with his pain."</p>
+                    <p class="mb-4">Paying homage to Daniel isn't new for mozworth. Last year was the first release of this kind with "Walking The Cow". "Story of an Artist" is the second installment. "We knew we were going to record this song early and I had a demo but we waited till late in the year to get recording", says Michael Bosworth. "We quickly realized that everyone's schedules were too fragmented for a traditional in‑person studio day." Instead, they pieced the song together digitally.</p>
+                    <p class="mb-4">They had a demo, but they needed drums. They needed Mike. When Mike heard the demo, he heard the Beatles—a natural homage, given Daniel Johnston's lifelong admiration for the Fab Four. The band embraced the idea, swapping their usual twin‑electric‑guitar attack for a mandolin and upright bass.</p>
+                    <p class="mb-4">Each member showed up with their instrument, wrote their part, and recorded it on the spot. Mark Heaps on mandolin. Jack Schultz on upright bass. Michael Bosworth on electric guitar. "These guys showed up really having no idea what to play and reacting to the recording. There is a spontaneity to it. A trust in our intuition that brings some magic.", says Michael Bosworth.</p>
+                    <p class="mb-4">Mandolin, bass, guitar, and vocals were recorded at mozworth's South‑Austin space; drums and auxiliary percussion at Mike Hall's home studio. A brief nod to the gear: a set of vintage microphones and preamps borrowed from friend Josh Wolfer to give this release a new sound. Mixing and mastering were handled by Steven Glaze at Tone Freq Studios.</p>
+                    <p class="mb-4">mozworth's <em>Story of an Artist</em> is a dreamy DIY reinterpretation that honors the original by digging deep into Daniel's own inspiration and playing in the spirit of his heroes.</p>
+                    <p class="mb-4">January 22 is Hi, How Are You Day in Austin and several other cities, a grassroots campaign encouraging residents to reach out to friends and family about mental‑health wellbeing.</p>
+                    <p class="mb-4">mozworth is currently booking dates in the Austin area to support the release and they are in the process of recording their next full length album expected late 2026.</p>
+                    <p class="mb-6 font-semibold">Story of an Artist releases January 22, 2026</p>
                     <p class="mb-4">For media inquiries, interviews, or press materials, please contact:</p>
-                    <p class="mb-1">Balanced Scale Media<br />promo@balancedscale.com<br /><a href="https://www.balancedscale.com" target="_blank" rel="noopener" class="text-accent-primary underline hover:no-underline">www.balancedscale.com</a></p>
+                    <p class="mb-1">Balanced Scale Media PR<br />email: <a href="mailto:promo@balancedscale.com" class="text-accent-primary underline hover:no-underline">promo@balancedscale.com</a><br />phone: +1 (515) 418‑7894</p>
                   </article>
-                </section>
-              </Show>
-
-              {/* Press Coverage */}
-              <Show when={artist.id === 'mozworth'}>
-                <section 
-                  class="mb-12 p-6 rounded-lg border" 
-                  style={{ 
-                    "background": "var(--bg-secondary)", 
-                    "border-color": "var(--border-default)" 
-                  }}
-                  aria-labelledby="press-coverage-heading"
-                >
-                  <h2 id="press-coverage-heading" class="text-2xl font-bold mb-6 text-accent-primary">Press Coverage</h2>
-                  <div class="space-y-6">
-                    <div class="border-b border-border-default pb-6 last:border-b-0 last:pb-0">
-                      <h3 class="text-xl font-semibold mb-3">Plastic Magazine</h3>
-                      <p class="text-text-secondary text-sm mb-3">September 22, 2025</p>
-                      <p class="text-text-primary/80 mb-3 leading-relaxed">
-                        Plastic Magazine praises "Sandpiper" as "a spectacular alternative jam that's timeless and truly absorbing throughout," highlighting the track's "intricate ebb and flow between the mellow verses and charge of exhilarating choruses." The review celebrates mozworth's "songwriting flair and performance talent" and calls it "an incredible display" of his musical evolution.
-                      </p>
-                      <a 
-                        href="https://plasticmag.co.uk/2025/09/mozworth-drops-new-single-sandpiper/" 
-                        target="_blank" 
-                        rel="noopener" 
-                        class="text-accent-primary hover:no-underline underline font-medium"
-                      >
-                        Read Full Review →
-                      </a>
-                    </div>
-                    <div class="border-b border-border-default pb-6 last:border-b-0 last:pb-0">
-                      <h3 class="text-xl font-semibold mb-3">The Big Takeover</h3>
-                      <p class="text-text-secondary text-sm mb-3">September 17, 2025</p>
-                      <p class="text-text-primary/80 mb-3 leading-relaxed">
-                        The Big Takeover praises "Sandpiper" for its depth and duality, describing it as music that "ebbs and flows between folky understatement and the roar of rock and roll at its finest" and calling it "a blend of indie delicacy, rock muscle, psychedelic colour, and surf finesse."
-                      </p>
-                      <a 
-                        href="https://bigtakeover.com/recordings/mozworth-sandpiper-balanced-scale-media" 
-                        target="_blank" 
-                        rel="noopener" 
-                        class="text-accent-primary hover:no-underline underline font-medium"
-                      >
-                        Read Full Review →
-                      </a>
-                    </div>
-                    <div class="border-b border-border-default pb-6 last:border-b-0 last:pb-0">
-                      <h3 class="text-xl font-semibold mb-3">It's All Indie</h3>
-                      <p class="text-text-secondary text-sm mb-3">September 14, 2025</p>
-                      <p class="text-text-primary/80 mb-3 leading-relaxed">
-                        It's All Indie describes "Sandpiper" as "a clear-cut slice of shimmering indie-pop with a slightly scuzzy undertone of grunge guitar sounds" and praises the track as "a breezy indie-pop gem with grungy undertones, jangly new-wave hooks, and lush melodies."
-                      </p>
-                      <a 
-                        href="https://www.itsallindie.com/2025/09/mozworth-reveals-bold-new-single.html" 
-                        target="_blank" 
-                        rel="noopener" 
-                        class="text-accent-primary hover:no-underline underline font-medium"
-                      >
-                        Read Full Review →
-                      </a>
-                    </div>
-                  </div>
-                  <div class="mt-6">
-                    <a 
-                      href="https://mozworth.music/press" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-block px-6 py-3 bg-transparent text-white rounded-full font-semibold border border-border-default hover:border-border-hover hover:bg-bg-tertiary transition-colors"
-                    >
-                      View All Press Coverage
-                    </a>
-                  </div>
                 </section>
               </Show>
 
@@ -401,29 +390,16 @@ export default function ArtistEPK() {
                   }}
                   aria-labelledby="credits-heading"
                 >
-                  <h2 id="credits-heading" class="text-2xl font-bold mb-6 text-accent-primary">Credits - Sandpiper</h2>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-text-primary/90">
-                    <div>
-                      <p class="mb-2">Songwriting by Michael Bosworth</p>
-                      <p class="mb-2">Lyrics by Michael Bosworth</p>
-                      <p class="mb-2">Composed by Michael Bosworth, Ken Mockler, Mark Heaps, and Jack Schultz</p>
-                      <p class="mb-2">Produced by Michael Bosworth</p>
-                    </div>
-                    <div>
-                      <p class="mb-2">Drums performed by Mike Hall</p>
-                      <p class="mb-2">Guitar performed by Mark Heaps</p>
-                      <p class="mb-2">Bass performed by Jack Schultz</p>
-                      <p class="mb-2">Vocals and Guitar performed by Michael Bosworth</p>
-                    </div>
-                    <div class="md:col-span-2">
-                      <p class="mb-2">Guitars and vocals recorded by Michael Bosworth at mozworth's home studio in South Austin</p>
-                      <p class="mb-2">Drums recorded by Mike Hall in South Austin</p>
-                      <p class="mb-2">Mixed by Steven Glaze at <a href="https://stevenglaze.com/" target="_blank" rel="noopener" class="text-accent-primary underline hover:no-underline">Tone Freq Studios</a></p>
-                      <p class="mb-2">Mastered by Steven Glaze at <a href="https://stevenglaze.com/" target="_blank" rel="noopener" class="text-accent-primary underline hover:no-underline">Tone Freq Studios</a></p>
-                      <p class="mb-2">Cover art watercolor by Jessica Bosworth</p>
-                      <p class="mb-2">Cover art composition and design by Mark Heaps</p>
-                      <p class="mb-2">ISRC: QZZ782549784</p>
-                    </div>
+                  <h2 id="credits-heading" class="text-2xl font-bold mb-6 text-accent-primary">Credits - Story of an Artist</h2>
+                  <div class="text-text-primary/90 space-y-2">
+                    <p>Songwriting by Daniel Johnston</p>
+                    <p>Composed by mozworth</p>
+                    <p>Electric Guitar by Michael Bosworth</p>
+                    <p>Mandolin by Mark Heaps</p>
+                    <p>Bass by Jack Schultz</p>
+                    <p>Recording by Mark Heaps, Michael Bosworth, and Mike Hall</p>
+                    <p>Mixed and Mastered by Steven Glaze at <a href="https://stevenglaze.com/" target="_blank" rel="noopener" class="text-accent-primary underline hover:no-underline">Tone Freq Studios</a></p>
+                    <p>Cover art by Michael Bosworth</p>
                   </div>
                 </section>
               </Show>

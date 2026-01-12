@@ -2,6 +2,52 @@ import type { PressRelease } from '../types/pressRelease';
 
 export const pressReleases: PressRelease[] = [
   {
+    id: 'story-of-an-artist-release',
+    slug: 'mozworth-story-of-an-artist-release',
+    title: 'mozworth – Indie‑Alt Rock Outfit Releases a New Cover of Daniel Johnston\'s "Story of an Artist"',
+    subtitle: 'A dreamy DIY reinterpretation honoring Daniel\'s legacy, released on Hi, How Are You Day',
+    date: '2026-01-22',
+    artistId: 'mozworth',
+    excerpt: 'South‑Austin band mozworth announces the digital release of their re‑imagined version of Daniel Johnston\'s classic Story of an Artist, dropping January 22, 2026—the day that celebrates both Johnston\'s birthday and Austin\'s "Hi, How Are You Day."',
+    content: `**FOR IMMEDIATE RELEASE**
+
+**mozworth – Indie‑Alt Rock Outfit Releases a New Cover of Daniel Johnston's "Story of an Artist"**
+
+**Austin, TX – January 9, 2026** — South‑Austin band mozworth is proud to announce the digital release of their re‑imagined version of Daniel Johnston's classic *Story of an Artist*. The track drops on January 22, 2026—the day that celebrates both Johnston's birthday and Austin's "Hi, How Are You Day," a city‑wide reminder to check in on friends' mental health. By pairing the tribute with this civic observance, mozworth hopes to honor Daniel's legacy in song and in community.
+
+The song has long spoke to Michael Bosworth. "It is such a vivid picture of Daniel's experience. It contains some profound perspectives along with some deep pain. Sonically, it's beautiful." he says. "I remember working on the demo and getting caught up with emotion. I was able to connect with his pain."
+
+Paying homage to Daniel isn't new for mozworth. Last year was the first release of this kind with "Walking The Cow". "Story of an Artist" is the second installment. "We knew we were going to record this song early and I had a demo but we waited till late in the year to get recording", says Michael Bosworth. "We quickly realized that everyone's schedules were too fragmented for a traditional in‑person studio day." Instead, they pieced the song together digitally.
+
+They had a demo, but they needed drums. They needed Mike. When Mike heard the demo, he heard the Beatles—a natural homage, given Daniel Johnston's lifelong admiration for the Fab Four. The band embraced the idea, swapping their usual twin‑electric‑guitar attack for a mandolin and upright bass.
+
+Each member showed up with their instrument, wrote their part, and recorded it on the spot. Mark Heaps on mandolin. Jack Schultz on upright bass. Michael Bosworth on electric guitar. "These guys showed up really having no idea what to play and reacting to the recording. There is a spontaneity to it. A trust in our intuition that brings some magic.", says Michael Bosworth.
+
+Mandolin, bass, guitar, and vocals were recorded at mozworth's South‑Austin space; drums and auxiliary percussion at Mike Hall's home studio. A brief nod to the gear: a set of vintage microphones and preamps borrowed from friend Josh Wolfer to give this release a new sound. Mixing and mastering were handled by Steven Glaze at Tone Freq Studios.
+
+mozworth's *Story of an Artist* is a dreamy DIY reinterpretation that honors the original by digging deep into Daniel's own inspiration and playing in the spirit of his heroes.
+
+January 22 is Hi, How Are You Day in Austin and several other cities, a grassroots campaign encouraging residents to reach out to friends and family about mental‑health wellbeing.
+
+mozworth is currently booking dates in the Austin area to support the release and they are in the process of recording their next full length album expected late 2026.
+
+**Story of an Artist releases January 22, 2026**
+
+For media inquiries, interviews, or press materials, please contact:
+
+Balanced Scale Media PR
+email: promo@balancedscale.com
+phone: +1 (515) 418‑7894
+
+**About mozworth**
+mozworth is the musical project founded by Austin-based singer-songwriter Michael "Boz" Bosworth. The lineup now include Mark Heaps on electric guitar, Jack Schultz on bass, and Mike Hall on drums. Drawing from the depths of '90s alternative rock and the vulnerability of modern indie, mozworth creates music that feels both timeless and urgently present. With a self-titled debut album released in November 2024, mozworth has garnered attention from KUTX and international music publications.
+
+**About Balanced Scale Media**
+Balanced Scale Media is an independent record label based in Austin, Texas, dedicated to supporting innovative artists with transparency and artist-first values.`,
+    featured: true,
+    tags: ['Release', 'mozworth', 'Single', 'Story of an Artist', 'Daniel Johnston']
+  },
+  {
     id: 'sandpiper-release',
     slug: 'mozworth-sandpiper-release',
     title: 'mozworth Bridges Worlds with New Summer Single "Sandpiper"',
@@ -40,7 +86,7 @@ promo@balancedscale.com
 www.balancedscale.com
 
 **About mozworth**
-mozworth is the musical project of Austin-based singer-songwriter Michael "Boz" Bosworth. Drawing from the depths of '90s alternative rock and the vulnerability of modern indie, mozworth creates music that feels both timeless and urgently present. With a self-titled debut album released in November 2024, mozworth has garnered attention from KUTX and international music publications.
+mozworth is the musical project founded by Austin-based singer-songwriter Michael "Boz" Bosworth. The lineup now include Mark Heaps on electric guitar, Jack Schultz on bass, and Mike Hall on drums. Drawing from the depths of '90s alternative rock and the vulnerability of modern indie, mozworth creates music that feels both timeless and urgently present. With a self-titled debut album released in November 2024, mozworth has garnered attention from KUTX and international music publications.
 
 **About Balanced Scale Media**
 Balanced Scale Media is an independent record label based in Austin, Texas, dedicated to supporting innovative artists with transparency and artist-first values.`,
@@ -80,7 +126,7 @@ promo@balancedscale.com
 www.balancedscale.com
 
 **About mozworth**
-mozworth is the musical project of Austin-based singer-songwriter Michael "Boz" Bosworth. Drawing from the depths of '90s alternative rock and the vulnerability of modern indie, mozworth creates music that feels both timeless and urgently present.
+mozworth is the musical project founded by Austin-based singer-songwriter Michael "Boz" Bosworth. The lineup now include Mark Heaps on electric guitar, Jack Schultz on bass, and Mike Hall on drums. Drawing from the depths of '90s alternative rock and the vulnerability of modern indie, mozworth creates music that feels both timeless and urgently present. With a self-titled debut album released in November 2024, mozworth has garnered attention from KUTX and international music publications.
 
 **About Balanced Scale Media**
 Balanced Scale Media is an independent record label based in Austin, Texas, dedicated to supporting innovative artists with transparency and artist-first values.`,

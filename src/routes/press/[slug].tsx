@@ -18,7 +18,7 @@ export default function PressReleasePage() {
         <div class="text-center">
           <h1 class="text-4xl font-serif font-bold mb-4">Press Release Not Found</h1>
           <p class="text-text-secondary mb-8">The press release you're looking for doesn't exist.</p>
-          <A href="/press" class="px-6 py-3 bg-white text-bg-primary rounded-md hover:bg-gray-200 transition-colors">
+          <A href="/press" class="px-6 py-3 bg-transparent text-white rounded-md border border-border-default hover:border-border-hover hover:bg-bg-tertiary transition-colors">
             View All Press Releases
           </A>
         </div>
@@ -45,7 +45,7 @@ export default function PressReleasePage() {
       />
 
       <div class="min-h-screen bg-bg-primary text-text-primary py-12">
-        <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-bg-primary px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-focus-ring z-50">Skip to main content</a>
+        <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-bg-secondary text-white px-4 py-2 rounded border border-border-default focus:outline-none focus:ring-2 focus:ring-focus-ring z-50">Skip to main content</a>
         
         <main id="main-content" class="container mx-auto max-w-4xl px-4" role="main">
           {/* Breadcrumb */}
@@ -131,7 +131,7 @@ export default function PressReleasePage() {
               <p class="text-text-primary leading-relaxed mb-4">{artist()!.bio.short}</p>
               <A 
                 href={`/artists/${artist()!.slug}`}
-                class="inline-block px-6 py-3 bg-white text-bg-primary rounded-md font-semibold hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-focus-ring"
+                class="inline-block px-6 py-3 bg-transparent text-white rounded-md font-semibold border border-border-default hover:border-border-hover hover:bg-bg-tertiary transition-colors focus:outline-none focus:ring-2 focus:ring-focus-ring"
               >
                 View Full EPK
               </A>

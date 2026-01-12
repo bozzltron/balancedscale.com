@@ -2,16 +2,17 @@ import { A } from "@solidjs/router";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { StandardMetadata, createOrganizationData } from "../utils/metadata";
+import ScaleLogo from "../components/ScaleLogo";
 
 export default function Home() {
   return (
     <>
       <StandardMetadata
         title="Balanced Scale Media | Independent Record Label"
-        description="Austin-based independent record label. 100% revenue to artists, zero recoupable costs. Currently featuring mozworth's new single 'Sandpiper'."
+        description="Austin-based independent record label. Currently featuring mozworth's new single 'Story of an Artist'."
         url="https://www.balancedscale.com"
         type="website"
-        keywords="independent record label, Austin music, artist-first, mozworth, Sandpiper, indie rock, alternative rock"
+        keywords="independent record label, Austin music, artist-first, mozworth, Story of an Artist, Daniel Johnston, indie rock, alternative rock"
         structuredData={createOrganizationData()}
       />
       
@@ -38,15 +39,9 @@ export default function Home() {
           {/* Hero Section */}
           <div class="max-w-4xl mx-auto text-center mb-16">
             {/* Logo */}
-            <img 
-              src="/scale-balanced.svg" 
-              alt="Balanced Scale Media" 
-              class="w-24 h-24 mx-auto mb-6"
-              width="96"
-              height="96"
-              fetchpriority="high"
-              loading="eager"
-            />
+            <div class="w-24 h-24 mx-auto mb-6" style={{ color: "var(--text-primary)" }}>
+              <ScaleLogo width="96" height="96" class="w-full h-full" />
+            </div>
             
             {/* Heading */}
             <h1 
@@ -68,7 +63,7 @@ export default function Home() {
               class="text-base mb-8"
               style={{ color: "var(--text-tertiary)" }}
             >
-              100% of all royalties to artists • Zero recoupable costs • Complete creative control
+              Independent record label based in Austin, Texas
             </div>
           </div>
 
@@ -93,8 +88,8 @@ export default function Home() {
                 <div class="flex-shrink-0">
                   <A href="/artists/mozworth">
                     <img 
-                      src="/sandpiper.webp" 
-                      alt="mozworth - Sandpiper cover art" 
+                      src="/storyofanartist.webp" 
+                      alt="mozworth - Story of an Artist cover art" 
                       class="w-64 h-64 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
                       width="256"
                       height="256"
@@ -117,7 +112,7 @@ export default function Home() {
                     class="text-4xl font-serif mb-2"
                     style={{ color: "var(--text-primary)" }}
                   >
-                    Sandpiper
+                    Story of an Artist
                   </h3>
                   
                   <p 
@@ -137,7 +132,7 @@ export default function Home() {
                     class="text-base mb-16 leading-relaxed"
                     style={{ color: "var(--text-secondary)" }}
                   >
-                    A guitar-driven, ocean-soaked anthem inspired by myth, nature, and the quiet messengers all around us. Released September 15, 2025.
+                    A dreamy DIY reinterpretation of Daniel Johnston's classic, honoring the original by digging deep into Daniel's own inspiration and playing in the spirit of his heroes. Released January 22, 2026 on Hi, How Are You Day—a celebration of Daniel's birthday and Austin's city-wide reminder to check in on friends' mental health.
                   </p>
                   
                   <div class="flex flex-wrap gap-3 justify-center md:justify-start mt-4">
@@ -152,7 +147,7 @@ export default function Home() {
                       View EPK
                     </A>
                     <A 
-                      href="/press/mozworth-sandpiper-release"
+                      href="/press/mozworth-story-of-an-artist-release"
                       class="px-6 py-3 rounded-md font-medium transition-colors focus:outline-none focus:ring-2"
                       style={{ 
                         "background": "transparent",
@@ -189,7 +184,7 @@ export default function Home() {
                   class="text-base mb-6 leading-relaxed"
                   style={{ color: "var(--text-secondary)" }}
                 >
-                  Artist-first values. 100% of all royalties to artists. Zero recoupable costs. Inspired by Steve Albini's "The Problem with Music."
+                  Independent record label supporting innovative artists with transparency and artist-first values.
                 </p>
                 <A 
                   href="/ethos"

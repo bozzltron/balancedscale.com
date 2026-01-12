@@ -111,7 +111,7 @@ export function createOrganizationData() {
       "width": "512",
       "height": "512"
     },
-    "description": "Austin-based independent record label. 100% revenue to artists, zero recoupable costs. Artist-first values inspired by Steve Albini's 'The Problem with Music.'",
+    "description": "Austin-based independent record label supporting innovative artists with transparency and artist-first values.",
     "foundingDate": "2024",
     "foundingLocation": {
       "@type": "Place",
