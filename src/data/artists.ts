@@ -7,7 +7,7 @@ export const artists: Artist[] = [
     name: 'mozworth',
     bio: {
       short: 'Austin-based indie alternative rock artist blending \'90s nostalgia with modern vulnerability. Guitar-driven songs about myth, nature, and the human experience.',
-      full: `mozworth is the musical project founded by Austin-based singer-songwriter Michael "Boz" Bosworth. The lineup now include Mark Heaps on electric guitar, Jack Schultz on bass, and Mike Hall on drums. Drawing from the depths of '90s alternative rock and the vulnerability of modern indie, mozworth creates music that feels both timeless and urgently present. With a self-titled debut album released in November 2024, mozworth has garnered attention from KUTX and international music publications.`
+      full: `mozworth is the musical project founded by Austin-based singer-songwriter Michael "Boz" Bosworth. The lineup now includes Mark Heaps on electric guitar, Jack Schultz on bass, and Mike Hall on drums. Drawing from the depths of '90s alternative rock and the vulnerability of modern indie, mozworth creates music that feels both timeless and urgently present. With a self-titled debut album released in November 2024, mozworth has garnered attention from KUTX and international music publications.`
     },
     genre: ['Indie Rock', 'Alternative Rock', 'Indie Alternative'],
     location: {

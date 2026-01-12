@@ -7,10 +7,10 @@ export default function Ethos() {
     <>
       <StandardMetadata
         title="Our Ethos | Balanced Scale Media"
-        description="100% of all royalties to artists. Zero recoupable costs. Complete creative control. Artist-first values inspired by Steve Albini's 'The Problem with Music.'"
+        description="Independent record label inspired by Steve Albini's 'The Problem with Music.' Building an alternative model that serves artists."
         url="https://www.balancedscale.com/ethos"
         type="website"
-        keywords="artist rights, fair music industry, record label philosophy, Steve Albini, artist-first, independent music, music industry reform"
+        keywords="independent music, record label philosophy, Steve Albini, music industry, independent label"
       />
       
       <div class="flex flex-col min-h-screen">
@@ -54,83 +54,8 @@ export default function Ethos() {
               class="prose prose-invert max-w-none space-y-8"
               style={{ color: "var(--text-primary)" }}
             >
-              {/* Core Values */}
-              <section>
-                <h2 
-                  class="text-3xl font-serif mb-6"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  Artist-First Values
-                </h2>
-                
-                <div class="space-y-6">
-                  <div 
-                    class="p-6 rounded-lg border"
-                    style={{ 
-                      "background": "var(--bg-secondary)",
-                      "border-color": "var(--border-default)"
-                    }}
-                  >
-                    <h3 
-                      class="text-2xl font-semibold mb-3"
-                      style={{ color: "var(--accent-primary)" }}
-                    >
-                      100% Revenue to Artists
-                    </h3>
-                    <p 
-                      class="text-lg leading-relaxed"
-                      style={{ color: "var(--text-secondary)" }}
-                    >
-                      Every penny earned from your music goes directly to you. We don't take a percentage, we don't skim off the top. Your art, your earnings.
-                    </p>
-                  </div>
-
-                  <div 
-                    class="p-6 rounded-lg border"
-                    style={{ 
-                      "background": "var(--bg-secondary)",
-                      "border-color": "var(--border-default)"
-                    }}
-                  >
-                    <h3 
-                      class="text-2xl font-semibold mb-3"
-                      style={{ color: "var(--accent-primary)" }}
-                    >
-                      Zero Recoupable Costs
-                    </h3>
-                    <p 
-                      class="text-lg leading-relaxed"
-                      style={{ color: "var(--text-secondary)" }}
-                    >
-                      No debt. No advance to pay back. We cover the costs because we believe in you. You shouldn't start your career in the hole.
-                    </p>
-                  </div>
-
-                  <div 
-                    class="p-6 rounded-lg border"
-                    style={{ 
-                      "background": "var(--bg-secondary)",
-                      "border-color": "var(--border-default)"
-                    }}
-                  >
-                    <h3 
-                      class="text-2xl font-semibold mb-3"
-                      style={{ color: "var(--accent-primary)" }}
-                    >
-                      Complete Creative Control
-                    </h3>
-                    <p 
-                      class="text-lg leading-relaxed"
-                      style={{ color: "var(--text-secondary)" }}
-                    >
-                      Your music, your vision, your decisions. We're here to support and amplify, not to control or constrain.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
               {/* Inspiration */}
-              <section class="mt-12">
+              <section>
                 <h2 
                   class="text-3xl font-serif mb-6"
                   style={{ color: "var(--text-primary)" }}

@@ -40,7 +40,7 @@ email: promo@balancedscale.com
 phone: +1 (515) 418‑7894
 
 **About mozworth**
-mozworth is the musical project founded by Austin-based singer-songwriter Michael "Boz" Bosworth. The lineup now include Mark Heaps on electric guitar, Jack Schultz on bass, and Mike Hall on drums. Drawing from the depths of '90s alternative rock and the vulnerability of modern indie, mozworth creates music that feels both timeless and urgently present. With a self-titled debut album released in November 2024, mozworth has garnered attention from KUTX and international music publications.
+mozworth is the musical project founded by Austin-based singer-songwriter Michael "Boz" Bosworth. The lineup now includes Mark Heaps on electric guitar, Jack Schultz on bass, and Mike Hall on drums. Drawing from the depths of '90s alternative rock and the vulnerability of modern indie, mozworth creates music that feels both timeless and urgently present. With a self-titled debut album released in November 2024, mozworth has garnered attention from KUTX and international music publications.
 
 **About Balanced Scale Media**
 Balanced Scale Media is an independent record label based in Austin, Texas, dedicated to supporting innovative artists with transparency and artist-first values.`,
@@ -86,7 +86,7 @@ promo@balancedscale.com
 www.balancedscale.com
 
 **About mozworth**
-mozworth is the musical project founded by Austin-based singer-songwriter Michael "Boz" Bosworth. The lineup now include Mark Heaps on electric guitar, Jack Schultz on bass, and Mike Hall on drums. Drawing from the depths of '90s alternative rock and the vulnerability of modern indie, mozworth creates music that feels both timeless and urgently present. With a self-titled debut album released in November 2024, mozworth has garnered attention from KUTX and international music publications.
+mozworth is the musical project founded by Austin-based singer-songwriter Michael "Boz" Bosworth. The lineup now includes Mark Heaps on electric guitar, Jack Schultz on bass, and Mike Hall on drums. Drawing from the depths of '90s alternative rock and the vulnerability of modern indie, mozworth creates music that feels both timeless and urgently present. With a self-titled debut album released in November 2024, mozworth has garnered attention from KUTX and international music publications.
 
 **About Balanced Scale Media**
 Balanced Scale Media is an independent record label based in Austin, Texas, dedicated to supporting innovative artists with transparency and artist-first values.`,
@@ -126,7 +126,7 @@ promo@balancedscale.com
 www.balancedscale.com
 
 **About mozworth**
-mozworth is the musical project founded by Austin-based singer-songwriter Michael "Boz" Bosworth. The lineup now include Mark Heaps on electric guitar, Jack Schultz on bass, and Mike Hall on drums. Drawing from the depths of '90s alternative rock and the vulnerability of modern indie, mozworth creates music that feels both timeless and urgently present. With a self-titled debut album released in November 2024, mozworth has garnered attention from KUTX and international music publications.
+mozworth is the musical project founded by Austin-based singer-songwriter Michael "Boz" Bosworth. The lineup now includes Mark Heaps on electric guitar, Jack Schultz on bass, and Mike Hall on drums. Drawing from the depths of '90s alternative rock and the vulnerability of modern indie, mozworth creates music that feels both timeless and urgently present. With a self-titled debut album released in November 2024, mozworth has garnered attention from KUTX and international music publications.
 
 **About Balanced Scale Media**
 Balanced Scale Media is an independent record label based in Austin, Texas, dedicated to supporting innovative artists with transparency and artist-first values.`,
