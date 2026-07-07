@@ -1,7 +1,7 @@
 {
   "name": "Balanced Scale Media",
   "short_name": "Balanced Scale",
-  "description": "Austin-based independent record label. 100% revenue to artists, zero recoupable costs. Artist-first values.",
+  "description": "Digital media company building web applications and providing technical consultation to businesses domestically and internationally.",
   "start_url": "/?utm_source=pwa",
   "scope": "/",
   "display": "standalone",
@@ -10,7 +10,7 @@
   "orientation": "any",
   "dir": "ltr",
   "lang": "en-US",
-  "categories": ["music", "entertainment", "lifestyle"],
+  "categories": ["business", "productivity", "technology"],
   "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
   "prefer_related_applications": false,
   "related_applications": [],

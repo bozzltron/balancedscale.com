@@ -100,7 +100,7 @@ export function StandardMetadata(props: MetadataProps): JSX.Element {
 export function createOrganizationData() {
   return {
     "@context": "https://schema.org",
-    "@type": "RecordLabel",
+    "@type": "Organization",
     "name": "Balanced Scale Media",
     "alternateName": "Balanced Scale",
     "legalName": "Balanced Scale Media LLC",
@@ -111,25 +111,12 @@ export function createOrganizationData() {
       "width": "512",
       "height": "512"
     },
-    "description": "Austin-based independent record label supporting innovative artists with transparency and artist-first values.",
+    "description": "Balanced Scale Media is a digital media company building web applications and providing technical consultation to businesses domestically and internationally.",
     "foundingDate": "2024",
-    "foundingLocation": {
-      "@type": "Place",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Austin",
-        "addressRegion": "TX",
-        "addressCountry": "US"
-      }
-    },
     "areaServed": "Worldwide",
-    "slogan": "Independent record label that puts artists first",
+    "slogan": "Digital media company",
     "email": "promo@balancedscale.com",
-    "knowsAbout": ["Independent Music", "Artist Rights", "Music Production", "Alternative Rock", "Indie Rock"],
-    "sameAs": [
-      "https://mozworth.music",
-      "https://mozworth.bandcamp.com"
-    ]
+    "knowsAbout": ["Web Applications", "Software Development", "Technical Consulting", "Digital Media"]
   };
 }
 
