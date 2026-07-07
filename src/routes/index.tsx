@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <StandardMetadata
         title="Balanced Scale Media | Digital Media Company"
-        description="Balanced Scale Media is a digital media company building web applications and providing technical consultation to businesses domestically and internationally."
+        description="Balanced Scale Media is a digital media company building web applications and providing technical consultation to businesses all over the globe."
         url="https://www.balancedscale.com"
         type="website"
         keywords="digital media, web applications, technical consultation, software development"
@@ -51,7 +51,7 @@ export default function Home() {
               class="text-lg md:text-xl leading-relaxed"
               style={{ color: "var(--text-secondary)" }}
             >
-              Balanced Scale Media is a digital media company building web applications and providing technical consultation to businesses domestically and internationally.
+              Balanced Scale Media is a digital media company building web applications and providing technical consultation to businesses all over the globe.
             </p>
           </div>
         </main>

@@ -2,7 +2,7 @@
   "name": "balancedscale.com",
   "type": "module",
   "version": "1.0.0",
-  "description": "Independent record label website - dark minimalist design showcasing artists, releases, and label ethos",
+  "description": "Digital media company website. One-page SolidStart app.",
   "scripts": {
     "dev": "vinxi dev",
     "build": "vinxi build",
@@ -26,8 +26,7 @@
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.6",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.32.1",
-    "vite-plugin-pwa": "^1.0.0"
+    "typescript-eslint": "^8.32.1"
   },
   "engines": {
     "node": ">=22"
@@ -37,10 +36,11 @@
     "url": "git+https://github.com/bozzltron/balancedscale.com.git"
   },
   "keywords": [
-    "record-label",
-    "music",
+    "digital-media",
+    "web-development",
+    "consulting",
     "solidjs",
-    "pwa",
+    "typescript",
     "dark-theme"
   ],
   "author": "Balanced Scale Media LLC",
