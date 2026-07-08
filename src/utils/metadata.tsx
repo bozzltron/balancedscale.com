@@ -130,7 +130,7 @@ export function createOrganizationData() {
     foundingDate: "2024",
     areaServed: "Worldwide",
     slogan: "Digital media company",
-    email: "promo@balancedscale.com",
+    email: "boz@balancedscale.com",
     knowsAbout: [
       "Web Applications",
       "Software Development",

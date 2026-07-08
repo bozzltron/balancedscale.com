@@ -1,4 +1,3 @@
-import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { StandardMetadata, createOrganizationData } from "../utils/metadata";
 import ScaleLogo from "../components/ScaleLogo";
@@ -28,8 +27,6 @@ export default function Home() {
           Skip to main content
         </a>
 
-        <Navigation />
-
         <main
           id="main-content"
           class="flex-1 px-4 py-12"
@@ -53,6 +50,25 @@ export default function Home() {
             >
               Balanced Scale Media is a digital media company building web applications and providing technical consultation to businesses all over the globe.
             </p>
+
+            <section class="mt-12" aria-labelledby="contact-heading">
+              <h2
+                id="contact-heading"
+                class="text-2xl md:text-3xl font-serif mb-6"
+                style={{ color: "var(--text-primary)" }}
+              >
+                Contact
+              </h2>
+              <p>
+                <a
+                  href="mailto:boz@balancedscale.com"
+                  class="text-base md:text-lg font-medium hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] rounded px-2 py-1"
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  boz@balancedscale.com
+                </a>
+              </p>
+            </section>
           </div>
         </main>
 
