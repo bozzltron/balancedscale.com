@@ -32,11 +32,11 @@ export default function ProjectLeroy() {
           <h2 class="text-2xl font-semibold mb-4">Links</h2>
           <div class="space-y-2">
             <a
-              href="/apps/project-leroy/privacy-policy.html"
+              href="/apps/project-leroy/privacy-policy"
               class="text-blue-600 hover:underline"
             >Privacy Policy</a>
             <a
-              href="/apps/project-leroy/terms-of-service.html"
+              href="/apps/project-leroy/terms-of-service"
               class="text-blue-600 hover:underline"
             >Terms of Service</a>
           </div>
